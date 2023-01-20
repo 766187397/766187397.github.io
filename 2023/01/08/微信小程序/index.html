@@ -10,15 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     
     <link rel="shortcut icon" href="https://sk20020228.gitee.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
-    <meta name="description" content="微信小程序封装请求 使用Promise封装  12345678910111213141516171819202122232425262728293031&#x2F;&#x2F; const BASE_URL &#x3D; &quot;http:&#x2F;&#x2F;localhost:3000&quot;const BASE_URL &#x3D; &quot;http:&#x2F;&#x2F;123.207.32.32:9002&quot;class API &amp;#123;">
+    <meta name="description" content="微信小程序 小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用  提高小程序的速度小程序启动加载性能：  控制代码包的大小 分包加载 首屏体验（预请求，利用缓存，避免白屏，及时反馈  小程序渲染性能：  避免不当的使用setData 使用自定义组件  封装请求 使用Promise封装  1234567891011121314151617181">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序">
 <meta property="og:url" content="https://sk20020228.gitee.io/2023/01/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.html">
 <meta property="og:site_name" content="辰風依恛">
-<meta property="og:description" content="微信小程序封装请求 使用Promise封装  12345678910111213141516171819202122232425262728293031&#x2F;&#x2F; const BASE_URL &#x3D; &quot;http:&#x2F;&#x2F;localhost:3000&quot;const BASE_URL &#x3D; &quot;http:&#x2F;&#x2F;123.207.32.32:9002&quot;class API &amp;#123;">
+<meta property="og:description" content="微信小程序 小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用  提高小程序的速度小程序启动加载性能：  控制代码包的大小 分包加载 首屏体验（预请求，利用缓存，避免白屏，及时反馈  小程序渲染性能：  避免不当的使用setData 使用自定义组件  封装请求 使用Promise封装  1234567891011121314151617181">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-08T09:17:06.141Z">
-<meta property="article:modified_time" content="2023-01-08T09:21:18.604Z">
+<meta property="article:modified_time" content="2023-01-20T12:41:18.301Z">
 <meta property="article:author" content="辰風依恛">
 <meta property="article:tag" content="辰風依恛个人博客">
 <meta name="twitter:card" content="summary">
@@ -27,15 +27,15 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1673959147705">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1674221156155">
     
         <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
     
-    <link rel="stylesheet" href="/css/style.css?v=1673959147705">
+    <link rel="stylesheet" href="/css/style.css?v=1674221156155">
 
     
         
-            <link rel="stylesheet" href="/custom.css?v=1673959147705">
+            <link rel="stylesheet" href="/custom.css?v=1674221156155">
         
     
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -106,7 +106,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1673959147705"></script>
+	<script async src="/js/search.js?v=1674221156155"></script>
 
 
 
@@ -382,7 +382,21 @@
     
 </div>
 
-    <h1 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h1><h2 id="封装请求"><a href="#封装请求" class="headerlink" title="封装请求"></a>封装请求</h2><blockquote>
+    <h1 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h1><blockquote>
+<p>小程序是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或者搜一下即可打开应用</p>
+</blockquote>
+<h2 id="提高小程序的速度"><a href="#提高小程序的速度" class="headerlink" title="提高小程序的速度"></a>提高小程序的速度</h2><p><strong>小程序启动加载性能</strong>：</p>
+<ul>
+<li>控制代码包的大小</li>
+<li>分包加载</li>
+<li>首屏体验（预请求，利用缓存，避免白屏，及时反馈</li>
+</ul>
+<p><strong>小程序渲染性能</strong>：</p>
+<ul>
+<li>避免不当的使用setData</li>
+<li>使用自定义组件</li>
+</ul>
+<h2 id="封装请求"><a href="#封装请求" class="headerlink" title="封装请求"></a>封装请求</h2><blockquote>
 <p>使用Promise封装</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// const BASE_URL = &quot;http://localhost:3000&quot;</span><br><span class="line">const BASE_URL = &quot;http://123.207.32.32:9002&quot;</span><br><span class="line">class API &#123;</span><br><span class="line">  request(url, method = &quot;GET&quot;, data) &#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      wx.request(&#123;</span><br><span class="line">        url: BASE_URL + url,</span><br><span class="line">        method,</span><br><span class="line">        data,</span><br><span class="line">        success: (res) =&gt; &#123;</span><br><span class="line">          resolve(res.data)</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: (err) =&gt; &#123;</span><br><span class="line">          reject(err)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  get(url, data) &#123;</span><br><span class="line">    return this.request(url, &quot;GET&quot;, data)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  post(url, data) &#123;</span><br><span class="line">    return this.request(url, &quot;POST&quot;, data)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const axios = new API()</span><br><span class="line"></span><br><span class="line">export default axios</span><br></pre></td></tr></table></figure>
@@ -425,27 +439,6 @@
 
 
 
-
-
-<h2 id="小程序中的状态管理"><a href="#小程序中的状态管理" class="headerlink" title="小程序中的状态管理"></a>小程序中的状态管理</h2><p>将需要共享的数据放到app.js的globalData:{}，使用getApp().globalData.xxx来调用</p>
-<p>但是数据不行响应式的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">    globalData: &#123;</span><br><span class="line">        changeshop: null</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在课程中coderwhy封装了一个库：<a target="_blank" rel="noopener" href="https://github.com/coderwhy/hy-event-store">https://github.com/coderwhy/hy-event-store</a></p>
-<p>使用方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">HYEventStore</span> &#125; = <span class="built_in">require</span>(<span class="string">&quot;hy-event-store&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&#x27;axios&#x27;</span>)</span><br><span class="line"><span class="comment">// 创建实例</span></span><br><span class="line"><span class="keyword">const</span> eventBus = <span class="keyword">new</span> <span class="title class_">HYEventBus</span>(&#123;</span><br><span class="line">  <span class="comment">// 本地数据</span></span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;why&quot;</span>,</span><br><span class="line">    <span class="attr">friends</span>: [<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;cba&quot;</span>, <span class="string">&quot;nba&quot;</span>],</span><br><span class="line">    <span class="attr">banners</span>: [],</span><br><span class="line">    <span class="attr">recommends</span>: []</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 异步数据</span></span><br><span class="line">  actions：&#123;</span><br><span class="line">  	<span class="title function_">getHomeMultidata</span>(<span class="params">ctx</span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(ctx)</span><br><span class="line">      axios.<span class="title function_">get</span>(<span class="string">&quot;http://123.207.32.32:8000/home/multidata&quot;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> banner = res.<span class="property">data</span>.<span class="property">data</span>.<span class="property">banner</span></span><br><span class="line">        <span class="keyword">const</span> recommend = res.<span class="property">data</span>.<span class="property">data</span>.<span class="property">recommend</span></span><br><span class="line">        <span class="comment">// 赋值</span></span><br><span class="line">        ctx.<span class="property">banners</span> = banner</span><br><span class="line">        ctx.<span class="property">recommends</span> = recommend</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 数据监听/获取数据</span></span><br><span class="line">eventStore.<span class="title function_">onState</span>(<span class="string">&quot;name&quot;</span>, <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;监听name:&quot;</span>, value)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 修改数据</span></span><br><span class="line">eventStore.<span class="title function_">setState</span>(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;lilei&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用异步请求</span></span><br><span class="line">eventStore.<span class="title function_">dispatch</span>(<span class="string">&quot;getHomeMultidata&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>由于这个组件没有太多人使用，项目中可以使用本地存储或考虑使用uniapp+vuex</p>
-</blockquote>
-<h2 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a>scroll-view</h2><p>默认使用时scroll-view不能使用flex布局，使用flex布局的时候他的高度是有问题的</p>
-<p>解决方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">父盒子&#123;</span><br><span class="line">	white-space: nowrap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">子盒子&#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">    vertical-align: top;/*顶部对齐防止部分机型对齐的问题*/</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在新版本库中可以使用属性声明使用flex</p>
-</blockquote>
-
     
   </article>
 
@@ -484,7 +477,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">微信小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">封装请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85"><span class="toc-number">1.2.</span> <span class="toc-text">使用第三方包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WXS"><span class="toc-number">1.3.</span> <span class="toc-text">WXS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">引入&#x2F;使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.2.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8Fslot"><span class="toc-number">1.4.</span> <span class="toc-text">小程序slot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">小程序中的状态管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scroll-view"><span class="toc-number">1.6.</span> <span class="toc-text">scroll-view</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">微信小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E9%AB%98%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%80%9F%E5%BA%A6"><span class="toc-number">1.1.</span> <span class="toc-text">提高小程序的速度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">封装请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%8C%85"><span class="toc-number">1.3.</span> <span class="toc-text">使用第三方包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WXS"><span class="toc-number">1.4.</span> <span class="toc-text">WXS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.1.</span> <span class="toc-text">引入&#x2F;使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">1.4.2.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8Fslot"><span class="toc-number">1.5.</span> <span class="toc-text">小程序slot</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -521,7 +514,7 @@
 
  
 
-<script async src="/js/app.js?v=1673959147708"></script>
+<script async src="/js/app.js?v=1674221156157"></script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
 
