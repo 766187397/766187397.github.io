@@ -9,7 +9,7 @@
     <meta name="keywords" content="辰風依恛个人博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     
-    <link rel="shortcut icon" href="https://sk20020228.gitee.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
     <meta name="description" content="JS其他内容事件冒泡与事件委托1) 事件冒泡的流程 基于DOM树形结构 事件在目标元素上处理后, 会由内向外(上)逐层传递 应用场景: 事件代理&#x2F;委托&#x2F;委派  2) 事件委托 减少内存占用(事件监听回调从n变为1) 动态添加的内部元素也能响应 不要滥用  3) 封装一个绑带事件监听的函数(有难度)123456789101112131415161718192021222324252627282930">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS其他内容">
@@ -17,41 +17,41 @@
 <meta property="og:site_name" content="辰風依恛">
 <meta property="og:description" content="JS其他内容事件冒泡与事件委托1) 事件冒泡的流程 基于DOM树形结构 事件在目标元素上处理后, 会由内向外(上)逐层传递 应用场景: 事件代理&#x2F;委托&#x2F;委派  2) 事件委托 减少内存占用(事件监听回调从n变为1) 动态添加的内部元素也能响应 不要滥用  3) 封装一个绑带事件监听的函数(有难度)123456789101112131415161718192021222324252627282930">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sk20020228.gitee.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
-<meta property="og:image" content="https://sk20020228.gitee.io/images//%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
+<meta property="og:image" content="https://766187397.github.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
+<meta property="og:image" content="https://766187397.github.io/images//%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
 <meta property="article:published_time" content="2023-01-07T09:13:24.897Z">
-<meta property="article:modified_time" content="2023-01-07T09:24:28.704Z">
+<meta property="article:modified_time" content="2024-06-15T06:09:00.287Z">
 <meta property="article:author" content="辰風依恛">
 <meta property="article:tag" content="辰風依恛个人博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sk20020228.gitee.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
+<meta name="twitter:image" content="https://766187397.github.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg">
     
 <link rel="stylesheet" href="/lib/fancybox/fancybox.css">
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1718431578549">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1718431761014">
     
         <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
     
-    <link rel="stylesheet" href="/css/style.css?v=1718431578549">
+    <link rel="stylesheet" href="/css/style.css?v=1718431761014">
 
     
         
-            <link rel="stylesheet" href="/custom.css?v=1718431578549">
+            <link rel="stylesheet" href="/custom.css?v=1718431761014">
         
     
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
     <div id="nexmoe-background">
-        <div class="nexmoe-bg" style="background-image: url(https://sk20020228.gitee.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
         <div class="mdui-appbar mdui-shadow-0">
             <div class="mdui-toolbar">
                 <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
                 <div class="mdui-toolbar-spacer"></div>
                 <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://sk20020228.gitee.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
         <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/" title="辰風依恛">
-            <img src="https://sk20020228.gitee.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -109,7 +109,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1718431578549"></script>
+	<script async src="/js/search.js?v=1718431761014"></script>
 
 
 
@@ -365,7 +365,7 @@
   <article>
     
         <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
-            <img src="https://sk20020228.gitee.io/images/JavaScript.png" alt="JS其他内容" loading="lazy">
+            <img src="https://766187397.github.io/images/JavaScript.png" alt="JS其他内容" loading="lazy">
             <h1>JS其他内容</h1>
         </div>
     
@@ -584,7 +584,7 @@
 <li>服务端发送客户端：我也准备好了，请你确认一下</li>
 <li>客户端发送服务端：确认完毕</li>
 </ul>
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://sk20020228.gitee.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg" alt="TCP三次握手_通俗版" data-caption="TCP三次握手_通俗版" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://766187397.github.io/images//TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg" alt="TCP三次握手_通俗版" data-caption="TCP三次握手_通俗版" loading="lazy"></p>
 <ol>
 <li>发送请求</li>
 </ol>
@@ -621,7 +621,7 @@
 <li>服务端发送客户端：响应数据发送完毕，可以断开了</li>
 <li>客户端发送服务端：响应数据接受完毕，可以断开了</li>
 </ul>
-<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://sk20020228.gitee.io/images//%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg" alt="四次挥手_通俗版" data-caption="四次挥手_通俗版" loading="lazy"></p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://766187397.github.io/images//%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B_%E9%80%9A%E4%BF%97%E7%89%88.jpeg" alt="四次挥手_通俗版" data-caption="四次挥手_通俗版" loading="lazy"></p>
 <h2 id="手写代码"><a href="#手写代码" class="headerlink" title="手写代码"></a>手写代码</h2><h3 id="函数的call-apply-bind"><a href="#函数的call-apply-bind" class="headerlink" title="函数的call() / apply() / bind()"></a>函数的call() / apply() / bind()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">/* </span><br><span class="line">自定义函数对象的call方法</span><br><span class="line">*/</span><br><span class="line">function call (fn, obj, ...args) &#123;</span><br><span class="line">  // 如果传入的是null/undefined, this指定为window</span><br><span class="line">  if (obj===null || obj===undefined) &#123;</span><br><span class="line">    obj = obj || window</span><br><span class="line">  &#125;</span><br><span class="line">  // 给obj添加一个方法: 属性名任意, 属性值必须当前调用call的函数对象</span><br><span class="line">  obj.tempFn = fn</span><br><span class="line">  // 通过obj调用这个方法</span><br><span class="line">  const result = obj.tempFn(...args)</span><br><span class="line">  // 删除新添加的方法</span><br><span class="line">  delete obj.tempFn</span><br><span class="line">  // 返回函数调用的结果</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* </span><br><span class="line">自定义函数对象的apply方法</span><br><span class="line">*/</span><br><span class="line">function apply (fn, obj, args) &#123;</span><br><span class="line">  // 如果传入的是null/undefined, this指定为window</span><br><span class="line">  if (obj===null || obj===undefined) &#123;</span><br><span class="line">    obj = obj || window</span><br><span class="line">  &#125;</span><br><span class="line">  // 给obj添加一个方法: 属性名任意, 属性值必须当前调用call的函数对象</span><br><span class="line">  obj.tempFn = fn</span><br><span class="line">  // 通过obj调用这个方法</span><br><span class="line">  const result = obj.tempFn(...args)</span><br><span class="line">  // 删除新添加的方法</span><br><span class="line">  delete obj.tempFn</span><br><span class="line">  // 返回函数调用的结果</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* </span><br><span class="line">  自定义函数对象的bind方法</span><br><span class="line">  重要技术:</span><br><span class="line">    高阶函数</span><br><span class="line">    闭包</span><br><span class="line">    call()</span><br><span class="line">    三点运算符</span><br><span class="line">*/</span><br><span class="line">function bind (fn, obj, ...args) &#123;</span><br><span class="line">  if (obj===null || obj===undefined) &#123;</span><br><span class="line">    obj = obj || window</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  return function (...args2) &#123;</span><br><span class="line">    return call(fn, obj, ...args, ...args2)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -724,7 +724,7 @@
 
  
 
-<script async src="/js/app.js?v=1718431578559"></script>
+<script async src="/js/app.js?v=1718431761021"></script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
 
