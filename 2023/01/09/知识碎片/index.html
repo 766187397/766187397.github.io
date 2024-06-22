@@ -18,7 +18,7 @@
 <meta property="og:description" content="知识碎片背面隐藏 backface-visibility: hidden;  保持宽高比 宽度设置百分比，设置aspect-ratio:16&#x2F;9;(宽&#x2F;高) 宽高都使用vw&#x2F;vh  Css小手指 cursor: pointer; 设置光标的类型  1234567cursor: pointer;		&#x2F;* 小手指 *&#x2F;cursor: help;			&#x2F;* 鼠标带？ *&#x2F;cursor: wait;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-09T13:39:53.736Z">
-<meta property="article:modified_time" content="2024-06-15T06:09:00.287Z">
+<meta property="article:modified_time" content="2024-06-22T11:50:51.742Z">
 <meta property="article:author" content="辰風依恛">
 <meta property="article:tag" content="辰風依恛个人博客">
 <meta name="twitter:card" content="summary">
@@ -27,15 +27,15 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1718431761002">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1719057206622">
     
         <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
     
-    <link rel="stylesheet" href="/css/style.css?v=1718431761002">
+    <link rel="stylesheet" href="/css/style.css?v=1719057206622">
 
     
         
-            <link rel="stylesheet" href="/custom.css?v=1718431761002">
+            <link rel="stylesheet" href="/custom.css?v=1719057206622">
         
     
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -106,7 +106,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1718431761002"></script>
+	<script async src="/js/search.js?v=1719057206622"></script>
 
 
 
@@ -452,7 +452,7 @@
 <h2 id="文字两端对齐"><a href="#文字两端对齐" class="headerlink" title="文字两端对齐"></a>文字两端对齐</h2><p>文字两端对齐：text-align: justify;</p>
 <h2 id="下载命名"><a href="#下载命名" class="headerlink" title="下载命名"></a>下载命名</h2><p>默认文件名称改为英文或数字，然后使用download属性指定名称</p>
 <h2 id="移动端文字"><a href="#移动端文字" class="headerlink" title="移动端文字"></a>移动端文字</h2><p>在模拟器中设置的文字大小调整时没有什么变化，但是到了手机中大小就有明显的变化了，在编写代码的时候不能依靠模拟器</p>
-<h2 id="文字溢出‘…’"><a href="#文字溢出‘…’" class="headerlink" title="文字溢出‘…’"></a>文字溢出‘…’</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*1. 先强制一行内显示文本*/</span></span><br><span class="line">  white-<span class="attr">space</span>: nowrap;  （ 默认 normal 自动换行）</span><br><span class="line"> <span class="comment">/*2. 超出的部分隐藏*/</span></span><br><span class="line">  <span class="attr">overflow</span>: hidden;</span><br><span class="line"> <span class="comment">/*3. 文字用省略号替代超出的部分*/</span></span><br><span class="line">  text-<span class="attr">overflow</span>: ellipsis;</span><br></pre></td></tr></table></figure>
+<h2 id="文字溢出‘…’"><a href="#文字溢出‘…’" class="headerlink" title="文字溢出‘…’"></a>文字溢出‘…’</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*1. 先强制一行内显示文本，默认 normal 自动换行*/</span></span><br><span class="line">  white-<span class="attr">space</span>: nowrap;</span><br><span class="line"> <span class="comment">/*2. 超出的部分隐藏*/</span></span><br><span class="line">  <span class="attr">overflow</span>: hidden;</span><br><span class="line"> <span class="comment">/*3. 文字用省略号替代超出的部分*/</span></span><br><span class="line">  text-<span class="attr">overflow</span>: ellipsis;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*1. 超出的部分隐藏 */</span></span><br><span class="line"><span class="attr">overflow</span>: hidden;</span><br><span class="line"><span class="comment">/*2. 文字用省略号替代超出的部分 */</span></span><br><span class="line">text-<span class="attr">overflow</span>: ellipsis;</span><br><span class="line"><span class="comment">/* 3. 弹性伸缩盒子模型显示 */</span></span><br><span class="line"><span class="attr">display</span>: -webkit-box;</span><br><span class="line"><span class="comment">/* 4. 限制在一个块元素显示的文本的行数 */</span></span><br><span class="line">-webkit-line-<span class="attr">clamp</span>: <span class="number">2</span>;</span><br><span class="line"><span class="comment">/* 5. 设置或检索伸缩盒对象的子元素的排列方式 */</span></span><br><span class="line">-webkit-box-<span class="attr">orient</span>: vertical;</span><br></pre></td></tr></table></figure>
 
@@ -591,7 +591,7 @@
 
  
 
-<script async src="/js/app.js?v=1718431761009"></script>
+<script async src="/js/app.js?v=1719057206628"></script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
 
