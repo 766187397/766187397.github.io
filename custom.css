@@ -1,0 +1,29 @@
+:root {
+  --gutter: 25px;
+  --radius: 13px;
+  --color-primary: #31aeff;
+  --color2: #ff4e6a;
+  --color3: #ffb900;
+  --color4: #33d57a;
+  --color5: #00dbff;
+  --color6: #ff4500;
+  --color7: #9090ff;
+  --color-primary-bg: rgba(49, 174, 255, 0.15);
+  --color2-bg: rgba(255, 78, 106, 0.15);
+  --color3-bg: rgba(255, 185, 0, 0.15);
+  --color4-bg: rgba(51, 213, 122, 0.15);
+  --color5-bg: rgba(0, 219, 255, 0.15);
+  --color6-bg: rgba(255, 69, 0, 0.15);
+  --color7-bg: rgba(144, 144, 255, 0.15);
+  --color-shadow: rgba(161, 177, 204, 0.4);
+}
+
+@media (max-width:750px) {
+
+  /* 单行文字溢出省略 */
+  .nexmoe-post>a>div>h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
