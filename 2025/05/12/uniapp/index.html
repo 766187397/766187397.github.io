@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>uniapp - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="uniappHBuilderX创建在点击工具栏里的文件 -&gt; 新建 -&gt; 项目（快捷键Ctrl+N），选择uni-app类型，输入工程名，选择模板，点击创建，即可成功创建。 uni-app自带的模板有 默认的空项目模板、Hello uni-app 官方组件和API示例，还有一个重要模板是 uni ui项目模板，日常开发推荐使用该模板，已内置大量常用组件。 vue-cli创建 使用这个一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uniapp">
+<meta property="og:url" content="https://766187397.github.io/2025/05/12/uniapp/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="uniappHBuilderX创建在点击工具栏里的文件 -&gt; 新建 -&gt; 项目（快捷键Ctrl+N），选择uni-app类型，输入工程名，选择模板，点击创建，即可成功创建。 uni-app自带的模板有 默认的空项目模板、Hello uni-app 官方组件和API示例，还有一个重要模板是 uni ui项目模板，日常开发推荐使用该模板，已内置大量常用组件。 vue-cli创建 使用这个一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/h5-cli-01.png">
+<meta property="article:published_time" content="2025-05-12T08:31:58.166Z">
+<meta property="article:modified_time" content="2025-05-12T09:36:03.911Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/h5-cli-01.png">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1757922409153">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1757922409153">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1757922409153">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>23</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>7</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1757922409153"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Vue2打包优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/10/%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%9F%9F%E5%90%8D/">免费云服务器和域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9/">项目常用（前程无忧）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">知识碎片</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/">小程序封装抽离</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/小程序.png" alt="uniapp" loading="lazy">
+            <h1>uniapp</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年05月12日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="uniapp"><a href="#uniapp" class="headerlink" title="uniapp"></a>uniapp</h1><h2 id="HBuilderX创建"><a href="#HBuilderX创建" class="headerlink" title="HBuilderX创建"></a>HBuilderX创建</h2><p>在点击工具栏里的文件 -&gt; 新建 -&gt; 项目（快捷键<code>Ctrl+N</code>），选择<code>uni-app</code>类型，输入工程名，选择模板，点击创建，即可成功创建。</p>
+<p>uni-app自带的模板有 默认的空项目模板、Hello uni-app 官方组件和API示例，还有一个重要模板是 uni ui项目模板，日常开发推荐使用该模板，已内置大量常用组件。</p>
+<h2 id="vue-cli创建"><a href="#vue-cli创建" class="headerlink" title="vue-cli创建"></a>vue-cli创建</h2><blockquote>
+<p>使用这个一般就是要用到TS，因为HBuilderX对TS的支持目前没有达到需求，存在一些问题不能识别，所以使用vscode 用命令的形式创建，这一部分的详细安装看官方，主要是还得安装几个插件</p>
+</blockquote>
+<p>全局安装 vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建uni-app"><a href="#创建uni-app" class="headerlink" title="创建uni-app"></a>创建uni-app</h3><ul>
+<li><p>使用正式版（对应HBuilderX最新正式版）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create -p dcloudio/uni-preset-vue my-project</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+</li>
+<li><p>使用alpha版（对应HBuilderX最新alpha版）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create -p dcloudio/uni-preset-vue#alpha my-alpha-project</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+</li>
+<li><p>使用Vue3/Vite版</p>
+<ul>
+<li><p>创建以 javascript 开发的工程（如命令行创建失败，请直接访问gitee下载模板）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx degit dcloudio/uni-preset-vue#vite my-vue3-project</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx degit dcloudio/uni-preset-vue#vite-alpha my-vue3-project</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+</li>
+<li><p>创建以 typescript 开发的工程（如命令行创建失败，请直接访问gitee下载模板）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx degit dcloudio/uni-preset-vue#vite-ts my-vue3-project</span><br></pre></td></tr></table></figure>
+
+<p>复制代码</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>此时，会提示选择项目模板（使用Vue3/Vite版不会提示，目前只支持创建默认模板），初次体验建议选择 <code>hello uni-app</code> 项目模板，如下所示：</p>
+<p><img onerror="imgOnError(this);" data-fancybox="gallery" src="https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/h5-cli-01.png" alt="img" data-caption="img" loading="lazy"></p>
+<p><strong>注意</strong></p>
+<ul>
+<li>Vue3/Vite版要求 node 版本<code>^14.18.0 || &gt;=16.0.0</code></li>
+<li>如果使用 HBuilderX（3.6.7以下版本）运行 Vue3/Vite 创建的最新的 cli 工程，需要在 HBuilderX 运行配置最底部设置 node路径 为自己本机高版本 node 路径（注意需要重启 HBuilderX 才可以生效）<ul>
+<li>HBuilderX Mac 版本菜单栏左上角 HBuilderX-&gt;偏好设置-&gt;运行配置-&gt;node路径</li>
+<li>HBuilderX Windows 版本菜单栏 工具-&gt;设置-&gt;运行配置-&gt;node路径</li>
+</ul>
+</li>
+</ul>
+<p><strong>命令式的运行发布</strong>：<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app">https://uniapp.dcloud.net.cn/quickstart-cli.html#%E8%BF%90%E8%A1%8C%E3%80%81%E5%8F%91%E5%B8%83uni-app</a></p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><ul>
+<li>uni-create-view：快速创建视图与组件</li>
+<li>uni-helper：代码提示</li>
+<li>uniapp小程序扩展：鼠标悬停查看文档</li>
+</ul>
+<h3 id="安装TS"><a href="#安装TS" class="headerlink" title="安装TS"></a>安装TS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i D @types/wechat-miniprogram @uni-helper/uni-app-types</span><br></pre></td></tr></table></figure>
+
+<p>配置tsconfig.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;@dcloudio/types&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="string">&quot;@types/wechat-miniprogram&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="string">&quot;@uni-helper/uni-app-types&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;vueCompilerOptions&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;experimentalRuntimeMode&quot;</span><span class="punctuation">:</span><span class="string">&quot;runtime-uni-app&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置文件关联"><a href="#设置文件关联" class="headerlink" title="设置文件关联"></a>设置文件关联</h3><p>打开设置，搜索文件关联</p>
+<p>设置”项”为 <code>manifest.json</code> “值” 为 <code>jsonc</code> 这个可以写注释</p>
+<p>设置”项”为 <code>pages.json</code> “值” 为 <code>jsonc</code> 这个不能写注释</p>
+<h2 id="uni-ui"><a href="#uni-ui" class="headerlink" title="uni-ui"></a>uni-ui</h2><p>HBuilderX：直接在官网导入即可</p>
+<p>npm：</p>
+<ul>
+<li><p><code>vue.config.js</code> 文件 ，增加 <code>@dcloudio/uni-ui</code> 包的编译即可正常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">		<span class="attr">transpileDependencies</span>:[<span class="string">&#x27;@dcloudio/uni-ui&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>准备 sass</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i sass -D   或   yarn add sass -D  </span><br><span class="line">npm i sass-loader@10.1.1 -D   或   yarn add sass-loader@10.1.1 -D</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 uni-ui</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @dcloudio/uni-ui   或   yarn add @dcloudio/uni-ui</span><br></pre></td></tr></table></figure></li>
+<li><p>配置easycom</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pages.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;easycom&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;autoscan&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;custom&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">			<span class="comment">// uni-ui 规则如下配置</span></span><br><span class="line">			<span class="attr">&quot;^uni-(.*)&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue&quot;</span></span><br><span class="line">		<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 其他内容</span></span><br><span class="line">	pages<span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="安装uni-ui的TS支持"><a href="#安装uni-ui的TS支持" class="headerlink" title="安装uni-ui的TS支持"></a>安装uni-ui的TS支持</h3><blockquote>
+<p>@uni-helper/uni-ui-types</p>
+<p>npm地址：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@uni-helper/uni-ui-types">https://www.npmjs.com/package/@uni-helper/uni-ui-types</a></p>
+</blockquote>
+<p><strong>安装</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D @uni-helper/uni-ui-types</span><br></pre></td></tr></table></figure>
+
+<p>配置 <code>tsconfig.json</code>，确保 <code>compilerOptions.types</code> 中含有 <code>@dcloudio/types</code> 和 <code>@uni-helper/uni-ui-types</code> 且 <code>include</code> 包含了对应的 <code>vue</code> 文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span></span><br><span class="line">      ···</span><br><span class="line">      <span class="string">&quot;@dcloudio/types&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="string">&quot;@uni-helper/uni-ui-types&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;vueCompilerOptions&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;experimentalRuntimeMode&quot;</span><span class="punctuation">:</span><span class="string">&quot;runtime-uni-app&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="封装拦截器"><a href="#封装拦截器" class="headerlink" title="封装拦截器"></a>封装拦截器</h2><h3 id="Promise封装"><a href="#Promise封装" class="headerlink" title="Promise封装"></a>Promise封装</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">API</span> &#123;</span><br><span class="line">  <span class="title function_">request</span>(<span class="params">url, method = <span class="string">&quot;GET&quot;</span>, data</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      wx.<span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>:url,</span><br><span class="line">        method,</span><br><span class="line">        data,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">resolve</span>(res.<span class="property">data</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">fail</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">reject</span>(err)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">get</span>(<span class="params">url, data</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(url, <span class="string">&quot;GET&quot;</span>, data)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">post</span>(<span class="params">url, data</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(url, <span class="string">&quot;POST&quot;</span>, data)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> axios = <span class="keyword">new</span> <span class="title function_">API</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="uni-addInterceptor封装拦截器"><a href="#uni-addInterceptor封装拦截器" class="headerlink" title="uni.addInterceptor封装拦截器"></a>uni.addInterceptor封装拦截器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">BASE_URL</span> = <span class="string">&quot;http://localhost:3000&quot;</span></span><br><span class="line"><span class="keyword">const</span> httpInterceptor = &#123;</span><br><span class="line">  <span class="comment">// 拦截前触发</span></span><br><span class="line">  <span class="title function_">invoke</span>(<span class="params">options</span>)&#123;</span><br><span class="line">  	<span class="comment">// 非http开头的地址添加基础地址</span></span><br><span class="line">    <span class="keyword">if</span>(!options.<span class="property">url</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;http&#x27;</span>))&#123;</span><br><span class="line">      options.<span class="property">url</span> = options.<span class="property">url</span> + <span class="variable constant_">BASE_URL</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 超时时间</span></span><br><span class="line">    options.<span class="property">timeout</span> = <span class="number">10000</span></span><br><span class="line">    <span class="comment">// 添加标识</span></span><br><span class="line">    options.<span class="property">header</span> = &#123;</span><br><span class="line">      ...options.<span class="property">header</span>,</span><br><span class="line">      <span class="string">&#x27;source-client&#x27;</span>:<span class="string">&quot;minapp&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 添加token</span></span><br><span class="line">    <span class="keyword">if</span>(user.<span class="property">token</span>)&#123;</span><br><span class="line">      options.<span class="property">header</span>.<span class="property">Authorization</span> = <span class="string">`Bearer <span class="subst">$&#123;user.token&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 成功触发回调</span></span><br><span class="line">  <span class="title function_">success</span>(<span class="params">args</span>)&#123;</span><br><span class="line">      args.<span class="property">data</span>.<span class="property">code</span> = <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 失败回调</span></span><br><span class="line">  <span class="title function_">fail</span>(<span class="params">err</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;interceptor-fail&#x27;</span>,err)</span><br><span class="line">  &#125;, </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理返回值</span></span><br><span class="line">uni.<span class="title function_">addInterceptor</span>(&#123;</span><br><span class="line">  <span class="title function_">returnValue</span>(<span class="params">args</span>) &#123;</span><br><span class="line">    <span class="comment">// 只返回 data 字段</span></span><br><span class="line">    <span class="keyword">return</span> args.<span class="property">data</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 网络请求</span></span><br><span class="line">uni.<span class="title function_">addInterceptor</span>(<span class="string">&#x27;request&#x27;</span>,httpInterceptor)</span><br><span class="line"><span class="comment">// 文件上传</span></span><br><span class="line">uni.<span class="title function_">addInterceptor</span>(<span class="string">&#x27;uploadFile&#x27;</span>,httpInterceptor)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="自定义导航"><a href="#自定义导航" class="headerlink" title="自定义导航"></a>自定义导航</h2><p>修改样式、关闭默认导航</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;navigationStyle&quot;:&quot;custom&quot;,</span><br><span class="line">&quot;navigationBarTextStyle&quot;:&quot;white&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>由于不同的机型手机头部到安全区域的距离有一些差距，需要借助uniapp提供的方法来获取</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const &#123;safeAreaInsets&#125; = uni.getSystemInfoSync()</span><br><span class="line">```</span><br><span class="line">&lt;view :style=&quot;&#123; paddingTop:safeAreaInsets?.top + &#x27;px&#x27;&#125;&quot;&gt;&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意：Vue3版本使用Vue - Official（当前2.2.10有误）时需要关掉建议或使用老版本，否则会提示没有必要的报错，小程序的组件他没法识别</strong></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/05/12/uniapp/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;uniapp&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;uniapp&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#uniapp"><span class="toc-number">1.</span> <span class="toc-text">uniapp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HBuilderX%E5%88%9B%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">HBuilderX创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-cli%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.</span> <span class="toc-text">vue-cli创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAuni-app"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建uni-app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85TS"><span class="toc-number">1.2.3.</span> <span class="toc-text">安装TS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94"><span class="toc-number">1.2.4.</span> <span class="toc-text">设置文件关联</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uni-ui"><span class="toc-number">1.3.</span> <span class="toc-text">uni-ui</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85uni-ui%E7%9A%84TS%E6%94%AF%E6%8C%81"><span class="toc-number">1.3.1.</span> <span class="toc-text">安装uni-ui的TS支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">封装拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise%E5%B0%81%E8%A3%85"><span class="toc-number">1.4.1.</span> <span class="toc-text">Promise封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uni-addInterceptor%E5%B0%81%E8%A3%85%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">1.4.2.</span> <span class="toc-text">uni.addInterceptor封装拦截器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA"><span class="toc-number">1.5.</span> <span class="toc-text">自定义导航</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1757922409157"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

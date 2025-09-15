@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>生成博客到部署 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="生成博客到部署 大体思路：开通Gitee Pages，自己写一个静态网站或者使用Jekyll、Hugo、Hexo来生成  Gitee Pages首先开通Gitee Pages： 需要注册登录到Gitee上，并且创建仓库，仓库名称最好和自己的个性地址一样,然后开源这个仓库，在服务中点击Gitee Pages，首次使用需要实名注册 生成ssh添加到Gitee仓库，详细的百度查一下，方便后续快速部署 更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成博客到部署">
+<meta property="og:url" content="https://766187397.github.io/2025/05/12/%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="生成博客到部署 大体思路：开通Gitee Pages，自己写一个静态网站或者使用Jekyll、Hugo、Hexo来生成  Gitee Pages首先开通Gitee Pages： 需要注册登录到Gitee上，并且创建仓库，仓库名称最好和自己的个性地址一样,然后开源这个仓库，在服务中点击Gitee Pages，首次使用需要实名注册 生成ssh添加到Gitee仓库，详细的百度查一下，方便后续快速部署 更">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-12T08:31:58.167Z">
+<meta property="article:modified_time" content="2025-05-13T07:01:22.968Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1757922409141">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1757922409141">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1757922409141">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>23</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>7</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1757922409141"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Vue2打包优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/10/%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%9F%9F%E5%90%8D/">免费云服务器和域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9/">项目常用（前程无忧）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">知识碎片</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/">小程序封装抽离</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/7aa83266b8b64fafbfc6e39a281df3e0.jpg" alt="生成博客到部署" loading="lazy">
+            <h1>生成博客到部署</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年05月12日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="生成博客到部署"><a href="#生成博客到部署" class="headerlink" title="生成博客到部署"></a>生成博客到部署</h1><blockquote>
+<p>大体思路：开通Gitee Pages，自己写一个静态网站或者使用Jekyll、Hugo、Hexo来生成</p>
+</blockquote>
+<h2 id="Gitee-Pages"><a href="#Gitee-Pages" class="headerlink" title="Gitee Pages"></a>Gitee Pages</h2><p>首先开通Gitee Pages：</p>
+<p>需要注册登录到Gitee上，并且创建仓库，仓库名称最好和自己的个性地址一样,然后开源这个仓库，在服务中点击Gitee Pages，首次使用需要实名注册</p>
+<p>生成ssh添加到Gitee仓库，详细的百度查一下，方便后续快速部署</p>
+<p>更多访问<a target="_blank" rel="noopener" href="https://gitee.com/help/articles/4136#article-header0">https://gitee.com/help/articles/4136#article-header0</a></p>
+<blockquote>
+<p>如果是想要自己手写的话就打包好上传到这个仓库即可</p>
+</blockquote>
+<h2 id="使用Hexo"><a href="#使用Hexo" class="headerlink" title="使用Hexo"></a>使用Hexo</h2><p>hexo可以使用Markdown文档生成，相对于手写更加方便。</p>
+<p>使用他上传首先需要安装Git、node，版本要求最后是看官网；一般来讲只要不是很老的都行。</p>
+<p>安装Hexo</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>准备一个文件夹，在文件夹地址中输入cmd回车，打开命令提示符，在文件夹中创建网站，并安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>可以在 <code>localhost:4000</code>查看生成的网站</p>
+<p>在根目录中找到_config.yml来配置</p>
+<p>详细查看官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">https://hexo.io/zh-cn/docs/configuration</a></p>
+<p>下面列举几个，每一个:后面都有一个空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">title: 网站标题</span><br><span class="line">author: 作者</span><br><span class="line">language: 语言</span><br><span class="line">timezone: 时间</span><br><span class="line"></span><br><span class="line">url: Gitee Page、GitHub Pages等，github是：用户名.github.io，Gitee：用户名.gitee.io</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 这里直接复制Gitee生成仓库时的地址，大致就是https://gitee.com/个性地址/仓库地址.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<p>安装依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后进行部署</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p><code>hexo clean</code> 清除了你之前生成的东西。</p>
+<p><code>hexo generate</code> 生成静态文章，可以用 hexo g 缩写</p>
+<p><code>hexo deploy</code> 部署文章，可以用hexo d缩写</p>
+<p>更多命令查看官网：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">https://hexo.io/zh-cn/docs/commands</a></p>
+<p>如果没有配置ssh一般需要输入用户名和密码</p>
+<h3 id="配置主题"><a href="#配置主题" class="headerlink" title="配置主题"></a>配置主题</h3><p>hexo有很多主题，例如我使用的：<a target="_blank" rel="noopener" href="https://hexo.kira.host/">Kira-Hexo</a></p>
+<p>在你的 Hexo 项目根目录下运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-theme-kira</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>_config.yml</code> 中，将 <code>theme</code> 的值修改为 <code>kira</code>（使用其他的就是其他的主题名称）</p>
+<p>为了让 Kira-Hexo 正常工作，你还需要在 Hexo 项目的根目录下新建一个名为 <code>_config.kira.yml</code> 的文件，并在文件中填入下方的配置信息。（最好访问官网去看，可能会更新）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">avatar: https://raw.githubusercontent.com/ch1ny/PictureCDN/master/others/116359b4ccf19917.jpg # 网站 Logo</span><br><span class="line">background: # 既是博客的背景，又是文章默认头图</span><br><span class="line">    path: https://raw.githubusercontent.com/ch1ny/PictureCDN/master/others/f0d5cc34c6e5aa7.jpg</span><br><span class="line">    width: 1280</span><br><span class="line">    height: 720</span><br><span class="line">favicon:</span><br><span class="line">    href: https://raw.githubusercontent.com/ch1ny/PictureCDN/master/others/116359b4ccf19917.jpg # 网站图标</span><br><span class="line">    type: image/png # 图标类型，可能的值有(image/png, image/vnd.microsoft.icon, image/x-icon, image/gif)</span><br><span class="line"></span><br><span class="line"># 附加图标库 使用说明：https://hexo.kira.host/config/icon</span><br><span class="line">iconlib: //at.alicdn.com/t/c/font_3299330_2a7ov96q7e3.css</span><br><span class="line"></span><br><span class="line">cdn: # 这里可以修改站点使用的库的CDN</span><br><span class="line">    gitalk:</span><br><span class="line">        css: https://unpkg.com/gitalk@latest/dist/gitalk.css</span><br><span class="line">        js: https://unpkg.com/gitalk@latest/dist/gitalk.min.js</span><br><span class="line"></span><br><span class="line">beian: 赣ICP备******号 # 备案号（选填，此乃中国特色，不得不尝）</span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">    回到首页:</span><br><span class="line">        - /</span><br><span class="line">        - icon-home</span><br><span class="line">    文章归档: # 使用说明：https://docs.kira.com/article/archive</span><br><span class="line">        - /archive.html</span><br><span class="line">        - icon-container</span><br><span class="line">    关于本人:</span><br><span class="line">        - /about.html</span><br><span class="line">        - icon-user</span><br><span class="line">    我的朋友:</span><br><span class="line">        - /friends.html # 使用说明：https://docs.kira.com/article/py</span><br><span class="line">        - icon-team</span><br><span class="line"></span><br><span class="line">widgets:</span><br><span class="line">    - social</span><br><span class="line">    - category</span><br><span class="line">    - tagcloud</span><br><span class="line"></span><br><span class="line">maxTagcloud: 0 # 标签云组件显示的标签数量，0 表示不限制</span><br><span class="line"></span><br><span class="line">social:</span><br><span class="line">    QQ:</span><br><span class="line">        - tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1056317718&amp;website=www.oicqzone.com</span><br><span class="line">        - icon-QQ</span><br><span class="line">        - rgb(49, 174, 255)</span><br><span class="line">        - rgba(49, 174, 255, .1)</span><br><span class="line">    哔哩哔哩:</span><br><span class="line">        - https://space.bilibili.com/27905679</span><br><span class="line">        - icon-bilibili</span><br><span class="line">        - rgb(231, 106, 141)</span><br><span class="line">        - rgba(231, 106, 141, .15)</span><br><span class="line">    GitHub:</span><br><span class="line">        - https://github.com/ch1ny/</span><br><span class="line">        - icon-github</span><br><span class="line">        - rgb(25, 23, 23)</span><br><span class="line">        - rgba(25, 23, 23, .15)</span><br><span class="line">    Gitee:</span><br><span class="line">        - https://gitee.com/ch1ny/</span><br><span class="line">        - icon-gitee</span><br><span class="line">        - rgb(165, 15, 15)</span><br><span class="line">        - rgba(165, 15, 15, .15)</span><br><span class="line"></span><br><span class="line">color: # 配色方案，从first到seventh为优先级为1-7的颜色，默认为彩虹配色</span><br><span class="line">    first: # 同时作为主题色</span><br><span class="line">        r: 49</span><br><span class="line">        g: 174</span><br><span class="line">        b: 255</span><br><span class="line">    second:</span><br><span class="line">        r: 255</span><br><span class="line">        g: 78</span><br><span class="line">        b: 106</span><br><span class="line">    third:</span><br><span class="line">        r: 255</span><br><span class="line">        g: 185</span><br><span class="line">        b: 0</span><br><span class="line">    fourth:</span><br><span class="line">        r: 51</span><br><span class="line">        g: 213</span><br><span class="line">        b: 122</span><br><span class="line">    fifth:</span><br><span class="line">        r: 0</span><br><span class="line">        g: 219</span><br><span class="line">        b: 255</span><br><span class="line">    sixth:</span><br><span class="line">        r: 255</span><br><span class="line">        g: 69</span><br><span class="line">        b: 0</span><br><span class="line">    seventh:</span><br><span class="line">        r: 144</span><br><span class="line">        g: 144</span><br><span class="line">        b: 255</span><br><span class="line"></span><br><span class="line"># 评论区</span><br><span class="line">gitalk:</span><br><span class="line">    active: true # 是否启用 gitalk</span><br><span class="line">    admin: -your github username- # 拥有对该repo进行操作的 GitHub username</span><br><span class="line">    owner: -your github username- # 持有该 repo 的 GitHub username</span><br><span class="line">    repo: -issue repo name- # 存放评论的 issue 所在的 repo</span><br><span class="line">    clientID: -id- # GitHub Client ID</span><br><span class="line">    clientSecret: -key- # GitHub Client Secret</span><br><span class="line">    title: &#x27;&#x27; # Gitalk Issue Title</span><br><span class="line"></span><br><span class="line">copyright: &#x27;&lt;strong&gt;版权声明：&lt;/strong&gt;本文采用 &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA 3.0 CN&lt;/a&gt; 协议进行许可&#x27;</span><br><span class="line">copyTip: &quot;著作权归作者所有。\n商业转载请联系作者获得授权，非商业转载请注明出处。\n来源：%url&quot; # 自定义复制版权文案,使用 %url 代替当前页面URL, 修改为false禁用</span><br><span class="line"></span><br><span class="line"># achive widget behavior</span><br><span class="line">widgetAchive: #文章归档组件</span><br><span class="line">    archive_type: &#x27;year&#x27; #按月展示还是按年展示</span><br><span class="line">    show_count: true #是否展示数量</span><br><span class="line"></span><br><span class="line">widgetLink: #链接组件</span><br><span class="line">    - title: &lt;title&gt;</span><br><span class="line">      img: &lt;img_path&gt;</span><br><span class="line">      link: &lt;url&gt;</span><br><span class="line">    - title: &lt;title&gt;</span><br><span class="line">      img: &lt;img_path&gt;</span><br><span class="line">      link: &lt;url&gt;</span><br><span class="line"></span><br><span class="line"># 自定义侧边栏尾部内容</span><br><span class="line">sidebar: &#x27;&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后在命名行输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>等待部署完成后去Gitee的仓库找到 Gitee Pages服务，点击更新。</p>
+<h2 id="更新博客"><a href="#更新博客" class="headerlink" title="更新博客"></a>更新博客</h2><p>如果有新的博客内容要更新，找到根目录的source/_posts文件夹，在里面写Markdown文档的内容，然后再命令行输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>部署完成后去Gitee的仓库找到 Gitee Pages服务，点击更新。</p>
+<p>当然在本地查看效果再去部署最好。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/05/12/%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2"><span class="toc-number">1.</span> <span class="toc-text">生成博客到部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gitee-Pages"><span class="toc-number">1.1.</span> <span class="toc-text">Gitee Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Hexo"><span class="toc-number">1.2.</span> <span class="toc-text">使用Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%BB%E9%A2%98"><span class="toc-number">1.2.1.</span> <span class="toc-text">配置主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.3.</span> <span class="toc-text">更新博客</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1757922409144"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

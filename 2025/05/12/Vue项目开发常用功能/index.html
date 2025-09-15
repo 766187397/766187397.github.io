@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>Vue项目开发常用功能 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="Vue项目开发常用功能vscode@配置在根目录创建jsconfig.json（如果没有默认生成） 123456789&amp;#123;  &quot;compilerOptions&quot;: &amp;#123;    &quot;baseUrl&quot;: &quot;.&#x2F;&quot;,    &quot;paths&quot;: &amp;#123;        &quot;@&#x2F;*&quot;: [&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目开发常用功能">
+<meta property="og:url" content="https://766187397.github.io/2025/05/12/Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="Vue项目开发常用功能vscode@配置在根目录创建jsconfig.json（如果没有默认生成） 123456789&amp;#123;  &quot;compilerOptions&quot;: &amp;#123;    &quot;baseUrl&quot;: &quot;.&#x2F;&quot;,    &quot;paths&quot;: &amp;#123;        &quot;@&#x2F;*&quot;: [&amp;qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-12T08:31:58.165Z">
+<meta property="article:modified_time" content="2025-05-12T08:31:58.165Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1757922409159">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1757922409159">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1757922409159">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>23</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>7</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1757922409159"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Vue2打包优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/10/%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%9F%9F%E5%90%8D/">免费云服务器和域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9/">项目常用（前程无忧）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">知识碎片</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/">小程序封装抽离</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/vue.png" alt="Vue项目开发常用功能" loading="lazy">
+            <h1>Vue项目开发常用功能</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年05月12日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/Vue/">Vue</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Vue项目开发常用功能"><a href="#Vue项目开发常用功能" class="headerlink" title="Vue项目开发常用功能"></a>Vue项目开发常用功能</h1><h2 id="vscode-配置"><a href="#vscode-配置" class="headerlink" title="vscode@配置"></a>vscode@配置</h2><p>在根目录创建jsconfig.json（如果没有默认生成）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;baseUrl&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;paths&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@/*&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src/*&quot;</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;exclude&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;node_modules&quot;</span><span class="punctuation">,</span> <span class="string">&quot;dist&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="默认启动浏览器"><a href="#默认启动浏览器" class="headerlink" title="默认启动浏览器"></a>默认启动浏览器</h2><p>修改package.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &quot;serve&quot;: &quot;vue-cli-service serve&quot;,</span></span><br><span class="line"><span class="attr">&quot;serve&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vue-cli-service serve --open&quot;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>在vue.confog.js中添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="attr">open</span>: <span class="literal">true</span>, <span class="comment">// 默认打开浏览器</span></span><br><span class="line">    <span class="attr">host</span>: <span class="string">&#x27;localhost&#x27;</span>, <span class="comment">// 路径</span></span><br><span class="line">    <span class="attr">port</span>: <span class="number">8080</span>, <span class="comment">// 端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="重置默认样式"><a href="#重置默认样式" class="headerlink" title="重置默认样式"></a>重置默认样式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save normalize.css</span><br></pre></td></tr></table></figure>
+
+<p>main.js引入（在自己的样式之前）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;normalize.css&quot;</span><br></pre></td></tr></table></figure>
+
+<p>或者在index.css中引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;normalize.css&quot;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="axios封装"><a href="#axios封装" class="headerlink" title="axios封装"></a>axios封装</h2><blockquote>
+<p>创建axios.config.js管理不同环境的参数</p>
+<p>创建axios.js/index.js管理请求拦截和响应拦截内容</p>
+<p>根据对应的模块创建对应的文件/文件夹管理请求的接口</p>
+</blockquote>
+<p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i axios</span><br></pre></td></tr></table></figure>
+
+<p>案例：</p>
+<p>axios.config.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据process.env.NODE_ENV</span></span><br><span class="line"><span class="comment">// - 开发环境：development</span></span><br><span class="line"><span class="comment">// - 生产环境：production</span></span><br><span class="line"><span class="comment">// - 测试环境：test</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">BASE_UEL</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable constant_">TIME_OUT</span> = <span class="number">10000</span></span><br><span class="line"><span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable constant_">BASE_UEL</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;production&#x27;</span>) &#123;</span><br><span class="line">  <span class="variable constant_">BASE_UEL</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="variable constant_">BASE_UEL</span> = <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; <span class="variable constant_">BASE_UEL</span>, <span class="variable constant_">TIME_OUT</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>axios.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">BASE_UEL</span>, <span class="variable constant_">TIME_OUT</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./axios.config&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> request = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">baseURL</span>: <span class="variable constant_">BASE_UEL</span>,</span><br><span class="line">    <span class="attr">timeout</span>: <span class="variable constant_">TIME_OUT</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加请求拦截器</span></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">    <span class="comment">// 在发送请求之前做些什么</span></span><br><span class="line">  	<span class="keyword">const</span> user = store.<span class="property">state</span>.<span class="property">user</span>; <span class="comment">// 获取token，</span></span><br><span class="line">      <span class="keyword">if</span> (user) &#123;</span><br><span class="line">        config.<span class="property">headers</span>.<span class="property">Authorization</span> = <span class="string">`Bearer <span class="subst">$&#123;user.token&#125;</span>`</span>;<span class="comment">// 设置token 也有可能是自定义的请求头</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 对请求错误做些什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加响应拦截器</span></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="comment">// 对响应数据做点什么</span></span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// 对响应错误做点什么</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">    request</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模块接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; request &#125; <span class="keyword">from</span> <span class="string">&#x27;./axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">Object</span>&#125; params get请求参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">get</span> = (<span class="params">params</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;/***&#x27;</span>,</span><br><span class="line">        params</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">Object</span>&#125; data post请求参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">post</span> = (<span class="params">data</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;/***&#x27;</span>,</span><br><span class="line">        data</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="无感刷新Token"><a href="#无感刷新Token" class="headerlink" title="无感刷新Token"></a>无感刷新Token</h2><p>概述：服务器生成token的过程中，会有两个时间，一个是token失效时间，一个是token刷新时间，刷新时间肯定比失效时间长，当用户的 <code>token</code> 过期时，你可以拿着过期的token去换取新的token，来保持用户的登陆状态，当然你这个过期token的过期时间必须在刷新时间之内，如果超出了刷新时间，那么返回的依旧是 401。</p>
+<p>处理流程：</p>
+<ol>
+<li>在axios的拦截器中加入token刷新逻辑</li>
+<li>当用户token过期时，去向服务器请求新的 token</li>
+<li>把旧的token替换为新的token</li>
+<li>然后继续用户当前的请求</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 封装 axios 请求模块</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> jsonBig <span class="keyword">from</span> <span class="string">&quot;json-bigint&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&quot;@/store&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&quot;@/router&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// axios.create 方法：创建一个axios实例</span></span><br><span class="line"><span class="keyword">const</span> request = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&quot;http://ttapi.research.itcast.cn/&quot;</span> <span class="comment">// 基础路径</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 配置处理后端返回数据中超出 js 安全整数范围问题</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">request.<span class="property">defaults</span>.<span class="property">transformResponse</span> = [</span><br><span class="line">  <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> jsonBig.<span class="title function_">parse</span>(data);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;data&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求拦截器</span></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="keyword">function</span>(<span class="params">config</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> user = store.<span class="property">state</span>.<span class="property">user</span>;</span><br><span class="line">    <span class="keyword">if</span> (user) &#123;</span><br><span class="line">      config.<span class="property">headers</span>.<span class="property">Authorization</span> = <span class="string">`Bearer <span class="subst">$&#123;user.token&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// Do something before request is sent</span></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// Do something with request error</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截器</span></span><br><span class="line">request.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">  <span class="comment">// 响应成功进入第1个函数</span></span><br><span class="line">  <span class="comment">// 该函数的参数是响应对象</span></span><br><span class="line">  <span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="comment">// Any status code that lie within the range of 2xx cause this function to trigger</span></span><br><span class="line">    <span class="comment">// Do something with response data</span></span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 响应失败进入第2个函数，该函数的参数是错误对象</span></span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="comment">// Any status codes that falls outside the range of 2xx cause this function to trigger</span></span><br><span class="line">    <span class="comment">// Do something with response error</span></span><br><span class="line">    <span class="comment">// 如果响应码是 401 ，则请求获取新的 token</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 响应拦截器中的 error 就是那个响应的错误对象</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">dir</span>(error);</span><br><span class="line">    <span class="keyword">if</span> (error.<span class="property">response</span> &amp;&amp; error.<span class="property">response</span>.<span class="property">status</span> === <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="comment">// 校验是否有 refresh_token</span></span><br><span class="line">      <span class="keyword">const</span> user = store.<span class="property">state</span>.<span class="property">user</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (!user || !user.<span class="property">refresh_token</span>) &#123;</span><br><span class="line">        router.<span class="title function_">push</span>(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 代码不要往后执行了</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果有refresh_token，则请求获取新的 token</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">axios</span>(&#123;</span><br><span class="line">          <span class="attr">method</span>: <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">          <span class="attr">url</span>: <span class="string">&quot;http://ttapi.research.itcast.cn/app/v1_0/authorizations&quot;</span>,</span><br><span class="line">          <span class="attr">headers</span>: &#123;</span><br><span class="line">            <span class="title class_">Authorization</span>: <span class="string">`Bearer <span class="subst">$&#123;user.refresh_token&#125;</span>`</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 如果获取成功，则把新的 token 更新到容器中</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;刷新 token  成功&quot;</span>, res);</span><br><span class="line">        store.<span class="title function_">commit</span>(<span class="string">&quot;setUser&quot;</span>, &#123;</span><br><span class="line">          <span class="attr">token</span>: res.<span class="property">data</span>.<span class="property">data</span>.<span class="property">token</span>, <span class="comment">// 最新获取的可用 token</span></span><br><span class="line">          <span class="attr">refresh_token</span>: user.<span class="property">refresh_token</span> <span class="comment">// 还是原来的 refresh_token</span></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 把之前失败的用户请求继续发出去</span></span><br><span class="line">        <span class="comment">// config 是一个对象，其中包含本次失败请求相关的那些配置信息，例如 url、method 都有</span></span><br><span class="line">        <span class="comment">// return 把 request 的请求结果继续返回给发请求的具体位置</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">request</span>(error.<span class="property">config</span>); <span class="comment">// 重新请求</span></span><br><span class="line">      &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="comment">// 如果获取失败，直接跳转 登录页</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;请求刷线 token 失败&quot;</span>, err);</span><br><span class="line">        router.<span class="title function_">push</span>(<span class="string">&quot;/login&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> request;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="跨域配置"><a href="#跨域配置" class="headerlink" title="跨域配置"></a>跨域配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">devServer</span>: &#123;</span><br><span class="line">  <span class="attr">proxy</span>: &#123;</span><br><span class="line">  	<span class="comment">// 前缀</span></span><br><span class="line">    <span class="string">&#x27;/api&#x27;</span>: &#123;</span><br><span class="line">      <span class="comment">// target 转发后的目标地址</span></span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;http://localhost:8080/&#x27;</span>,</span><br><span class="line">        <span class="comment">// pathRewrite 重写路径 调用真正的接口时替换掉请求前缀</span></span><br><span class="line">        <span class="comment">// pathRewrite 发送请求时，请求路径重写 /api/xxx -&gt;  /xxx （去掉/api）</span></span><br><span class="line">      <span class="attr">pathRewrite</span>: &#123; <span class="string">&#x27;^/api&#x27;</span>: <span class="string">&#x27;&#x27;</span> &#125;,</span><br><span class="line">      <span class="attr">ws</span>: <span class="literal">true</span>,<span class="comment">//用于支持websocket</span></span><br><span class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>,<span class="comment">//欺骗后端  代理服务器此时会根据请求的 target 地址修改 Host</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="按需引入官网的小问题"><a href="#按需引入官网的小问题" class="headerlink" title="按需引入官网的小问题"></a>按需引入官网的小问题</h2><blockquote>
+<p>官方网站描述的内容没有及时更新</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    <span class="string">&#x27;@vue/cli-plugin-babel/preset&#x27;</span>,</span><br><span class="line">    [<span class="string">&quot;@babel/preset-env&quot;</span>, &#123; <span class="string">&quot;modules&quot;</span>: <span class="literal">false</span> &#125;]</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;plugins&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;component&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">&quot;libraryName&quot;</span>: <span class="string">&quot;element-ui&quot;</span>,</span><br><span class="line">        <span class="string">&quot;styleLibraryName&quot;</span>: <span class="string">&quot;theme-chalk&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="移动端-rem-适配"><a href="#移动端-rem-适配" class="headerlink" title="移动端 rem 适配"></a>移动端 rem 适配</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/cuth/postcss-pxtorem">postcss-pxtorem</a> 是一款 postcss 插件，用于将单位转化为 rem</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/amfe/lib-flexible">lib-flexible</a> 用于设置 rem 基准值</p>
+</blockquote>
+<h3 id="一、使用-lib-flexible-动态设置-REM-基准值（html-标签的字体大小）"><a href="#一、使用-lib-flexible-动态设置-REM-基准值（html-标签的字体大小）" class="headerlink" title="一、使用 lib-flexible 动态设置 REM 基准值（html 标签的字体大小）"></a>一、使用 lib-flexible 动态设置 REM 基准值（html 标签的字体大小）</h3><p>1、安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yarn add amfe-flexible</span></span><br><span class="line">npm i amfe-flexible</span><br></pre></td></tr></table></figure>
+
+<p>2、然后在 <code>main.js</code> 中加载执行该模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;amfe-flexible&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后测试：在浏览器中切换不同的手机设备尺寸，观察 html 标签 <code>font-size</code> 的变化。</p>
+<h3 id="二、使用-postcss-pxtorem将-px-转为-rem"><a href="#二、使用-postcss-pxtorem将-px-转为-rem" class="headerlink" title="二、使用 postcss-pxtorem将 px 转为 rem"></a>二、使用 postcss-pxtorem将 <code>px</code> 转为 <code>rem</code></h3><p>1、安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yarn add -D postcss-pxtorem</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-D 是 --save-dev 的简写</span></span><br><span class="line">npm install postcss-pxtorem -D</span><br></pre></td></tr></table></figure>
+
+<p>2、然后在<strong>项目根目录</strong>中创建 <code>postcss.config.js</code> 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: &#123;</span><br><span class="line">    <span class="comment">// VueCLI 默认配置了</span></span><br><span class="line">    <span class="comment">// &#x27;autoprefixer&#x27;: &#123;</span></span><br><span class="line">    <span class="comment">//   browsers: [&#x27;Android &gt;= 4.0&#x27;, &#x27;iOS &gt;= 8&#x27;]</span></span><br><span class="line">    <span class="comment">// &#125;,</span></span><br><span class="line">    <span class="string">&#x27;postcss-pxtorem&#x27;</span>: &#123;</span><br><span class="line">      <span class="comment">// 设置设计稿宽度的1/10（插件将一行分为10分）</span></span><br><span class="line">      <span class="comment">// rootValue可以接收两种类型：数字/函数</span></span><br><span class="line">      <span class="comment">// 375的设计稿就直接使用数字，如果有不同的就使用函数进行判断，postcss-pxtorem会对每一个css进行判断</span></span><br><span class="line">      <span class="comment">// rootValue: 37.5, </span></span><br><span class="line">      <span class="title function_">rootValue</span>(<span class="params">&#123; file &#125;</span>) &#123; <span class="comment">// vant案例</span></span><br><span class="line">        <span class="comment">// 如果使用别的可以打印查看，然后根据路径来判断</span></span><br><span class="line">        <span class="comment">// 此处vant是375的设计稿，项目使用的是750的设计稿</span></span><br><span class="line">        <span class="keyword">return</span> file.<span class="title function_">indexOf</span>(<span class="string">&#x27;vant&#x27;</span>) !== -<span class="number">1</span> ? <span class="number">37.5</span> : <span class="number">75</span>;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、<strong>配置完毕，重新启动服务</strong></p>
+<p>最后测试：<strong>刷新浏览器页面</strong>，审查元素的样式查看是否已将 <code>px</code> 转换为 <code>rem</code>。</p>
+<blockquote>
+<p>注意行内样式是不能转换</p>
+</blockquote>
+<h2 id="Vuex持久化管理"><a href="#Vuex持久化管理" class="headerlink" title="Vuex持久化管理"></a>Vuex持久化管理</h2><blockquote>
+<p>持久化- 前端持久化-后端持久化-都是通过缓存来做</p>
+<p>localStorage-自己写也行，也可以用插件</p>
+</blockquote>
+<p>原理-刷新页面-所有的东西都销毁重来，Vuex 都会重来， 要保证重新初始化的时候能够读取到之前存储的数据-从缓存中读取数据</p>
+<ul>
+<li>初始化的时候从缓存中读取</li>
+<li>修改的状态的时候存入缓存</li>
+</ul>
+<h2 id="登录逻辑"><a href="#登录逻辑" class="headerlink" title="登录逻辑"></a>登录逻辑</h2><ol>
+<li>点击登录后</li>
+<li>可以选择性的添加（人机判断）</li>
+<li>判断用户名/密码的前端验证<ul>
+<li>判断是否符合规则否则按钮无法点击</li>
+<li>请求接口登录<ul>
+<li>成功则跳转页面保存对应的用户数据</li>
+<li>失败则弹出对应的错误提示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>验证成功后将对应的<code>Token</code>保存<ul>
+<li>分别保存到浏览器和<code>vuex</code><ul>
+<li>保存到浏览器是防止刷新数据丢失</li>
+<li>保存到<code>vuex</code>是为了更好的性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择性的在封装的<code>axios</code>的请求拦截中携带Token</li>
+<li>通过保存的<code>Token</code>判断用户的权限<ul>
+<li>获取用户权限对应的路由权限</li>
+<li>获取用户权限对应的按钮权限</li>
+<li>……</li>
+</ul>
+</li>
+<li>通过路由和按钮的权限进行菜单和按钮渲染<ul>
+<li>菜单组件<ul>
+<li>如果确定了几层就可以直接写几层</li>
+<li>如果不确定多少层就可以使用递归</li>
+</ul>
+</li>
+<li>按钮组件 <code>也可以不封装</code><ul>
+<li>通过v-if，直接不渲染</li>
+<li>通过disabled使按钮无法点击</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="账号密码登录"><a href="#账号密码登录" class="headerlink" title="账号密码登录"></a>账号密码登录</h3><ol>
+<li>表单验证<ul>
+<li>显示提示文字</li>
+<li>登录是否可以点击</li>
+</ul>
+</li>
+<li>同意协议 <code>可选</code></li>
+<li>调用账号密码登录的API<ul>
+<li>成功：跳转页面 + 消息提示</li>
+<li>失败：消息提示</li>
+</ul>
+</li>
+</ol>
+<h3 id="短信验证登录"><a href="#短信验证登录" class="headerlink" title="短信验证登录"></a>短信验证登录</h3><ol>
+<li>表单验证<ul>
+<li>显示提示文字</li>
+<li>验证码是否可以发送</li>
+<li>验证码的倒计时</li>
+</ul>
+</li>
+<li>同意协议 <code>可选</code></li>
+<li>调用验证验证码的API<ul>
+<li>成功：跳转页面 + 消息提示</li>
+<li>失败：消息提示</li>
+</ul>
+</li>
+</ol>
+<h3 id="QQ登录"><a href="#QQ登录" class="headerlink" title="QQ登录"></a>QQ登录</h3><h4 id="使用QQ登录的前提"><a href="#使用QQ登录的前提" class="headerlink" title="使用QQ登录的前提"></a>使用QQ登录的前提</h4><ol>
+<li>有一个已经备案的网站</li>
+<li>进入QQ互联，登录注册</li>
+<li>创建应用，提供域名、备案号、回调地址</li>
+<li>审核通过后获取到应用的id和key</li>
+</ol>
+<h4 id="登录逻辑-1"><a href="#登录逻辑-1" class="headerlink" title="登录逻辑"></a>登录逻辑</h4><ol>
+<li>点击QQ登录</li>
+<li>打开登录弹窗</li>
+<li>用户登录</li>
+<li>登录成功返回页面</li>
+</ol>
+<h4 id="是否注册过"><a href="#是否注册过" class="headerlink" title="是否注册过"></a>是否注册过</h4><ul>
+<li>注册过、已经绑定：跳转首页</li>
+<li>注册过、没有绑定：进行手机号/邮箱绑定</li>
+<li>未注册：进行信息的完善、跳转首页</li>
+</ul>
+<h3 id="使用QQ登录"><a href="#使用QQ登录" class="headerlink" title="使用QQ登录"></a>使用QQ登录</h3><h4 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h4><ol>
+<li><p>引用JS SDK的JavaScript文件</p>
+<ul>
+<li>```<script type="text/javascript"  charset="utf-8"
+    src="http://connect.qq.com/qc_jssdk.js"
+    data-appid="APPID"
+    data-redirecturi="REDIRECTURI"
+></script>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   - 填入APPID和回调地址</span><br><span class="line"></span><br><span class="line">2. 在webpack中配置</span><br><span class="line"></span><br><span class="line">   ```javascript</span><br><span class="line">   configureWebpack:&#123;</span><br><span class="line">   	externals:&#123;</span><br><span class="line">   		qc:&#x27;QC&#x27; // 包名称：全局变量名称</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>在使用的地方导入</p>
+</li>
+<li><p>放置QQ登录按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id=&quot;qqLoginBtn&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    QC.Login(&#123;</span><br><span class="line">       btnId:&quot;qqLoginBtn&quot;	//插入按钮的节点id</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>默认是小窗口</p>
+<ul>
+<li>通过审查元素复制小窗口地址</li>
+<li>手动写a标签和img标签、填入地址</li>
+</ul>
+</li>
+<li><p>可以选择性的删除qc和span的代码</p>
+</li>
+<li><p>但是webpack的qc还是有用的，后续获取QQ信息要使用</p>
+</li>
+</ol>
+<h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><ol>
+<li><p>判断是否登录成功</p>
+</li>
+<li><p>调用获取openId的方法</p>
+</li>
+<li><p>请求登录的API</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> // 确保QQ已经登录</span><br><span class="line">if (QC.Login.check()) &#123;</span><br><span class="line">  // 第三方唯一标识QQ唯一标识</span><br><span class="line">  QC.Login.getMe((openId) =&gt; &#123;</span><br><span class="line">    unionId.value = openId</span><br><span class="line">    // 请求后台，做QQ登录</span><br><span class="line">    userQQLogin(openId).then(data =&gt; &#123;</span><br><span class="line">      // 登录成功：data.result 用户信息</span><br><span class="line">      // 1. 存储用户信息</span><br><span class="line">      const &#123; id, account, avatar, mobile, nickname, token &#125; = data.result</span><br><span class="line">      store.commit(&#x27;user/setUser&#x27;, &#123; id, account, avatar, mobile, nickname, token &#125;)</span><br><span class="line">      store.dispatch(&#x27;cart/mergeCart&#x27;).then(() =&gt; &#123;</span><br><span class="line">      // 2. 跳转到来源页或者首页</span><br><span class="line">        router.push(store.state.user.redirectUrl)</span><br><span class="line">        // 3. 成功提示</span><br><span class="line">        Message(&#123; type: &#x27;success&#x27;, text: &#x27;QQ登录成功&#x27; &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;).catch(e =&gt; &#123;</span><br><span class="line">      // 登录失败：没有绑定</span><br><span class="line">      isBind.value = false</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>成功：获取用户信息等后续业务</p>
+</li>
+<li><p>失败：没有绑定平台</p>
+<ul>
+<li><p>有账号未绑定</p>
+<ol>
+<li><p>获取QQ的头像昵称等信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QC.api(&#x27;get_user_info&#x27;).success(res =&gt; &#123;</span><br><span class="line">	avatar.value = res.data.figureurl_qq_1</span><br><span class="line">    nickname.value = res.data.nickname</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>表单校验手机号/发送验证码</p>
+</li>
+<li><p>绑定账号，跳转页面</p>
+</li>
+</ol>
+</li>
+<li><p>没有账号没有绑定</p>
+<ol>
+<li>需要进行对应的表单验证</li>
+<li>判断用户是否存在/两次密码是否一致</li>
+<li>绑定账号</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h3><ol>
+<li>清除Token的信息</li>
+<li>删除本地的用户信息</li>
+<li>跳转到登录页面</li>
+</ol>
+<h2 id="支付逻辑"><a href="#支付逻辑" class="headerlink" title="支付逻辑"></a>支付逻辑</h2><ol>
+<li><p>点击去支付</p>
+</li>
+<li><p>判断是否选择商品</p>
+</li>
+<li><p>选择收货地址 <code>电商类</code></p>
+</li>
+<li><p>订单页面（内容的选择和确认订单）<code>外卖等</code></p>
+</li>
+<li><p>选择支付的方式</p>
+<ul>
+<li><p>发送请求</p>
+</li>
+<li><p>获取<code>url</code>，展示二维码</p>
+</li>
+<li><p>弹出二维码/或跳转预支付页面</p>
+</li>
+<li><p>短轮询（最简单粗暴就是定时器反复请求接口） <code>判断用户是否支付</code></p>
+</li>
+</ul>
+</li>
+<li><p>判断是否支付成功或者超时</p>
+<ul>
+<li>成功<ul>
+<li>停止定时器</li>
+<li>删除购物车对应的数据</li>
+</ul>
+</li>
+<li>超时<ul>
+<li>停止定时器</li>
+<li>提示用户支付超时</li>
+<li>返回购物车/跳转超时页面</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>前端发送信息（不要包含金额等信息，前端是不安全的，交个后端处理）<ul>
+<li>后台服务的标准地址+支付页面地址+订单信息+回跳地址</li>
+</ul>
+</li>
+<li>通过后端处理后返回支付宝/微信的二维码</li>
+<li>同步支付结果到后台、防止支付过程中断（如果支付出现异常可以进场对账）</li>
+</ul>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><blockquote>
+<p>路由权限和按钮权限</p>
+</blockquote>
+<h3 id="路由权限"><a href="#路由权限" class="headerlink" title="路由权限"></a>路由权限</h3><ul>
+<li><p>创建路由时区分好需要权限的路由，不要一次性添加，后面匹配对应的权限筛选后添加</p>
+</li>
+<li><p>创建路由时可以考虑使用要加一个属性用于配合后端判断权限等级</p>
+</li>
+<li><p>创建路由时保存好静态路由，用于退出登录后切换账号清空路由；也可以手动刷新</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">createRouter</span> = (<span class="params"></span>) =&gt; <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&#x27;hash&#x27;</span>,<span class="comment">//  hash带# history不带#</span></span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 初次创建的路由，在最后有导出</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>()</span><br><span class="line"><span class="comment">//写一个重置路由的方法，切换用户后，或者退出时清除动态加载的路由</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">resetRouter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> newRouter = <span class="title function_">createRouter</span>()</span><br><span class="line">  router.<span class="property">matcher</span> = newRouter.<span class="property">matcher</span> <span class="comment">// 最开始的路由赋值给最新的路由</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建路由守卫对需要权限的路由进行拦截</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 进入的路由对象 通常判断不是login就要判断权限</span></span><br><span class="line">  <span class="keyword">if</span> (to.<span class="property">path</span> !== <span class="string">&#x27;/login&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;token&#x27;</span>)</span><br><span class="line">    !token ? <span class="title function_">next</span>(&#123; <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span> &#125;) : <span class="title function_">next</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>登录后请求后端返回对应账号可使用的路由，持久化保存后进行筛选</p>
+</li>
+<li><p>筛选好对应账号权限的路由，遍历使用<code>this.$router.addRoute(&quot;Router&quot;, item)</code>添加</p>
+</li>
+<li><p>最后添加404路由</p>
+</li>
+</ul>
+<h3 id="按钮权限"><a href="#按钮权限" class="headerlink" title="按钮权限"></a>按钮权限</h3><ul>
+<li>获取后端传递的权限等级，根据对应的规则判断权限</li>
+<li>使用v-if/自定义属性/disabled等方法来设置需要权限的按钮</li>
+</ul>
+<h2 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h2><h3 id="1-使用步骤"><a href="#1-使用步骤" class="headerlink" title="1.使用步骤"></a>1.使用步骤</h3><p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-print-nb --save</span><br></pre></td></tr></table></figure>
+
+<p>在main.js中引入</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Print</span> <span class="keyword">from</span> <span class="string">&#x27;vue-print-nb&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Print</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在组件的打印区域标签上加 id=”printArea”</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;printArea&quot;</span>&gt;</span> 打印区域 <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在组件的打印按钮标签上使用指令 v-print=”print”,print是配置对象</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">v-print</span>=<span class="string">&quot;print&quot;</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>&gt;</span>打印<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在组件的data中定义print配置对象</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>: &#123;</span><br><span class="line">        id: <span class="string">&#x27;printArea&#x27;</span>,</span><br><span class="line">        popTitle: <span class="string">&#x27;打印&#x27;</span>, <span class="comment">// 打印配置页上方标题</span></span><br><span class="line">        extraHead: <span class="string">&#x27;&#x27;</span>, <span class="comment">//最上方的头部文字，附加在head标签上的额外标签,使用逗号分隔</span></span><br><span class="line">        preview: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 是否启动预览模式，默认是false（开启预览模式，可以先预览后打印）</span></span><br><span class="line">        previewTitle: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 打印预览的标题（开启预览模式后出现）,</span></span><br><span class="line">        previewPrintBtnLabel: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 打印预览的标题的下方按钮文本，点击可进入打印（开启预览模式后出现）</span></span><br><span class="line">        zIndex: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 预览的窗口的z-index，默认是 20002（此值要高一些，这涉及到预览模式是否显示在最上面）   </span></span><br><span class="line">        previewBeforeOpenCallback() &#123;&#125;, <span class="comment">//预览窗口打开之前的callback（开启预览模式调用）</span></span><br><span class="line">        previewOpenCallback() &#123;&#125;, <span class="comment">// 预览窗口打开之后的callback（开启预览模式调用）</span></span><br><span class="line">        beforeOpenCallback() &#123;&#125;, <span class="comment">// 开启打印前的回调事件</span></span><br><span class="line">        openCallback() &#123;&#125;, <span class="comment">// 调用打印之后的回调事件</span></span><br><span class="line">        closeCallback() &#123;&#125;, <span class="comment">//关闭打印的回调事件（无法确定点击的是确认还是取消）</span></span><br><span class="line">        url: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        standard: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        extraCss: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-打印过滤（隐藏打印区域不需要打印的内容）"><a href="#2-打印过滤（隐藏打印区域不需要打印的内容）" class="headerlink" title="2. 打印过滤（隐藏打印区域不需要打印的内容）"></a>2. 打印过滤（隐藏打印区域不需要打印的内容）</h3><p>只需要在组件的打印区域里，给需要隐藏的内容的标签上添加</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span>=<span class="string">&quot;noprint&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置打印的样式"><a href="#3-配置打印的样式" class="headerlink" title="3. 配置打印的样式"></a>3. 配置打印的样式</h3><p>在全局样式中，新增<style media="print"></style>标签，里面是打印时才生效的样式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">media</span>=<span class="string">&quot;print&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="keyword">@page</span> &#123;</span></span><br><span class="line"><span class="language-css">  size: auto;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin</span>: <span class="number">3mm</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: auto;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-处理常见的打印bug"><a href="#4-处理常见的打印bug" class="headerlink" title="4.处理常见的打印bug"></a>4.处理常见的打印bug</h3><h4 id="1-全局打印生效"><a href="#1-全局打印生效" class="headerlink" title="1. 全局打印生效"></a>1. 全局打印生效</h4><blockquote>
+<ol>
+<li>解决打印出现空白页的问题</li>
+<li>解决el-table表格内容过多，打印不全问题</li>
+<li>解决作用域污染问题导致el-table序号错位</li>
+</ol>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">media</span>=<span class="string">&quot;print&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="keyword">@page</span> &#123;</span></span><br><span class="line"><span class="language-css">  size: auto;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin</span>: <span class="number">3mm</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="keyword">@media</span> print &#123;</span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: auto;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#ffffff</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10mm</span> <span class="number">15mm</span> <span class="number">10mm</span> <span class="number">15mm</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">table</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">table-layout</span>: auto <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.el-table__header-wrapper</span> <span class="selector-class">.el-table__header</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#f2f2f2</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.el-table__body-wrapper</span> <span class="selector-class">.el-table__body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#pagetable</span> <span class="selector-tag">table</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">table-layout</span>: fixed <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-局部打印，局限在当前组件里"><a href="#2-局部打印，局限在当前组件里" class="headerlink" title="2. 局部打印，局限在当前组件里"></a>2. 局部打印，局限在当前组件里</h4><blockquote>
+<p>在组件标签</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">media</span>=<span class="string">&quot;print&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="keyword">@page</span> &#123;</span></span><br><span class="line"><span class="language-css">  size: auto;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin</span>: <span class="number">3mm</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="keyword">@media</span> print &#123;</span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">html</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: auto;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#ffffff</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: <span class="number">10mm</span> <span class="number">15mm</span> <span class="number">10mm</span> <span class="number">15mm</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#printArea</span> <span class="selector-tag">table</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">table-layout</span>: auto <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#printArea</span> <span class="selector-class">.el-table__header-wrapper</span> <span class="selector-class">.el-table__header</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: solid <span class="number">1px</span> <span class="number">#f2f2f2</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#printArea</span> <span class="selector-class">.el-table__body-wrapper</span> <span class="selector-class">.el-table__body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span> <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#printArea</span> <span class="selector-id">#pagetable</span> <span class="selector-tag">table</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">table-layout</span>: fixed <span class="meta">!important</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>启动打印后可以通过调整设置的缩放来调整显示比例</li>
+<li>可以通过设置背景图形来控制页面是否使用彩色背景</li>
+</ol>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/05/12/Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">Vue项目开发常用功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">vscode@配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">默认启动浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">重置默认样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axios%E5%B0%81%E8%A3%85"><span class="toc-number">1.4.</span> <span class="toc-text">axios封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E6%84%9F%E5%88%B7%E6%96%B0Token"><span class="toc-number">1.5.</span> <span class="toc-text">无感刷新Token</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E5%9F%9F%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">跨域配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%E5%AE%98%E7%BD%91%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.</span> <span class="toc-text">按需引入官网的小问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF-rem-%E9%80%82%E9%85%8D"><span class="toc-number">1.8.</span> <span class="toc-text">移动端 rem 适配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8-lib-flexible-%E5%8A%A8%E6%80%81%E8%AE%BE%E7%BD%AE-REM-%E5%9F%BA%E5%87%86%E5%80%BC%EF%BC%88html-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F%EF%BC%89"><span class="toc-number">1.8.1.</span> <span class="toc-text">一、使用 lib-flexible 动态设置 REM 基准值（html 标签的字体大小）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8-postcss-pxtorem%E5%B0%86-px-%E8%BD%AC%E4%B8%BA-rem"><span class="toc-number">1.8.2.</span> <span class="toc-text">二、使用 postcss-pxtorem将 px 转为 rem</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vuex%E6%8C%81%E4%B9%85%E5%8C%96%E7%AE%A1%E7%90%86"><span class="toc-number">1.9.</span> <span class="toc-text">Vuex持久化管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91"><span class="toc-number">1.10.</span> <span class="toc-text">登录逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.1.</span> <span class="toc-text">账号密码登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.2.</span> <span class="toc-text">短信验证登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QQ%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.3.</span> <span class="toc-text">QQ登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8QQ%E7%99%BB%E5%BD%95%E7%9A%84%E5%89%8D%E6%8F%90"><span class="toc-number">1.10.3.1.</span> <span class="toc-text">使用QQ登录的前提</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91-1"><span class="toc-number">1.10.3.2.</span> <span class="toc-text">登录逻辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E6%B3%A8%E5%86%8C%E8%BF%87"><span class="toc-number">1.10.3.3.</span> <span class="toc-text">是否注册过</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8QQ%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.4.</span> <span class="toc-text">使用QQ登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E9%92%AE"><span class="toc-number">1.10.4.1.</span> <span class="toc-text">按钮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.4.2.</span> <span class="toc-text">登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%80%E5%87%BA%E7%99%BB%E5%BD%95"><span class="toc-number">1.10.5.</span> <span class="toc-text">退出登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%AF%E4%BB%98%E9%80%BB%E8%BE%91"><span class="toc-number">1.11.</span> <span class="toc-text">支付逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90"><span class="toc-number">1.12.</span> <span class="toc-text">权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E6%9D%83%E9%99%90"><span class="toc-number">1.12.1.</span> <span class="toc-text">路由权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%9D%83%E9%99%90"><span class="toc-number">1.12.2.</span> <span class="toc-text">按钮权限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8D%B0"><span class="toc-number">1.13.</span> <span class="toc-text">打印</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.13.1.</span> <span class="toc-text">1.使用步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%93%E5%8D%B0%E8%BF%87%E6%BB%A4%EF%BC%88%E9%9A%90%E8%97%8F%E6%89%93%E5%8D%B0%E5%8C%BA%E5%9F%9F%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">1.13.2.</span> <span class="toc-text">2. 打印过滤（隐藏打印区域不需要打印的内容）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E6%89%93%E5%8D%B0%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.13.3.</span> <span class="toc-text">3. 配置打印的样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A4%84%E7%90%86%E5%B8%B8%E8%A7%81%E7%9A%84%E6%89%93%E5%8D%B0bug"><span class="toc-number">1.13.4.</span> <span class="toc-text">4.处理常见的打印bug</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%A8%E5%B1%80%E6%89%93%E5%8D%B0%E7%94%9F%E6%95%88"><span class="toc-number">1.13.4.1.</span> <span class="toc-text">1. 全局打印生效</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%B1%80%E9%83%A8%E6%89%93%E5%8D%B0%EF%BC%8C%E5%B1%80%E9%99%90%E5%9C%A8%E5%BD%93%E5%89%8D%E7%BB%84%E4%BB%B6%E9%87%8C"><span class="toc-number">1.13.4.2.</span> <span class="toc-text">2. 局部打印，局限在当前组件里</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">1.13.5.</span> <span class="toc-text">注意</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1757922409183"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

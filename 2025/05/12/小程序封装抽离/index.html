@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>小程序封装抽离 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="小程序封装抽离 来源于uniapp项目  请求封装单一路径 原生请求 只针对一个根路径  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序封装抽离">
+<meta property="og:url" content="https://766187397.github.io/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="小程序封装抽离 来源于uniapp项目  请求封装单一路径 原生请求 只针对一个根路径  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-12T08:31:58.169Z">
+<meta property="article:modified_time" content="2025-05-12T08:31:58.169Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1757922409098">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1757922409098">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1757922409098">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>23</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>7</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1757922409098"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Vue2打包优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/10/%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%9F%9F%E5%90%8D/">免费云服务器和域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9/">项目常用（前程无忧）</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">知识碎片</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/">小程序封装抽离</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/小程序.png" alt="小程序封装抽离" loading="lazy">
+            <h1>小程序封装抽离</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年05月12日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="小程序封装抽离"><a href="#小程序封装抽离" class="headerlink" title="小程序封装抽离"></a>小程序封装抽离</h1><blockquote>
+<p>来源于uniapp项目</p>
+</blockquote>
+<h2 id="请求封装"><a href="#请求封装" class="headerlink" title="请求封装"></a>请求封装</h2><h3 id="单一路径"><a href="#单一路径" class="headerlink" title="单一路径"></a>单一路径</h3><blockquote>
+<p>原生请求</p>
+<p>只针对一个根路径</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">export const BASE_URL = &quot;https://www.brrfid-pm.cn/WXAPI&quot; // 接口前缀</span><br><span class="line">export const IMAGE_BASE_URL = &quot;https://www.brrfid-pm.cn/WXAPI/image/&quot; // 图片前缀</span><br><span class="line">export const downLoadUrl = &quot;https://www.brrfid-pm.cn/api/download/v2/&quot; // 下载地址</span><br><span class="line">class API &#123;</span><br><span class="line">  /**</span><br><span class="line">   * 封装的请求</span><br><span class="line">   * @param &#123;*&#125; url 请求地址</span><br><span class="line">   * @param &#123;*&#125; method 请求类型</span><br><span class="line">   * @param &#123;*&#125; data 请求数据</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; animation </span><br><span class="line">   * @returns </span><br><span class="line">   */</span><br><span class="line">  request(url, method, data, header = &#123;&#125;, showLoading = true) &#123;</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">      const token = uni.getStorageSync(&quot;token&quot;);</span><br><span class="line"></span><br><span class="line">      if (token) &#123;</span><br><span class="line">        header.token = token</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(&#x27;请求前数据 :&gt;&gt;&#x27;, data);</span><br><span class="line">      // 请求加载动画</span><br><span class="line">      showLoading &amp;&amp; uni.showLoading(&#123;</span><br><span class="line">        title: &#x27;加载中&#x27;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      uni.request(&#123;</span><br><span class="line">        url: BASE_URL + url,</span><br><span class="line">        method,</span><br><span class="line">        header,</span><br><span class="line">        data,</span><br><span class="line">        success: (res) =&gt; &#123;</span><br><span class="line">          console.log(&#x27;请求后数据 :&gt;&gt; &#x27;, res.data);</span><br><span class="line">          if (res.data.code == 401) &#123;</span><br><span class="line">            uni.navigateTo(&#123;</span><br><span class="line">              url: &#x27;/pages/managerial/login/login&#x27;,</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">          resolve(res.data)</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: (err) =&gt; &#123;</span><br><span class="line">          reject(err)</span><br><span class="line">        &#125;,</span><br><span class="line">        complete: () =&gt; &#123;</span><br><span class="line">          showLoading &amp;&amp; uni.hideLoading();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * get请求</span><br><span class="line">   * @param &#123;*&#125; url 请求地址</span><br><span class="line">   * @param &#123;*&#125; data 请求参数</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; showLoading 是否执行加载动画</span><br><span class="line">   * @returns Promise</span><br><span class="line">   */</span><br><span class="line">  get(url, data, header, showLoading) &#123;</span><br><span class="line">    return this.request(url, &quot;GET&quot;, data, header, showLoading)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * post请求</span><br><span class="line">   * @param &#123;*&#125; url 请求地址</span><br><span class="line">   * @param &#123;*&#125; data 请求参数</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; showLoading 是否执行加载动画</span><br><span class="line">   * @returns Promise</span><br><span class="line">   */</span><br><span class="line">  post(url, data, header, showLoading) &#123;</span><br><span class="line">    return this.request(url, &quot;POST&quot;, data, header, showLoading)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * put请求</span><br><span class="line">   * @param &#123;*&#125; url 请求地址</span><br><span class="line">   * @param &#123;*&#125; data 请求参数</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; showLoading 是否执行加载动画</span><br><span class="line">   * @returns Promise</span><br><span class="line">   */</span><br><span class="line">  put(url, data, header, showLoading) &#123;</span><br><span class="line">    return this.request(url, &quot;PUT&quot;, data, header, showLoading)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * delete请求</span><br><span class="line">   * @param &#123;*&#125; url 请求地址</span><br><span class="line">   * @param &#123;*&#125; data 请求参数</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; showLoading 是否执行加载动画</span><br><span class="line">   * @returns Promise</span><br><span class="line">   */</span><br><span class="line">  delete(url, data, header, showLoading) &#123;</span><br><span class="line">    return this.request(url, &quot;DELETE&quot;, data, header, showLoading)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const request = new API()</span><br><span class="line"></span><br><span class="line">export default request</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="多个路径"><a href="#多个路径" class="headerlink" title="多个路径"></a>多个路径</h3><blockquote>
+<p>在class中加一个</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class API &#123;</span><br><span class="line">	/**</span><br><span class="line">   * 构造函数中添加了baseUrl参数，允许在创建API实例时设置基础URL。</span><br><span class="line">   * @param &#123;string&#125; [baseUrl=&#x27;https://www.brrfid-pm.cn/WXAPI&#x27;] - API的基础URL。</span><br><span class="line">   */</span><br><span class="line">  constructor(baseUrl = &#x27;https://www.brrfid-pm.cn/WXAPI&#x27;) &#123;</span><br><span class="line">    this.baseUrl = baseUrl</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  // ... 其他原有方法不变 ...</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 封装的请求</span><br><span class="line">   * 新增baseUrlKey参数，用于动态选择基础URL</span><br><span class="line">   * @param &#123;*&#125; url 请求地址（相对路径）</span><br><span class="line">   * @param &#123;*&#125; method 请求类型</span><br><span class="line">   * @param &#123;*&#125; data 请求数据</span><br><span class="line">   * @param &#123;*&#125; header 请求头</span><br><span class="line">   * @param &#123;*&#125; showLoading 是否显示加载动画</span><br><span class="line">   * @returns </span><br><span class="line">   */</span><br><span class="line">  request(url, method, data, header = &#123;&#125;, showLoading = true) &#123;</span><br><span class="line">    const fullUrl = this.baseUrl + url;</span><br><span class="line">    // ... 其余代码逻辑保持不变 ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // ... 其他请求方法（get, post, put, delete）保持不变</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const request = new API() // 默认路径</span><br><span class="line">const customApi  = new API(&#x27;https://xxx.xxx.xxx&#x27;) // 其他路径</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="公共函数-过滤器"><a href="#公共函数-过滤器" class="headerlink" title="公共函数/过滤器"></a>公共函数/过滤器</h2><blockquote>
+<p>在根路径创建global文件夹用于存放全局的函数、变量、过滤器等</p>
+<p>所有的文件需要再main.js中引入</p>
+<p>例如：import ‘./global/filter.js’;</p>
+</blockquote>
+<h3 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h3><blockquote>
+<p>filter.js 用于存放全局的过滤器</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">// 字符串有/n时替换为&lt;br/&gt;，并且在前面补一段话</span><br><span class="line">Vue.filter(&#x27;replaceNewlineWithBr&#x27;, function (value) &#123;</span><br><span class="line">  let str = &quot;产品描述：&quot;;</span><br><span class="line">  str += value?.replace(/\n/g, &quot;&lt;br/&gt;&quot;);</span><br><span class="line">  return str;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 价格小数位补0</span><br><span class="line">Vue.filter(&#x27;formatPrice&#x27;, function (price) &#123;</span><br><span class="line">  if (!price) &#123;</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line">  // 将价格转换为字符串，便于操作</span><br><span class="line">  let priceStr = price.toString();</span><br><span class="line">  // 使用正则表达式检查小数点及之后的数字</span><br><span class="line">  let match = priceStr.match(/(\.\d*)?$/);</span><br><span class="line">  // 如果没有小数点或者小数点后不足两位</span><br><span class="line">  if (!match || match[0].length &lt; 3) &#123;</span><br><span class="line">    // 补足到小数点后两位</span><br><span class="line">    return price.toFixed(2);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // 如果小数点后已经两位或以上，直接返回原价</span><br><span class="line">    return priceStr;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 订单状态</span><br><span class="line">Vue.filter(&#x27;fnStatus&#x27;, function (value) &#123;</span><br><span class="line">  const typesObj = &#123;</span><br><span class="line">    1: &quot;未支付&quot;,</span><br><span class="line">    2: &quot;已支付&quot;,</span><br><span class="line">    3: &quot;生产中&quot;,</span><br><span class="line">    4: &quot;已完成&quot;,</span><br><span class="line">    5: &quot;已取消&quot;,</span><br><span class="line">  &#125;;</span><br><span class="line">  return typesObj[value];</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="全局函数以及变量等"><a href="#全局函数以及变量等" class="headerlink" title="全局函数以及变量等"></a>全局函数以及变量等</h3><blockquote>
+<p>mixin.js 用于存放全局的变量已经函数</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">// main.js 或者你的入口文件</span><br><span class="line">import Vue from &#x27;vue&#x27;;</span><br><span class="line">import &#123; BASE_URL, downLoadUrl &#125; from &#x27;@/api/request&#x27;;</span><br><span class="line"></span><br><span class="line">Vue.mixin(&#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      navBarHeight: uni.getStorageSync(&quot;navBarHeight&quot;) || 90, // 顶部高度</span><br><span class="line">      tabBarHeight: uni.getStorageSync(&quot;tabBarHeight&quot;) || 80, // 底部高度</span><br><span class="line">      imgurl: this.imgurl, // 图片前缀</span><br><span class="line">      BASE_URL: BASE_URL, // 请求前缀</span><br><span class="line">      downLoadUrl: downLoadUrl, // 下载文件前缀</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    // 复制</span><br><span class="line">    copy(text) &#123;</span><br><span class="line">      uni.setClipboardData(&#123;</span><br><span class="line">        data: text,</span><br><span class="line">        success: (res) =&gt; &#123;</span><br><span class="line">          this.$u.toast(&quot;复制成功&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">        fail: (err) =&gt; &#123;</span><br><span class="line">          this.$u.toast(&quot;复制失败&quot;);</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 计算表单高度</span><br><span class="line">    getNavBarHeight(className) &#123;</span><br><span class="line">      return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        const query = uni.createSelectorQuery().in(this);</span><br><span class="line">        query</span><br><span class="line">          .select(className)</span><br><span class="line">          .boundingClientRect((data) =&gt; &#123;</span><br><span class="line">            console.log(&quot;data.height :&gt;&gt; &quot;, data.height);</span><br><span class="line">            resolve(data.height);</span><br><span class="line">          &#125;)</span><br><span class="line">          .exec();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 跳转页面</span><br><span class="line">    goPage(url) &#123;</span><br><span class="line">      if (!url) &#123;</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      uni.navigateTo(&#123;</span><br><span class="line">        url: url,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 图片上传</span><br><span class="line">    uploadFilePromise(url) &#123;</span><br><span class="line">      return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        uni.uploadFile(&#123;</span><br><span class="line">          url: this.BASE_URL + &quot;/uploadImage&quot;, // 仅为示例，非真实的接口地址</span><br><span class="line">          filePath: url,</span><br><span class="line">          header: &#123;</span><br><span class="line">            token: uni.getStorageSync(&#x27;token&#x27;) || &#x27;&#x27;</span><br><span class="line">          &#125;,</span><br><span class="line">          name: &quot;file&quot;,</span><br><span class="line">          success: (res) =&gt; &#123;</span><br><span class="line">            console.log(&#x27;res :&gt;&gt; &#x27;, res);</span><br><span class="line">            let data = JSON.parse(res.data).url</span><br><span class="line">            setTimeout(() =&gt; &#123;</span><br><span class="line">              resolve(data);</span><br><span class="line">            &#125;, 1000);</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 文件下载</span><br><span class="line">    downloadFilePromise(url) &#123;</span><br><span class="line">      console.log(&#x27;url :&gt;&gt; &#x27;, url);</span><br><span class="line">      console.log(&#x27;this.downLoadUrl + url :&gt;&gt; &#x27;, this.downLoadUrl + url);</span><br><span class="line">      return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        const downloadTask = uni.downloadFile(&#123;</span><br><span class="line">          url: this.downLoadUrl + url, // 文件下载地址</span><br><span class="line">          success: (res) =&gt; &#123;</span><br><span class="line">            if (res.statusCode === 200) &#123;</span><br><span class="line">              // 下载成功处理</span><br><span class="line">              console.log(&#x27;下载成功&#x27;);</span><br><span class="line">              // 保存到本地文件系统</span><br><span class="line">              uni.saveFile(&#123;</span><br><span class="line">                tempFilePath: res.tempFilePath, //临时文件路径</span><br><span class="line">                filePath: `$&#123;wx.env.USER_DATA_PATH&#125;/$&#123;url&#125;`, // 指定保存路径和文件名</span><br><span class="line">                success: (saveRes) =&gt; &#123;</span><br><span class="line">                  console.log(&#x27;文件保存成功&#x27;, saveRes.savedFilePath);</span><br><span class="line">                  resolve(saveRes.savedFilePath)</span><br><span class="line">                &#125;,</span><br><span class="line">                fail: (err) =&gt; &#123;</span><br><span class="line">                  console.log(&#x27;保存文件失败&#x27;, err);</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              console.log(&#x27;下载失败&#x27;, res.statusCode);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          fail: (err) =&gt; &#123;</span><br><span class="line">            console.log(&#x27;下载过程中出错&#x27;, err);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        downloadTask.onProgressUpdate((res) =&gt; &#123;</span><br><span class="line">          uni.showLoading(&#123;</span><br><span class="line">            title: `下载进度 $&#123;res.progress&#125;%`,</span><br><span class="line">            mask: true,</span><br><span class="line">          &#125;);</span><br><span class="line">          if (res.progress == 100) &#123;</span><br><span class="line">            uni.hideLoading();</span><br><span class="line">            uni.showToast(&#123;</span><br><span class="line">              title: &quot;下载成功&quot;,</span><br><span class="line">              icon: &quot;success&quot;,</span><br><span class="line">              duration: 1500,</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="路由-分包-组件"><a href="#路由-分包-组件" class="headerlink" title="路由/分包/组件"></a>路由/分包/组件</h2><h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>路由使用HBuilderX创建基本上没有问题</p>
+<p>个人不习惯嵌套多个文件夹</p>
+<h3 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h3><p>按照官方的要求创建分包，后面创建页面会自动识别是哪一个分包，如果能够确保自己设置的没有问题，但是创建的时候没有识别，就重启HBuilderX</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&quot;subPackages&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;root&quot;: &quot;products&quot;,</span><br><span class="line">      &quot;pages&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;path&quot;: &quot;detail/detail&quot;,</span><br><span class="line">          &quot;style&quot;: &#123;</span><br><span class="line">            &quot;navigationBarTitleText&quot;: &quot;产品详情&quot;,</span><br><span class="line">            &quot;enablePullDownRefresh&quot;: false,</span><br><span class="line">            &quot;navigationStyle&quot;: &quot;custom&quot;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">  ····省略其他内容···</span><br><span class="line">  &quot;lazyCodeLoading&quot;: &quot;requiredComponents&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><blockquote>
+<p>只要组件安装在项目的 <code>components</code> 目录下，并符合 <code>components/组件名称/组件名称.vue</code> 目录结构。就可以不用引用、注册，直接在页面中使用。</p>
+</blockquote>
+<p>官方说明：<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/tutorial/vue-components.html#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C">https://uniapp.dcloud.net.cn/tutorial/vue-components.html#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C</a></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/05/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;05&#x2F;12&#x2F;%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85%E6%8A%BD%E7%A6%BB"><span class="toc-number">1.</span> <span class="toc-text">小程序封装抽离</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%B0%81%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">请求封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">单一路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">多个路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">公共函数&#x2F;过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">全局过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8A%E5%8F%98%E9%87%8F%E7%AD%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">全局函数以及变量等</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1-%E5%88%86%E5%8C%85-%E7%BB%84%E4%BB%B6"><span class="toc-number">1.3.</span> <span class="toc-text">路由&#x2F;分包&#x2F;组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1"><span class="toc-number">1.3.1.</span> <span class="toc-text">路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">分包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-number">1.3.3.</span> <span class="toc-text">组件</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1757922409110"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
