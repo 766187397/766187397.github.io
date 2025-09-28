@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>TS获取函数组件类型 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="TS获取函数组件类型  获取函数参数的类型   获取函数返回值的类型   获取组件的 props 类型   可以使用内置的 工具类型 和 类型推导机制。下面是具体方法：  ✅ 1. 获取函数参数的类型：Parameters&lt;T&gt;123456function greet(name: string, age: number): string &amp;#123;  return &#96;Hello $&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TS获取函数组件类型">
+<meta property="og:url" content="https://766187397.github.io/2025/09/26/TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="TS获取函数组件类型  获取函数参数的类型   获取函数返回值的类型   获取组件的 props 类型   可以使用内置的 工具类型 和 类型推导机制。下面是具体方法：  ✅ 1. 获取函数参数的类型：Parameters&lt;T&gt;123456function greet(name: string, age: number): string &amp;#123;  return &#96;Hello $&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-26T01:41:21.308Z">
+<meta property="article:modified_time" content="2025-09-26T01:51:08.125Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1759024948048">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1759024948048">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1759024948048">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>25</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>8</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1759024948049"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/28/Vue3%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/">Vue3基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/26/TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B/">TS获取函数组件类型</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">Vue2打包优化方案</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/10/%E5%85%8D%E8%B4%B9%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E5%9F%9F%E5%90%8D/">免费云服务器和域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/05/12/%E9%A1%B9%E7%9B%AE%E5%B8%B8%E7%94%A8%E5%86%85%E5%AE%B9/">项目常用（前程无忧）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/typescript.jpeg" alt="TS获取函数组件类型" loading="lazy">
+            <h1>TS获取函数组件类型</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年09月26日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/TS/">TS</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="TS获取函数组件类型"><a href="#TS获取函数组件类型" class="headerlink" title="TS获取函数组件类型"></a>TS获取函数组件类型</h1><blockquote>
+<ol>
+<li><strong>获取函数参数的类型</strong>  </li>
+<li><strong>获取函数返回值的类型</strong>  </li>
+<li><strong>获取组件的 props 类型</strong></li>
+</ol>
+</blockquote>
+<p>可以使用内置的 <strong>工具类型</strong> 和 <strong>类型推导机制</strong>。下面是具体方法：</p>
+<hr>
+<h3 id="✅-1-获取函数参数的类型：Parameters-lt-T-gt"><a href="#✅-1-获取函数参数的类型：Parameters-lt-T-gt" class="headerlink" title="✅ 1. 获取函数参数的类型：Parameters&lt;T&gt;"></a>✅ 1. 获取函数参数的类型：<code>Parameters&lt;T&gt;</code></h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">greet</span>(<span class="params">name: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Hello <span class="subst">$&#123;name&#125;</span>, age <span class="subst">$&#123;age&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Params</span> = <span class="title class_">Parameters</span>&lt;<span class="keyword">typeof</span> greet&gt;;</span><br><span class="line"><span class="comment">// type Params = [string, number]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-2-获取函数返回值的类型：ReturnType-lt-T-gt"><a href="#✅-2-获取函数返回值的类型：ReturnType-lt-T-gt" class="headerlink" title="✅ 2. 获取函数返回值的类型：ReturnType&lt;T&gt;"></a>✅ 2. 获取函数返回值的类型：<code>ReturnType&lt;T&gt;</code></h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">greet</span>(<span class="params">name: <span class="built_in">string</span>, age: <span class="built_in">number</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Hello <span class="subst">$&#123;name&#125;</span>, age <span class="subst">$&#123;age&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Return</span> = <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> greet&gt;;</span><br><span class="line"><span class="comment">// type Return = string</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-3-获取组件的-props-类型（React-场景）"><a href="#✅-3-获取组件的-props-类型（React-场景）" class="headerlink" title="✅ 3. 获取组件的 props 类型（React 场景）"></a>✅ 3. 获取组件的 props 类型（React 场景）</h3><p>对于函数组件：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">MyProps</span> &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  count?: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyComponent</span>: <span class="title class_">React</span>.<span class="property">FC</span>&lt;<span class="title class_">MyProps</span>&gt; = <span class="function">(<span class="params">&#123; title, count &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;title&#125; - &#123;count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = <span class="title class_">React</span>.<span class="property">ComponentProps</span>&lt;<span class="keyword">typeof</span> <span class="title class_">MyComponent</span>&gt;;</span><br><span class="line"><span class="comment">// type Props = MyProps</span></span><br></pre></td></tr></table></figure>
+
+<p>对于类组件：</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClassComponent</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span>&lt;<span class="title class_">MyProps</span>&gt; &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;this.props.title&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Props</span> = <span class="title class_">React</span>.<span class="property">ComponentProps</span>&lt;<span class="keyword">typeof</span> <span class="title class_">MyClassComponent</span>&gt;;</span><br><span class="line"><span class="comment">// type Props = MyProps</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-4-获取组件的-props-类型（Vue-场景）"><a href="#✅-4-获取组件的-props-类型（Vue-场景）" class="headerlink" title="✅ 4. 获取组件的 props 类型（Vue 场景）"></a>✅ 4. 获取组件的 props 类型（Vue 场景）</h3><p>组件内部</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- MyButton.vue --&gt;</span><br><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">interface Props &#123;          // 1. 先写接口</span><br><span class="line">  type: &#x27;primary&#x27; | &#x27;ghost&#x27;</span><br><span class="line">  size?: &#x27;sm&#x27; | &#x27;lg&#x27;</span><br><span class="line">  disabled?: boolean</span><br><span class="line">&#125;</span><br><span class="line">const props = defineProps&lt;Props&gt;() // 2. 直接泛型推导</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>外部使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import MyButton from &#x27;./MyButton.vue&#x27;</span><br><span class="line"></span><br><span class="line">type BtnProps = InstanceType&lt;typeof MyButton&gt;[&#x27;$props&#x27;]</span><br><span class="line">// BtnProps ≡ &#123; type: &#x27;primary&#x27;|&#x27;ghost&#x27;; size?: &#x27;sm&#x27;|&#x27;lg&#x27;; disabled?: boolean &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="✅-总结工具类型速查表："><a href="#✅-总结工具类型速查表：" class="headerlink" title="✅ 总结工具类型速查表："></a>✅ 总结工具类型速查表：</h3><table>
+<thead>
+<tr>
+<th>目的</th>
+<th>工具类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获取函数参数类型</td>
+<td><code>Parameters&lt;typeof fn&gt;</code></td>
+</tr>
+<tr>
+<td>获取函数返回值类型</td>
+<td><code>ReturnType&lt;typeof fn&gt;</code></td>
+</tr>
+<tr>
+<td>获取组件 props 类型（React）</td>
+<td><code>React.ComponentProps&lt;typeof C&gt;</code></td>
+</tr>
+<tr>
+<td>获取组件 props 类型（Vue）</td>
+<td><code>InstanceType&lt;typeof MyButton&gt;[&#39;$props&#39;]</code></td>
+</tr>
+</tbody></table>
+<hr>
+<p>如果你有具体的函数或组件代码，我可以帮你直接推导出类型。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/09/26/TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;09&#x2F;26&#x2F;TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;09&#x2F;26&#x2F;TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TS%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TS获取函数组件类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-1-%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9AParameters-lt-T-gt"><span class="toc-number">1.0.1.</span> <span class="toc-text">✅ 1. 获取函数参数的类型：Parameters&lt;T&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-2-%E8%8E%B7%E5%8F%96%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9AReturnType-lt-T-gt"><span class="toc-number">1.0.2.</span> <span class="toc-text">✅ 2. 获取函数返回值的类型：ReturnType&lt;T&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-3-%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E7%9A%84-props-%E7%B1%BB%E5%9E%8B%EF%BC%88React-%E5%9C%BA%E6%99%AF%EF%BC%89"><span class="toc-number">1.0.3.</span> <span class="toc-text">✅ 3. 获取组件的 props 类型（React 场景）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-4-%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E7%9A%84-props-%E7%B1%BB%E5%9E%8B%EF%BC%88Vue-%E5%9C%BA%E6%99%AF%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">✅ 4. 获取组件的 props 类型（Vue 场景）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E6%80%BB%E7%BB%93%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%9E%8B%E9%80%9F%E6%9F%A5%E8%A1%A8%EF%BC%9A"><span class="toc-number">1.0.5.</span> <span class="toc-text">✅ 总结工具类型速查表：</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1759024948057"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
