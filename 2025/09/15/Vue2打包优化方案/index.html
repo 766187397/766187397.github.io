@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     
     <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
-    <meta name="description" content="Vue2打包优化方案 记录一些Vue2打包优化方案，方便后续复用 当前优化方案会整理到一个demo中方便复用  demo使用到的版本  node 16.20.2 @vue&#x2F;cli 5.0.9 &amp;#119;&amp;#x65;&amp;#x62;&amp;#112;&amp;#97;&amp;#x63;&amp;#x6b;&amp;#x40;&amp;#53;&amp;#x2e;&amp;#x31;&amp;#48;&amp;#x31;&amp;#x2e;&amp;#51; npm 8.19.4 镜像taob">
+    <meta name="description" content="Vue2打包优化方案 记录一些Vue2打包优化方案，方便后续复用 当前优化方案会整理到一个demo中方便复用  demo使用到的版本  node 16.20.2 @vue&#x2F;cli 5.0.9 &amp;#119;&amp;#x65;&amp;#x62;&amp;#x70;&amp;#97;&amp;#x63;&amp;#x6b;&amp;#x40;&amp;#x35;&amp;#x2e;&amp;#x31;&amp;#x30;&amp;#x31;&amp;#x2e;&amp;#x33; npm 8.19.4 镜像t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue2打包优化方案">
 <meta property="og:url" content="https://766187397.github.io/2025/09/15/Vue2%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="辰風依恛">
-<meta property="og:description" content="Vue2打包优化方案 记录一些Vue2打包优化方案，方便后续复用 当前优化方案会整理到一个demo中方便复用  demo使用到的版本  node 16.20.2 @vue&#x2F;cli 5.0.9 &amp;#119;&amp;#x65;&amp;#x62;&amp;#112;&amp;#97;&amp;#x63;&amp;#x6b;&amp;#x40;&amp;#53;&amp;#x2e;&amp;#x31;&amp;#48;&amp;#x31;&amp;#x2e;&amp;#51; npm 8.19.4 镜像taob">
+<meta property="og:description" content="Vue2打包优化方案 记录一些Vue2打包优化方案，方便后续复用 当前优化方案会整理到一个demo中方便复用  demo使用到的版本  node 16.20.2 @vue&#x2F;cli 5.0.9 &amp;#119;&amp;#x65;&amp;#x62;&amp;#x70;&amp;#97;&amp;#x63;&amp;#x6b;&amp;#x40;&amp;#x35;&amp;#x2e;&amp;#x31;&amp;#x30;&amp;#x31;&amp;#x2e;&amp;#x33; npm 8.19.4 镜像t">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-09-15T01:23:12.978Z">
 <meta property="article:modified_time" content="2025-09-15T08:00:55.061Z">
@@ -27,15 +27,15 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1759028874194">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1759029109816">
     
         <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
     
-    <link rel="stylesheet" href="/css/style.css?v=1759028874194">
+    <link rel="stylesheet" href="/css/style.css?v=1759029109816">
 
     
         
-            <link rel="stylesheet" href="/custom.css?v=1759028874194">
+            <link rel="stylesheet" href="/custom.css?v=1759029109816">
         
     
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -62,7 +62,7 @@
     <div class="nexmoe-count">
         <div><span>文章</span>27</div>
         <div><span>标签</span>0</div>
-        <div><span>分类</span>8</div>
+        <div><span>分类</span>10</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -99,7 +99,7 @@
 </div>
 
 
-	<script async src="/js/search.js?v=1759028874194"></script>
+	<script async src="/js/search.js?v=1759029109817"></script>
 
 
 
@@ -180,6 +180,20 @@
         
 
         <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
           <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
           <span class="category-list-count">1</span>
         </li>
@@ -230,7 +244,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
-          <span class="category-list-count">7</span>
+          <span class="category-list-count">6</span>
         </li>
 
         
@@ -307,7 +321,7 @@
       <ul>
         
           <li>
-            <a href="/2025/09/28/Nestjs%E9%A1%B9%E7%9B%AE%E9%87%8D%E7%82%B9%E8%AE%B0%E5%BD%95/">(no title)</a>
+            <a href="/2025/09/28/Nestjs%E9%A1%B9%E7%9B%AE%E9%87%8D%E7%82%B9%E8%AE%B0%E5%BD%95/">NestJS项目从零到一</a>
           </li>
         
           <li>
@@ -376,7 +390,7 @@
 <ul>
 <li>node 16.20.2</li>
 <li>@vue/cli 5.0.9</li>
-<li><a href="mailto:&#119;&#x65;&#x62;&#112;&#97;&#x63;&#x6b;&#x40;&#53;&#x2e;&#x31;&#48;&#x31;&#x2e;&#51;">&#119;&#x65;&#x62;&#112;&#97;&#x63;&#x6b;&#x40;&#53;&#x2e;&#x31;&#48;&#x31;&#x2e;&#51;</a></li>
+<li><a href="mailto:&#119;&#x65;&#x62;&#x70;&#97;&#x63;&#x6b;&#x40;&#x35;&#x2e;&#x31;&#x30;&#x31;&#x2e;&#x33;">&#119;&#x65;&#x62;&#x70;&#97;&#x63;&#x6b;&#x40;&#x35;&#x2e;&#x31;&#x30;&#x31;&#x2e;&#x33;</a></li>
 <li>npm 8.19.4</li>
 <li>镜像taobao ——- <a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></li>
 </ul>
@@ -609,7 +623,7 @@
 
  
 
-<script async src="/js/app.js?v=1759028874200"></script>
+<script async src="/js/app.js?v=1759029109823"></script>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
 
