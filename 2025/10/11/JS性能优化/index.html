@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>JS性能优化 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="JS性能优化 当需要的时候在做优化、考虑可维护性。  一、性能优化1. 减少不必要的计算 使用缓存（memoization）：对计算结果进行缓存，如 Vue 中的计算属性。 防抖与节流（debounce&#x2F;throttle）：减少高频事件（如 scroll、resize、input）的执行频率。 **延迟加载 (lazy loading)**：按需加载组件、模块或资源。  2. 数据结构与算法 合理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS性能优化">
+<meta property="og:url" content="https://766187397.github.io/2025/10/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="JS性能优化 当需要的时候在做优化、考虑可维护性。  一、性能优化1. 减少不必要的计算 使用缓存（memoization）：对计算结果进行缓存，如 Vue 中的计算属性。 防抖与节流（debounce&#x2F;throttle）：减少高频事件（如 scroll、resize、input）的执行频率。 **延迟加载 (lazy loading)**：按需加载组件、模块或资源。  2. 数据结构与算法 合理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-11T02:44:15.484Z">
+<meta property="article:modified_time" content="2025-10-11T02:59:23.170Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1760151666266">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1760151666266">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1760151666266">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>30</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>11</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1760151666266"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">30</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/10/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">JS性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/11/HTML%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">HTML性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/10/Css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">Css性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/28/Nestjs%E9%A1%B9%E7%9B%AE%E9%87%8D%E7%82%B9%E8%AE%B0%E5%BD%95/">NestJS项目从零到一</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/28/Gin%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">Gin快速上手</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/speed-tune.png" alt="JS性能优化" loading="lazy">
+            <h1>JS性能优化</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年10月11日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">性能优化方案</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="JS性能优化"><a href="#JS性能优化" class="headerlink" title="JS性能优化"></a>JS性能优化</h1><blockquote>
+<p>当需要的时候在做优化、考虑可维护性。</p>
+</blockquote>
+<h2 id="一、性能优化"><a href="#一、性能优化" class="headerlink" title="一、性能优化"></a>一、性能优化</h2><h3 id="1-减少不必要的计算"><a href="#1-减少不必要的计算" class="headerlink" title="1. 减少不必要的计算"></a>1. 减少不必要的计算</h3><ul>
+<li><strong>使用缓存（memoization）</strong>：对计算结果进行缓存，如 Vue 中的计算属性。</li>
+<li><strong>防抖与节流（debounce/throttle）</strong>：减少高频事件（如 scroll、resize、input）的执行频率。</li>
+<li>**延迟加载 (lazy loading)**：按需加载组件、模块或资源。</li>
+</ul>
+<h3 id="2-数据结构与算法"><a href="#2-数据结构与算法" class="headerlink" title="2. 数据结构与算法"></a>2. 数据结构与算法</h3><ul>
+<li>合理使用 <strong>Map / Set</strong> 替代普通对象和数组查找。</li>
+<li>尽量避免 O(n²) 操作（例如循环嵌套）。</li>
+<li>对列表操作使用不可变更新的同时，注意避免不必要的深拷贝。</li>
+</ul>
+<p>例如：大量的数据需要匹配到对于的值，可以考虑将数组格式改成 Map 或 对象 的形式，避免循环查找</p>
+<h3 id="3-异步与并发优化"><a href="#3-异步与并发优化" class="headerlink" title="3. 异步与并发优化"></a>3. 异步与并发优化</h3><ul>
+<li>使用 <code>Promise.allSettled()</code> / <code>Promise.all()</code> 同步多个异步任务。</li>
+<li>对 I/O 密集型任务使用 <strong>Worker Threads / Web Workers</strong> 分离线程。</li>
+</ul>
+<p>例如：大文件切片上传使用 Web Workers 计算hash</p>
+<h2 id="二、构建优化"><a href="#二、构建优化" class="headerlink" title="二、构建优化"></a>二、构建优化</h2><h3 id="1-Tree-Shaking"><a href="#1-Tree-Shaking" class="headerlink" title="1. Tree Shaking"></a>1. Tree Shaking</h3><ul>
+<li>确保代码是 <strong>ESM 模块格式（import/export）</strong>，让构建工具（Vite、Webpack、Rollup）能自动移除未使用的代码。</li>
+</ul>
+<h3 id="2-代码分割-Code-Splitting"><a href="#2-代码分割-Code-Splitting" class="headerlink" title="2. 代码分割 (Code Splitting)"></a>2. 代码分割 (Code Splitting)</h3><ul>
+<li>将大包拆成多个按需加载的 chunk。</li>
+<li>React 中可用 <code>React.lazy()</code> 和 <code>Suspense</code>。</li>
+</ul>
+<h3 id="3-压缩与混淆"><a href="#3-压缩与混淆" class="headerlink" title="3. 压缩与混淆"></a>3. 压缩与混淆</h3><ul>
+<li>使用 Terser / esbuild / SWC 压缩。</li>
+<li>CSS 使用 PostCSS、cssnano 压缩。</li>
+</ul>
+<h3 id="4-构建工具优化"><a href="#4-构建工具优化" class="headerlink" title="4. 构建工具优化"></a>4. 构建工具优化</h3><ul>
+<li>使用 <strong>esbuild / SWC / Vite</strong> 替代传统 Babel+Webpack，构建速度可提升 5~10 倍。</li>
+<li>缓存编译结果（Webpack 5 的 persistent cache、Vite 的 cache）。</li>
+</ul>
+<h2 id="三、代码质量与类型优化"><a href="#三、代码质量与类型优化" class="headerlink" title="三、代码质量与类型优化"></a>三、代码质量与类型优化</h2><h3 id="1-TypeScript-优化"><a href="#1-TypeScript-优化" class="headerlink" title="1. TypeScript 优化"></a>1. TypeScript 优化</h3><ul>
+<li>启用严格模式（<code>&quot;strict&quot;: true</code>）。</li>
+<li>启用 <code>&quot;noUnusedLocals&quot;</code>, <code>&quot;noUnusedParameters&quot;</code>, <code>&quot;noImplicitAny&quot;</code>, <code>&quot;strictNullChecks&quot;</code>。</li>
+<li>在类型复杂时，使用 <strong>类型推导、泛型约束</strong>，减少 any 滥用。</li>
+</ul>
+<h3 id="2-Lint-amp-格式化"><a href="#2-Lint-amp-格式化" class="headerlink" title="2. Lint &amp; 格式化"></a>2. Lint &amp; 格式化</h3><ul>
+<li>ESLint + Prettier 保持一致的编码规范。</li>
+<li>使用 <code>eslint-plugin-import</code> 优化 import 顺序与依赖。</li>
+</ul>
+<h3 id="3-重构与模块化"><a href="#3-重构与模块化" class="headerlink" title="3. 重构与模块化"></a>3. 重构与模块化</h3><ul>
+<li>拆分大型模块，保持每个文件单一职责。</li>
+<li>使用 barrel 文件（<code>index.ts</code>）统一导出模块。</li>
+</ul>
+<h2 id="四、运行时与内存优化"><a href="#四、运行时与内存优化" class="headerlink" title="四、运行时与内存优化"></a>四、运行时与内存优化</h2><h3 id="1-减少对象频繁创建与销毁"><a href="#1-减少对象频繁创建与销毁" class="headerlink" title="1. 减少对象频繁创建与销毁"></a>1. 减少对象频繁创建与销毁</h3><ul>
+<li>使用对象池、重用临时变量。</li>
+<li>避免频繁拼接字符串，使用模板字符串或数组 join。</li>
+</ul>
+<h3 id="2-内存管理"><a href="#2-内存管理" class="headerlink" title="2. 内存管理"></a>2. 内存管理</h3><ul>
+<li>及时释放不再使用的引用（如 DOM 节点、缓存）。</li>
+<li>Node.js 环境下，监控内存泄漏（如用 <code>clinic.js</code>, <code>node --inspect</code>）。</li>
+</ul>
+<h3 id="3-网络优化"><a href="#3-网络优化" class="headerlink" title="3. 网络优化"></a>3. 网络优化</h3><ul>
+<li>启用 HTTP/2 或 HTTP/3。</li>
+<li>使用 gzip / brotli 压缩。</li>
+<li>利用 CDN 与缓存头（<code>Cache-Control</code>、<code>ETag</code>）。</li>
+</ul>
+<h2 id="五、架构与设计优化"><a href="#五、架构与设计优化" class="headerlink" title="五、架构与设计优化"></a>五、架构与设计优化</h2><h3 id="1-模块化与解耦"><a href="#1-模块化与解耦" class="headerlink" title="1. 模块化与解耦"></a>1. 模块化与解耦</h3><ul>
+<li>遵循 SOLID 原则。</li>
+<li>使用依赖注入（DI）降低耦合。</li>
+<li>提前定义 domain 层、service 层与 UI 层的职责。</li>
+</ul>
+<h3 id="2-状态管理优化"><a href="#2-状态管理优化" class="headerlink" title="2. 状态管理优化"></a>2. 状态管理优化</h3><ul>
+<li>对全局状态使用如 Zustand、Recoil、Redux Toolkit 等高性能状态库。</li>
+<li>避免全量渲染：React 中使用 <code>memo</code>、<code>useCallback</code>。</li>
+</ul>
+<h3 id="3-SSR-SSG-优化"><a href="#3-SSR-SSG-优化" class="headerlink" title="3. SSR / SSG 优化"></a>3. SSR / SSG 优化</h3><ul>
+<li>对 SEO 和首屏性能关键的项目采用 SSR（Next.js / Nuxt）。</li>
+<li>使用 <code>getStaticProps</code>、<code>ISR</code>（增量静态生成）优化首屏。</li>
+</ul>
+<h2 id="六、调试与监控优化"><a href="#六、调试与监控优化" class="headerlink" title="六、调试与监控优化"></a>六、调试与监控优化</h2><ul>
+<li>使用 <strong>source map</strong> 辅助调试（生产环境可上传至 Sentry）。</li>
+<li>集成性能监控工具（如 Lighthouse、Web Vitals、Sentry、Datadog）。</li>
+<li>Node.js 端可用 <code>clinic.js</code> 或 <code>0x</code> 分析性能瓶颈。</li>
+</ul>
+<h2 id="七、JS动画优化"><a href="#七、JS动画优化" class="headerlink" title="七、JS动画优化"></a>七、JS动画优化</h2><ul>
+<li>避免大量js动画</li>
+<li>尽量使用css动画</li>
+<li>尽量使用canvas动画</li>
+<li>合理使用requestAnimationFrame动画代替setTimeout、setInterval<ul>
+<li>requestAnimationFrame确保在正确的时候进行渲染</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目开发中最常见如下"><a href="#项目开发中最常见如下" class="headerlink" title="项目开发中最常见如下"></a>项目开发中最常见如下</h2><ul>
+<li>防抖、节流</li>
+<li>缓存</li>
+<li>异步优化</li>
+<li>按需加载</li>
+<li>移除冗余依赖、代码分割</li>
+<li>减少内存泄漏、优化循环</li>
+</ul>
+<p><em>不是自己开发的内容能跑不建议动，对于自己零好处，容易背锅。非改不可自求多福！</em></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/10/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;11&#x2F;JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;11&#x2F;JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">JS性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">一、性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%87%8F%E5%B0%91%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 减少不必要的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 数据结构与算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BC%82%E6%AD%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 异步与并发优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9E%84%E5%BB%BA%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">二、构建优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Tree-Shaking"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. Tree Shaking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A3%E7%A0%81%E5%88%86%E5%89%B2-Code-Splitting"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 代码分割 (Code Splitting)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%B7%B7%E6%B7%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 压缩与混淆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E4%BC%98%E5%8C%96"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 构建工具优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E4%B8%8E%E7%B1%BB%E5%9E%8B%E4%BC%98%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">三、代码质量与类型优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-TypeScript-%E4%BC%98%E5%8C%96"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. TypeScript 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Lint-amp-%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. Lint &amp; 格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%87%8D%E6%9E%84%E4%B8%8E%E6%A8%A1%E5%9D%97%E5%8C%96"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 重构与模块化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%8E%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.</span> <span class="toc-text">四、运行时与内存优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%87%8F%E5%B0%91%E5%AF%B9%E8%B1%A1%E9%A2%91%E7%B9%81%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%94%80%E6%AF%81"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 减少对象频繁创建与销毁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 内存管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 网络优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%BE%E8%AE%A1%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.</span> <span class="toc-text">五、架构与设计优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A8%A1%E5%9D%97%E5%8C%96%E4%B8%8E%E8%A7%A3%E8%80%A6"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 模块化与解耦</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 状态管理优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-SSR-SSG-%E4%BC%98%E5%8C%96"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. SSR &#x2F; SSG 优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%B0%83%E8%AF%95%E4%B8%8E%E7%9B%91%E6%8E%A7%E4%BC%98%E5%8C%96"><span class="toc-number">1.6.</span> <span class="toc-text">六、调试与监控优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81JS%E5%8A%A8%E7%94%BB%E4%BC%98%E5%8C%96"><span class="toc-number">1.7.</span> <span class="toc-text">七、JS动画优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%AD%E6%9C%80%E5%B8%B8%E8%A7%81%E5%A6%82%E4%B8%8B"><span class="toc-number">1.8.</span> <span class="toc-text">项目开发中最常见如下</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1760151666272"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
