@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="Node.js 函数打包为 npm 包的规范流程概述本教程提供从零开始创建和发布 npm 包的标准化流程，遵循最佳实践和行业规范。 第一步：项目初始化1. 创建项目目录结构12mkdir my-packagecd my-package  2. 初始化 package.json1npm init -y  3. 标准项目结构1234567891011my-package&#x2F;├── src&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="辰風依恛">
+<meta property="og:url" content="https://766187397.github.io/2025/10/16/npm%E5%8C%85%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="Node.js 函数打包为 npm 包的规范流程概述本教程提供从零开始创建和发布 npm 包的标准化流程，遵循最佳实践和行业规范。 第一步：项目初始化1. 创建项目目录结构12mkdir my-packagecd my-package  2. 初始化 package.json1npm init -y  3. 标准项目结构1234567891011my-package&#x2F;├── src&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-16T06:45:35.837Z">
+<meta property="article:modified_time" content="2025-10-16T07:02:03.611Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1760598347852">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1760598347852">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1760598347852">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>32</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>11</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1760598347852"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">32</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/10/16/npm%E5%8C%85%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/11/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82SSR%E3%80%81SSG%E3%80%81CSR/">一文搞懂SSR、SSG、CSR</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/11/JS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">JS性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/11/HTML%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">HTML性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/10/Css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">Css性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover"> 
+            <img src="https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg" alt="" loading="lazy">
+            <h1></h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年10月16日</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Node-js-函数打包为-npm-包的规范流程"><a href="#Node-js-函数打包为-npm-包的规范流程" class="headerlink" title="Node.js 函数打包为 npm 包的规范流程"></a>Node.js 函数打包为 npm 包的规范流程</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本教程提供从零开始创建和发布 npm 包的标准化流程，遵循最佳实践和行业规范。</p>
+<h2 id="第一步：项目初始化"><a href="#第一步：项目初始化" class="headerlink" title="第一步：项目初始化"></a>第一步：项目初始化</h2><h3 id="1-创建项目目录结构"><a href="#1-创建项目目录结构" class="headerlink" title="1. 创建项目目录结构"></a>1. 创建项目目录结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> my-package</span><br><span class="line"><span class="built_in">cd</span> my-package</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化-package-json"><a href="#2-初始化-package-json" class="headerlink" title="2. 初始化 package.json"></a>2. 初始化 package.json</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-标准项目结构"><a href="#3-标准项目结构" class="headerlink" title="3. 标准项目结构"></a>3. 标准项目结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">my-package/</span><br><span class="line">├── src/              # 源代码目录</span><br><span class="line">│   └── index.ts      # 主入口文件</span><br><span class="line">├── static/           # 静态资源</span><br><span class="line">├── test/             # 测试文件</span><br><span class="line">├── package.json      # 包配置</span><br><span class="line">├── tsconfig.json     # TypeScript 配置</span><br><span class="line">├── .gitignore        # Git 忽略规则</span><br><span class="line">├── .npmignore        # NPM 发布忽略规则</span><br><span class="line">├── README.md         # 文档</span><br><span class="line">└── LICENSE           # 许可证</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步：开发环境配置"><a href="#第二步：开发环境配置" class="headerlink" title="第二步：开发环境配置"></a>第二步：开发环境配置</h2><h3 id="1-安装开发依赖"><a href="#1-安装开发依赖" class="headerlink" title="1. 安装开发依赖"></a>1. 安装开发依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -D typescript @types/node</span><br><span class="line">npm install -D rimraf          <span class="comment"># 清理工具</span></span><br><span class="line">npm install -D jest @types/jest <span class="comment"># 测试框架（可选）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-配置-TypeScript-tsconfig-json"><a href="#2-配置-TypeScript-tsconfig-json" class="headerlink" title="2. 配置 TypeScript (tsconfig.json)"></a>2. 配置 TypeScript (tsconfig.json)</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ES2020&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;module&quot;</span><span class="punctuation">:</span> <span class="string">&quot;CommonJS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;lib&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;ES2020&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;outDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./dist&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;rootDir&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./src&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;strict&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;esModuleInterop&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;skipLibCheck&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;forceConsistentCasingInFileNames&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;declaration&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;declarationMap&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sourceMap&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;resolveJsonModule&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;include&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src/**/*&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;exclude&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;node_modules&quot;</span><span class="punctuation">,</span> <span class="string">&quot;dist&quot;</span><span class="punctuation">,</span> <span class="string">&quot;test&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置构建脚本-package-json"><a href="#3-配置构建脚本-package-json" class="headerlink" title="3. 配置构建脚本 (package.json)"></a>3. 配置构建脚本 (package.json)</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;clean&quot;</span><span class="punctuation">:</span> <span class="string">&quot;rimraf dist&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run clean &amp;&amp; tsc&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;tsc -w&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;prepublishOnly&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;lint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint src/**/*.ts&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dist/index.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;types&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dist/index.d.ts&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;dist&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;static&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;README.md&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;LICENSE&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步：代码开发规范"><a href="#第三步：代码开发规范" class="headerlink" title="第三步：代码开发规范"></a>第三步：代码开发规范</h2><h3 id="1-源代码编写规范"><a href="#1-源代码编写规范" class="headerlink" title="1. 源代码编写规范"></a>1. 源代码编写规范</h3><p><strong>src/index.ts</strong> - 主入口文件示例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 主类 - 提供核心功能</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">MyLibrary</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">config</span>: <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">config?: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">config</span> = config || &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Express 中间件方法</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">serveExpress</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">req: <span class="built_in">any</span>, res: <span class="built_in">any</span>, next: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// Express 中间件逻辑</span></span><br><span class="line">      res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;Hello from Express&#x27;</span> &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Koa 中间件方法</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">serveKoa</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">async</span> (<span class="attr">ctx</span>: <span class="built_in">any</span>, <span class="attr">next</span>: <span class="built_in">any</span>) =&gt; &#123;</span><br><span class="line">      <span class="comment">// Koa 中间件逻辑</span></span><br><span class="line">      ctx.<span class="property">body</span> = &#123; <span class="attr">message</span>: <span class="string">&#x27;Hello from Koa&#x27;</span> &#125;;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">next</span>();</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认导出</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">MyLibrary</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CommonJS 兼容导出</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="variable language_">module</span> !== <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="variable language_">module</span>.<span class="property">exports</span>) &#123;</span><br><span class="line">  <span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">MyLibrary</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-类型定义规范"><a href="#2-类型定义规范" class="headerlink" title="2. 类型定义规范"></a>2. 类型定义规范</h3><p>创建类型定义文件 <strong>src/types/index.ts</strong>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">Config</span> &#123;</span><br><span class="line">  prefix?: <span class="built_in">string</span>;</span><br><span class="line">  debug?: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">ApiResponse</span> &#123;</span><br><span class="line">  <span class="attr">success</span>: <span class="built_in">boolean</span>;</span><br><span class="line">  data?: <span class="built_in">any</span>;</span><br><span class="line">  error?: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四步：构建和测试"><a href="#第四步：构建和测试" class="headerlink" title="第四步：构建和测试"></a>第四步：构建和测试</h2><h3 id="1-构建流程"><a href="#1-构建流程" class="headerlink" title="1. 构建流程"></a>1. 构建流程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理并构建</span></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开发模式（监听文件变化）</span></span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行测试</span></span><br><span class="line">npm <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-验证构建结果"><a href="#2-验证构建结果" class="headerlink" title="2. 验证构建结果"></a>2. 验证构建结果</h3><p>构建完成后检查 dist 目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dist/</span><br><span class="line">├── index.js          # 编译后的 JavaScript</span><br><span class="line">├── index.d.ts        # TypeScript 类型声明</span><br><span class="line">├── index.js.map      # 源码映射文件</span><br><span class="line">└── types/</span><br><span class="line">    └── index.d.ts    # 类型定义</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-本地包开发和测试（npm-link）"><a href="#3-本地包开发和测试（npm-link）" class="headerlink" title="3. 本地包开发和测试（npm link）"></a>3. 本地包开发和测试（npm link）</h3><h4 id="npm-link-的作用"><a href="#npm-link-的作用" class="headerlink" title="npm link 的作用"></a>npm link 的作用</h4><ul>
+<li>在本地开发和测试包，无需发布到 npm</li>
+<li>模拟真实的包安装和使用场景</li>
+<li>支持实时修改和测试</li>
+</ul>
+<h4 id="在包项目中创建全局链接"><a href="#在包项目中创建全局链接" class="headerlink" title="在包项目中创建全局链接"></a>在包项目中创建全局链接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在包项目根目录执行</span></span><br><span class="line">npm <span class="built_in">link</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出示例：</span></span><br><span class="line"><span class="comment"># /usr/local/lib/node_modules/your-package -&gt; /path/to/your/package</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="在测试项目中使用链接的包"><a href="#在测试项目中使用链接的包" class="headerlink" title="在测试项目中使用链接的包"></a>在测试项目中使用链接的包</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建测试项目</span></span><br><span class="line"><span class="built_in">mkdir</span> test-project</span><br><span class="line"><span class="built_in">cd</span> test-project</span><br><span class="line">npm init -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 链接到全局包</span></span><br><span class="line">npm <span class="built_in">link</span> your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用完整路径</span></span><br><span class="line">npm <span class="built_in">link</span> /path/to/your/package</span><br></pre></td></tr></table></figure>
+
+<h4 id="验证链接是否成功"><a href="#验证链接是否成功" class="headerlink" title="验证链接是否成功"></a>验证链接是否成功</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在测试项目中检查</span></span><br><span class="line">npm <span class="built_in">ls</span> your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看链接状态</span></span><br><span class="line">npm <span class="built_in">ls</span> -g --<span class="built_in">link</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试导入</span></span><br><span class="line">node -e <span class="string">&quot;console.log(require(&#x27;your-package-name&#x27;))&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="实时开发和测试"><a href="#实时开发和测试" class="headerlink" title="实时开发和测试"></a>实时开发和测试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在包项目中修改代码后，重新构建</span></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在测试项目中会立即看到变化</span></span><br><span class="line"><span class="comment"># 无需重新安装或重启</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="取消链接"><a href="#取消链接" class="headerlink" title="取消链接"></a>取消链接</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在测试项目中取消链接</span></span><br><span class="line">npm <span class="built_in">unlink</span> your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者使用 uninstall</span></span><br><span class="line">npm uninstall your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在包项目中取消全局链接</span></span><br><span class="line">npm <span class="built_in">unlink</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="npm-link-的高级用法"><a href="#npm-link-的高级用法" class="headerlink" title="npm link 的高级用法"></a>npm link 的高级用法</h4><p><strong>多个包之间的链接</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设有两个包：package-a 和 package-b</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 package-a 中创建链接</span></span><br><span class="line"><span class="built_in">cd</span> package-a</span><br><span class="line">npm <span class="built_in">link</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 package-b 中链接到 package-a</span></span><br><span class="line"><span class="built_in">cd</span> package-b</span><br><span class="line">npm <span class="built_in">link</span> package-a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在 package-b 可以使用 package-a 作为依赖</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>使用相对路径链接</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果包在同一个项目中</span></span><br><span class="line">npm <span class="built_in">link</span> ../my-other-package</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看所有全局链接</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有全局链接的包</span></span><br><span class="line">npm <span class="built_in">ls</span> -g --depth=0 --<span class="built_in">link</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看特定包的链接信息</span></span><br><span class="line">npm <span class="built_in">ls</span> -g your-package-name</span><br></pre></td></tr></table></figure>
+
+<h4 id="npm-link-的常见问题解决"><a href="#npm-link-的常见问题解决" class="headerlink" title="npm link 的常见问题解决"></a>npm link 的常见问题解决</h4><p><strong>链接不生效</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查包名是否正确</span></span><br><span class="line">npm <span class="built_in">ls</span> your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新链接</span></span><br><span class="line">npm <span class="built_in">unlink</span> your-package-name &amp;&amp; npm <span class="built_in">link</span> your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者重启终端</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>权限问题</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 macOS/Linux 上可能需要 sudo</span></span><br><span class="line">sudo npm <span class="built_in">link</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者修改 npm 全局目录权限</span></span><br><span class="line">sudo <span class="built_in">chown</span> -R $(<span class="built_in">whoami</span>) $(npm config get prefix)/&#123;lib/node_modules,bin,share&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows 系统注意事项</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows 上可能需要管理员权限</span></span><br><span class="line"><span class="comment"># 以管理员身份运行 PowerShell 或命令提示符</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查全局安装目录</span></span><br><span class="line">npm config get prefix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保有写入权限</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="npm-link-的最佳实践"><a href="#npm-link-的最佳实践" class="headerlink" title="npm link 的最佳实践"></a>npm link 的最佳实践</h4><ol>
+<li><p><strong>开发流程</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 在包项目中开发</span></span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 在测试项目中测试</span></span><br><span class="line">npm <span class="built_in">link</span> your-package</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 修改 → 构建 → 测试循环</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>版本管理</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在发布前确保取消所有链接</span></span><br><span class="line">npm <span class="built_in">unlink</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试正式安装</span></span><br><span class="line">npm install your-package@latest</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>团队协作</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用相对路径避免全局冲突</span></span><br><span class="line">npm <span class="built_in">link</span> ../team-member-package</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-测试配置（可选）"><a href="#4-测试配置（可选）" class="headerlink" title="4. 测试配置（可选）"></a>4. 测试配置（可选）</h3><p><strong>package.json</strong> 添加测试配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test:watch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;jest --watch&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;test:link&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npm run build &amp;&amp; cd test-project &amp;&amp; npm test&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>jest.config.js</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">preset</span>: <span class="string">&#x27;ts-jest&#x27;</span>,</span><br><span class="line">  <span class="attr">testEnvironment</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">  <span class="attr">testMatch</span>: [<span class="string">&#x27;**/test/**/*.test.ts&#x27;</span>]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="第五步：发布前配置"><a href="#第五步：发布前配置" class="headerlink" title="第五步：发布前配置"></a>第五步：发布前配置</h2><h3 id="1-忽略文件配置"><a href="#1-忽略文件配置" class="headerlink" title="1. 忽略文件配置"></a>1. 忽略文件配置</h3><p><strong>.gitignore</strong> - Git 版本控制忽略规则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 依赖目录</span><br><span class="line">node_modules/</span><br><span class="line"></span><br><span class="line"># 构建输出</span><br><span class="line">dist/</span><br><span class="line">build/</span><br><span class="line"></span><br><span class="line"># 日志文件</span><br><span class="line">*.log</span><br><span class="line">npm-debug.log*</span><br><span class="line"></span><br><span class="line"># 环境变量</span><br><span class="line">.env</span><br><span class="line">.env.local</span><br><span class="line">.env.production</span><br><span class="line"></span><br><span class="line"># 系统文件</span><br><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line"></span><br><span class="line"># IDE 配置</span><br><span class="line">.vscode/</span><br><span class="line">.idea/</span><br></pre></td></tr></table></figure>
+
+<p><strong>.npmignore</strong> - NPM 发布忽略规则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 源代码目录</span><br><span class="line">src/</span><br><span class="line"></span><br><span class="line"># 配置文件</span><br><span class="line">tsconfig.json</span><br><span class="line">jest.config.js</span><br><span class="line">.eslintrc.js</span><br><span class="line"></span><br><span class="line"># 开发依赖</span><br><span class="line">node_modules/</span><br><span class="line"></span><br><span class="line"># 测试文件</span><br><span class="line">test/</span><br><span class="line">*.test.ts</span><br><span class="line">*.spec.ts</span><br><span class="line"></span><br><span class="line"># Git 相关</span><br><span class="line">.git/</span><br><span class="line">.gitignore</span><br><span class="line"></span><br><span class="line"># 开发工具配置</span><br><span class="line">.eslintignore</span><br><span class="line">.prettierrc</span><br><span class="line"></span><br><span class="line"># 临时文件</span><br><span class="line">*.tmp</span><br><span class="line">*.temp</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-文档和许可证"><a href="#2-文档和许可证" class="headerlink" title="2. 文档和许可证"></a>2. 文档和许可证</h3><p><strong>README.md</strong> - 项目文档模板：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># My Package</span></span><br><span class="line"></span><br><span class="line">功能描述和使用说明</span><br><span class="line"></span><br><span class="line"><span class="section">## 安装</span></span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">npm install my-package</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">MyLibrary</span> <span class="keyword">from</span> <span class="string">&#x27;my-package&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> lib = <span class="keyword">new</span> <span class="title class_">MyLibrary</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="API-文档"><a href="#API-文档" class="headerlink" title="API 文档"></a>API 文档</h2><ul>
+<li><code>serveExpress()</code> - Express 中间件</li>
+<li><code>serveKoa()</code> - Koa 中间件</li>
+</ul>
+<h2 id="许可证"><a href="#许可证" class="headerlink" title="许可证"></a>许可证</h2><p>MIT</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">**LICENSE** - MIT 许可证模板：</span><br></pre></td></tr></table></figure>
+<p>MIT License</p>
+<p>Copyright (c) [year] [fullname]</p>
+<p>Permission is hereby granted…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 第六步：发布流程</span><br><span class="line"></span><br><span class="line">### 1. 版本管理</span><br><span class="line">```bash</span><br><span class="line"># 查看当前版本</span><br><span class="line">npm version</span><br><span class="line"></span><br><span class="line"># 升级版本（遵循语义化版本）</span><br><span class="line">npm version patch  # 修复 bug</span><br><span class="line">npm version minor  # 新增功能</span><br><span class="line">npm version major  # 不兼容变更</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-发布前检查"><a href="#2-发布前检查" class="headerlink" title="2. 发布前检查"></a>2. 发布前检查</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建项目</span></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行测试</span></span><br><span class="line">npm <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证包内容</span></span><br><span class="line">npm pack</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-发布到-NPM"><a href="#3-发布到-NPM" class="headerlink" title="3. 发布到 NPM"></a>3. 发布到 NPM</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录 NPM（首次）</span></span><br><span class="line">npm login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布正式版</span></span><br><span class="line">npm publish</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布测试版</span></span><br><span class="line">npm publish --tag beta</span><br><span class="line"></span><br><span class="line"><span class="comment"># 撤销发布（24小时内）</span></span><br><span class="line">npm unpublish my-package@1.0.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-发布后验证"><a href="#4-发布后验证" class="headerlink" title="4. 发布后验证"></a>4. 发布后验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建测试项目验证</span></span><br><span class="line"><span class="built_in">mkdir</span> test-project</span><br><span class="line"><span class="built_in">cd</span> test-project</span><br><span class="line">npm init -y</span><br><span class="line">npm install my-package</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试导入</span></span><br><span class="line">node -e <span class="string">&quot;console.log(require(&#x27;my-package&#x27;))&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第七步：配置参数详解"><a href="#第七步：配置参数详解" class="headerlink" title="第七步：配置参数详解"></a>第七步：配置参数详解</h2><h3 id="package-json-关键字段说明"><a href="#package-json-关键字段说明" class="headerlink" title="package.json 关键字段说明"></a>package.json 关键字段说明</h3><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>作用</th>
+<th>配置时机</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td>包名，全局唯一</td>
+<td>项目初始化</td>
+<td><code>&quot;my-package&quot;</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>版本号，语义化版本</td>
+<td>每次发布</td>
+<td><code>&quot;1.0.0&quot;</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>包的功能描述</td>
+<td>项目初始化</td>
+<td><code>&quot;A useful library&quot;</code></td>
+</tr>
+<tr>
+<td><code>main</code></td>
+<td>CommonJS 入口文件</td>
+<td>构建配置后</td>
+<td><code>&quot;dist/index.js&quot;</code></td>
+</tr>
+<tr>
+<td><code>types</code></td>
+<td>TypeScript 类型文件</td>
+<td>添加 TS 后</td>
+<td><code>&quot;dist/index.d.ts&quot;</code></td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td>发布到 npm 的文件</td>
+<td>发布前确定</td>
+<td><code>[&quot;dist&quot;, &quot;static&quot;]</code></td>
+</tr>
+<tr>
+<td><code>scripts</code></td>
+<td>自定义脚本命令</td>
+<td>开发过程中</td>
+<td><code>&#123;&quot;build&quot;: &quot;tsc&quot;&#125;</code></td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td>搜索关键词</td>
+<td>项目初始化</td>
+<td><code>[&quot;library&quot;, &quot;tool&quot;]</code></td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>代码仓库地址</td>
+<td>项目初始化</td>
+<td><code>&#123;&quot;type&quot;: &quot;git&quot;, &quot;url&quot;: &quot;...&quot;&#125;</code></td>
+</tr>
+</tbody></table>
+<h3 id="tsconfig-json-配置项详解"><a href="#tsconfig-json-配置项详解" class="headerlink" title="tsconfig.json 配置项详解"></a>tsconfig.json 配置项详解</h3><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>作用</th>
+<th>推荐值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>target</code></td>
+<td>编译目标版本</td>
+<td><code>ES2020</code></td>
+<td>现代 JavaScript 特性</td>
+</tr>
+<tr>
+<td><code>module</code></td>
+<td>模块系统</td>
+<td><code>CommonJS</code></td>
+<td>Node.js 兼容性</td>
+</tr>
+<tr>
+<td><code>outDir</code></td>
+<td>输出目录</td>
+<td><code>&quot;./dist&quot;</code></td>
+<td>编译后文件位置</td>
+</tr>
+<tr>
+<td><code>rootDir</code></td>
+<td>源代码目录</td>
+<td><code>&quot;./src&quot;</code></td>
+<td>源代码组织</td>
+</tr>
+<tr>
+<td><code>declaration</code></td>
+<td>生成类型文件</td>
+<td><code>true</code></td>
+<td>TypeScript 类型支持</td>
+</tr>
+<tr>
+<td><code>sourceMap</code></td>
+<td>生成源码映射</td>
+<td><code>true</code></td>
+<td>调试支持</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>严格模式</td>
+<td><code>true</code></td>
+<td>类型安全检查</td>
+</tr>
+<tr>
+<td><code>esModuleInterop</code></td>
+<td>ES 模块互操作</td>
+<td><code>true</code></td>
+<td>兼容性优化</td>
+</tr>
+</tbody></table>
+<h2 id="第八步：构建机制解析"><a href="#第八步：构建机制解析" class="headerlink" title="第八步：构建机制解析"></a>第八步：构建机制解析</h2><h3 id="TypeScript-编译过程"><a href="#TypeScript-编译过程" class="headerlink" title="TypeScript 编译过程"></a>TypeScript 编译过程</h3><ol>
+<li><strong>源代码扫描</strong>: 根据 <code>include</code> 模式匹配 <code>.ts</code> 文件</li>
+<li><strong>类型检查</strong>: 使用 <code>strict</code> 配置进行严格类型验证</li>
+<li><strong>代码转换</strong>: 将 TypeScript 转换为指定 <code>target</code> 的 JavaScript</li>
+<li><strong>文件输出</strong>: 保持目录结构输出到 <code>outDir</code> 目录</li>
+<li><strong>附加文件</strong>: 生成 <code>.d.ts</code> 类型声明和 <code>.map</code> 源码映射</li>
+</ol>
+<h3 id="文件映射关系"><a href="#文件映射关系" class="headerlink" title="文件映射关系"></a>文件映射关系</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">src/                    dist/</span><br><span class="line">├── index.ts           ├── index.js</span><br><span class="line">├── utils/              ├── index.d.ts</span><br><span class="line">│   └── helper.ts      ├── index.js.map</span><br><span class="line">└── types/             └── utils/</span><br><span class="line">    └── api.ts             └── helper.js</span><br><span class="line">                            └── helper.d.ts</span><br><span class="line">                            └── helper.js.map</span><br></pre></td></tr></table></figure>
+
+<h2 id="第九步：常见问题解决"><a href="#第九步：常见问题解决" class="headerlink" title="第九步：常见问题解决"></a>第九步：常见问题解决</h2><h3 id="1-类型声明不生效"><a href="#1-类型声明不生效" class="headerlink" title="1. 类型声明不生效"></a>1. 类型声明不生效</h3><ul>
+<li><strong>原因</strong>: <code>declaration</code> 配置为 <code>false</code> 或 <code>types</code> 字段缺失</li>
+<li><strong>解决</strong>: 确保 <code>tsconfig.json</code> 中 <code>declaration: true</code>，<code>package.json</code> 中正确配置 <code>types</code> 字段</li>
+</ul>
+<h3 id="2-模块导入错误"><a href="#2-模块导入错误" class="headerlink" title="2. 模块导入错误"></a>2. 模块导入错误</h3><ul>
+<li><strong>原因</strong>: 模块导出配置不正确</li>
+<li><strong>解决</strong>: 同时支持 ES6 和 CommonJS 导出方式</li>
+</ul>
+<h3 id="3-静态资源路径问题"><a href="#3-静态资源路径问题" class="headerlink" title="3. 静态资源路径问题"></a>3. 静态资源路径问题</h3><ul>
+<li><strong>原因</strong>: 发布后路径变化</li>
+<li><strong>解决</strong>: 使用 <code>__dirname</code> 和 <code>path.join()</code> 构建绝对路径</li>
+</ul>
+<h2 id="第十步：最佳实践总结"><a href="#第十步：最佳实践总结" class="headerlink" title="第十步：最佳实践总结"></a>第十步：最佳实践总结</h2><h3 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h3><ol>
+<li><strong>代码组织</strong>: 使用 <code>src/</code> 目录组织源代码</li>
+<li><strong>类型安全</strong>: 充分利用 TypeScript 类型系统</li>
+<li><strong>文档完善</strong>: 提供完整的 API 文档和使用示例</li>
+<li><strong>测试覆盖</strong>: 添加单元测试确保功能稳定</li>
+</ol>
+<h3 id="发布规范"><a href="#发布规范" class="headerlink" title="发布规范"></a>发布规范</h3><ol>
+<li><strong>版本管理</strong>: 严格遵循语义化版本规范</li>
+<li><strong>文件控制</strong>: 精确控制发布内容，避免泄露源代码</li>
+<li><strong>质量保证</strong>: 发布前进行完整测试和验证</li>
+<li><strong>持续集成</strong>: 考虑添加自动化测试和发布流程</li>
+</ol>
+<h3 id="维护规范"><a href="#维护规范" class="headerlink" title="维护规范"></a>维护规范</h3><ol>
+<li><strong>更新日志</strong>: 维护 CHANGELOG.md 记录变更</li>
+<li><strong>问题跟踪</strong>: 使用 GitHub Issues 管理问题</li>
+<li><strong>社区支持</strong>: 提供清晰的贡献指南</li>
+</ol>
+<h2 id="第十一步：发布到-npm-官网的完整流程"><a href="#第十一步：发布到-npm-官网的完整流程" class="headerlink" title="第十一步：发布到 npm 官网的完整流程"></a>第十一步：发布到 npm 官网的完整流程</h2><h3 id="1-账号准备阶段"><a href="#1-账号准备阶段" class="headerlink" title="1. 账号准备阶段"></a>1. 账号准备阶段</h3><h4 id="检查是否已有-npm-账号"><a href="#检查是否已有-npm-账号" class="headerlink" title="检查是否已有 npm 账号"></a>检查是否已有 npm 账号</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查当前登录状态</span></span><br><span class="line">npm <span class="built_in">whoami</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果显示用户名，说明已登录</span></span><br><span class="line"><span class="comment"># 如果显示错误 &quot;Not logged in&quot;，说明需要登录</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注册-npm-账号（如果没有）"><a href="#注册-npm-账号（如果没有）" class="headerlink" title="注册 npm 账号（如果没有）"></a>注册 npm 账号（如果没有）</h4><ol>
+<li><strong>访问官网</strong>: <a target="_blank" rel="noopener" href="https://www.npmjs.com/signup">https://www.npmjs.com/signup</a></li>
+<li><strong>填写信息</strong>:<ul>
+<li>用户名（username）: 全局唯一，将作为包名前缀</li>
+<li>邮箱地址: 用于验证和通知</li>
+<li>密码: 至少8个字符</li>
+</ul>
+</li>
+<li><strong>邮箱验证</strong>: 检查邮箱并点击验证链接</li>
+<li><strong>双重验证（推荐）</strong>: 启用 2FA 增强安全性</li>
+</ol>
+<h4 id="账号验证准备"><a href="#账号验证准备" class="headerlink" title="账号验证准备"></a>账号验证准备</h4><ul>
+<li>确保邮箱可以正常接收邮件</li>
+<li>准备手机用于 2FA（如果启用）</li>
+<li>记录用户名和密码到安全位置</li>
+</ul>
+<h3 id="2-本地环境配置"><a href="#2-本地环境配置" class="headerlink" title="2. 本地环境配置"></a>2. 本地环境配置</h3><h4 id="检查-npm-版本"><a href="#检查-npm-版本" class="headerlink" title="检查 npm 版本"></a>检查 npm 版本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确保使用最新版本 npm</span></span><br><span class="line">npm -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要更新</span></span><br><span class="line">npm install -g npm@latest</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置-npm-镜像（如果需要）"><a href="#配置-npm-镜像（如果需要）" class="headerlink" title="配置 npm 镜像（如果需要）"></a>配置 npm 镜像（如果需要）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查当前镜像</span></span><br><span class="line">npm config get registry</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要切换回官方镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置淘宝镜像（仅用于安装，发布时必须用官方）</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com/</span><br><span class="line"><span class="comment"># 发布前切换回官方镜像</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>可以使用nrm切换npm镜像</strong></p>
+<h3 id="3-登录-npm"><a href="#3-登录-npm" class="headerlink" title="3. 登录 npm"></a>3. 登录 npm</h3><h4 id="命令行登录"><a href="#命令行登录" class="headerlink" title="命令行登录"></a>命令行登录</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行登录命令</span></span><br><span class="line">npm login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按提示输入信息</span></span><br><span class="line">Username: your-username</span><br><span class="line">Password: ********</span><br><span class="line">Email: your-email@example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果启用了 2FA，需要输入一次性密码</span></span><br><span class="line">Enter one-time password: 123456</span><br></pre></td></tr></table></figure>
+
+<h4 id="登录验证"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证登录状态</span></span><br><span class="line">npm <span class="built_in">whoami</span></span><br><span class="line"><span class="comment"># 应该显示你的用户名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前用户信息</span></span><br><span class="line">npm profile get</span><br></pre></td></tr></table></figure>
+
+<h4 id="登录问题排查"><a href="#登录问题排查" class="headerlink" title="登录问题排查"></a>登录问题排查</h4><ul>
+<li><strong>认证失败</strong>: 检查用户名/密码，或重置密码</li>
+<li><strong>网络问题</strong>: 检查网络连接和防火墙设置</li>
+<li><strong>2FA 问题</strong>: 确保手机时间同步，重新生成验证码</li>
+</ul>
+<h3 id="4-发布前最终检查"><a href="#4-发布前最终检查" class="headerlink" title="4. 发布前最终检查"></a>4. 发布前最终检查</h3><h4 id="包名检查"><a href="#包名检查" class="headerlink" title="包名检查"></a>包名检查</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查包名是否可用，如果冲突会让你使用你的用户名作为前缀</span></span><br><span class="line">npm search your-package-name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者直接尝试发布，如果冲突会提示</span></span><br><span class="line">npm publish --dry-run</span><br></pre></td></tr></table></figure>
+
+<h4 id="版本号检查"><a href="#版本号检查" class="headerlink" title="版本号检查"></a>版本号检查</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前版本</span></span><br><span class="line">npm version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要更新版本</span></span><br><span class="line">npm version patch  <span class="comment"># 修复 bug（1.0.0 → 1.0.1）</span></span><br><span class="line">npm version minor  <span class="comment"># 新增功能（1.0.0 → 1.1.0）</span></span><br><span class="line">npm version major  <span class="comment"># 不兼容变更（1.0.0 → 2.0.0）</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="文件内容检查"><a href="#文件内容检查" class="headerlink" title="文件内容检查"></a>文件内容检查</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成发布包预览</span></span><br><span class="line">npm pack</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包内容</span></span><br><span class="line">tar -tzf your-package-1.0.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 应该只包含 dist/, static/, README.md, LICENSE 等必要文件</span></span><br><span class="line"><span class="comment"># 不应该包含 src/, test/, 配置文件等</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-正式发布流程"><a href="#5-正式发布流程" class="headerlink" title="5. 正式发布流程"></a>5. 正式发布流程</h3><h4 id="第一次发布"><a href="#第一次发布" class="headerlink" title="第一次发布"></a>第一次发布</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行发布命令</span></span><br><span class="line">npm publish</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出示例</span></span><br><span class="line">+ your-package@1.0.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="发布后验证"><a href="#发布后验证" class="headerlink" title="发布后验证"></a>发布后验证</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看包信息</span></span><br><span class="line">npm info your-package</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建测试项目验证</span></span><br><span class="line"><span class="built_in">mkdir</span> test-package</span><br><span class="line"><span class="built_in">cd</span> test-package</span><br><span class="line">npm init -y</span><br><span class="line">npm install your-package</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试导入</span></span><br><span class="line">node -e <span class="string">&quot;console.log(require(&#x27;your-package&#x27;))&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="发布到特定标签"><a href="#发布到特定标签" class="headerlink" title="发布到特定标签"></a>发布到特定标签</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发布到 beta 标签</span></span><br><span class="line">npm publish --tag beta</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装特定标签</span></span><br><span class="line">npm install your-package@beta</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 beta 标签设置为最新</span></span><br><span class="line">npm dist-tag add your-package@1.0.0 latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-发布后管理"><a href="#6-发布后管理" class="headerlink" title="6. 发布后管理"></a>6. 发布后管理</h3><h4 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有版本</span></span><br><span class="line">npm view your-package versions</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看标签</span></span><br><span class="line">npm dist-tag <span class="built_in">ls</span> your-package</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除特定版本（24小时内）</span></span><br><span class="line">npm unpublish your-package@1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除整个包（72小时内，需要支持）</span></span><br><span class="line">npm unpublish your-package --force</span><br></pre></td></tr></table></figure>
+
+<h4 id="包信息更新"><a href="#包信息更新" class="headerlink" title="包信息更新"></a>包信息更新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新包描述</span></span><br><span class="line">npm pkg <span class="built_in">set</span> description=<span class="string">&quot;New description&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新关键词</span></span><br><span class="line">npm pkg <span class="built_in">set</span> keywords=<span class="string">&#x27;[&quot;new&quot;, &quot;keywords&quot;]&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新仓库信息</span></span><br><span class="line">npm pkg <span class="built_in">set</span> repository.type=git</span><br><span class="line">npm pkg <span class="built_in">set</span> repository.url=https://github.com/your/repo</span><br></pre></td></tr></table></figure>
+
+<h4 id="维护更新"><a href="#维护更新" class="headerlink" title="维护更新"></a>维护更新</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 发布新版本</span></span><br><span class="line">npm version patch &amp;&amp; npm publish</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者手动更新版本号后发布</span></span><br><span class="line"><span class="comment"># 修改 package.json 中的 version，然后</span></span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-常见发布问题解决"><a href="#7-常见发布问题解决" class="headerlink" title="7. 常见发布问题解决"></a>7. 常见发布问题解决</h3><h4 id="包名冲突"><a href="#包名冲突" class="headerlink" title="包名冲突"></a>包名冲突</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误信息：Package name already exists</span></span><br><span class="line"><span class="comment"># 解决方案：修改包名或使用作用域包</span></span><br><span class="line">npm init --scope=your-username</span><br><span class="line"><span class="comment"># 包名变为：@your-username/package-name</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误信息：E403</span></span><br><span class="line"><span class="comment"># 解决方案：检查登录状态和包权限</span></span><br><span class="line">npm <span class="built_in">whoami</span></span><br><span class="line">npm owner <span class="built_in">ls</span> your-package</span><br></pre></td></tr></table></figure>
+
+<h4 id="网络超时"><a href="#网络超时" class="headerlink" title="网络超时"></a>网络超时</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误信息：ETIMEDOUT</span></span><br><span class="line"><span class="comment"># 解决方案：检查网络，重试发布</span></span><br><span class="line">npm publish --retry 3</span><br></pre></td></tr></table></figure>
+
+<h4 id="2FA-要求"><a href="#2FA-要求" class="headerlink" title="2FA 要求"></a>2FA 要求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误信息：OTP required</span></span><br><span class="line"><span class="comment"># 解决方案：启用 2FA 或使用一次性密码</span></span><br><span class="line">npm profile enable-2fa auth-only</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-最佳实践建议"><a href="#8-最佳实践建议" class="headerlink" title="8. 最佳实践建议"></a>8. 最佳实践建议</h3><h4 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h4><ul>
+<li>启用 2FA 保护账号</li>
+<li>使用强密码并定期更换</li>
+<li>不要在公共代码中泄露令牌</li>
+</ul>
+<h4 id="版本管理-1"><a href="#版本管理-1" class="headerlink" title="版本管理"></a>版本管理</h4><ul>
+<li>严格遵循语义化版本规范</li>
+<li>为重大变更提供迁移指南</li>
+<li>维护详细的更新日志</li>
+</ul>
+<h4 id="质量控制"><a href="#质量控制" class="headerlink" title="质量控制"></a>质量控制</h4><ul>
+<li>发布前运行完整测试套件</li>
+<li>使用 CI/CD 自动化测试和发布</li>
+<li>提供清晰的文档和示例</li>
+</ul>
+<h4 id="社区维护"><a href="#社区维护" class="headerlink" title="社区维护"></a>社区维护</h4><ul>
+<li>及时回复 issue 和 PR</li>
+<li>定期更新依赖项</li>
+<li>考虑添加贡献指南</li>
+</ul>
+<h2 id="完整流程总结"><a href="#完整流程总结" class="headerlink" title="完整流程总结"></a>完整流程总结</h2><p>通过以上标准化流程，您可以：</p>
+<ul>
+<li>从零开始创建专业的 npm 包</li>
+<li>确保代码质量和类型安全</li>
+<li>支持多种使用场景和框架</li>
+<li>规范发布和维护流程</li>
+<li>提供良好的开发者体验</li>
+</ul>
+<p>这个流程适用于大多数 Node.js 库的开发，可以根据具体需求进行调整和扩展。</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/10/16/npm%E5%8C%85%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;16&#x2F;npm%E5%8C%85%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;16&#x2F;npm%E5%8C%85%E5%BC%80%E5%8F%91%E5%88%B0%E5%8F%91%E5%B8%83&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Node-js-%E5%87%BD%E6%95%B0%E6%89%93%E5%8C%85%E4%B8%BA-npm-%E5%8C%85%E7%9A%84%E8%A7%84%E8%8C%83%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">Node.js 函数打包为 npm 包的规范流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">第一步：项目初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 创建项目目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96-package-json"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 初始化 package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%A0%87%E5%87%86%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 标准项目结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.</span> <span class="toc-text">第二步：开发环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%89%E8%A3%85%E5%BC%80%E5%8F%91%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 安装开发依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE-TypeScript-tsconfig-json"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 配置 TypeScript (tsconfig.json)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC-package-json"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 配置构建脚本 (package.json)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number">1.4.</span> <span class="toc-text">第三步：代码开发规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%E8%A7%84%E8%8C%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 源代码编写规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%B1%BB%E5%9E%8B%E5%AE%9A%E4%B9%89%E8%A7%84%E8%8C%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 类型定义规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%9E%84%E5%BB%BA%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.5.</span> <span class="toc-text">第四步：构建和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 构建流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%AA%8C%E8%AF%81%E6%9E%84%E5%BB%BA%E7%BB%93%E6%9E%9C"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 验证构建结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%AC%E5%9C%B0%E5%8C%85%E5%BC%80%E5%8F%91%E5%92%8C%E6%B5%8B%E8%AF%95%EF%BC%88npm-link%EF%BC%89"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. 本地包开发和测试（npm link）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-link-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">npm link 的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%8C%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%85%A8%E5%B1%80%E9%93%BE%E6%8E%A5"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">在包项目中创建全局链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%93%BE%E6%8E%A5%E7%9A%84%E5%8C%85"><span class="toc-number">1.5.3.3.</span> <span class="toc-text">在测试项目中使用链接的包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E9%93%BE%E6%8E%A5%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="toc-number">1.5.3.4.</span> <span class="toc-text">验证链接是否成功</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E6%97%B6%E5%BC%80%E5%8F%91%E5%92%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.5.3.5.</span> <span class="toc-text">实时开发和测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E9%93%BE%E6%8E%A5"><span class="toc-number">1.5.3.6.</span> <span class="toc-text">取消链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-link-%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95"><span class="toc-number">1.5.3.7.</span> <span class="toc-text">npm link 的高级用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-link-%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.5.3.8.</span> <span class="toc-text">npm link 的常见问题解决</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#npm-link-%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.5.3.9.</span> <span class="toc-text">npm link 的最佳实践</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8B%E8%AF%95%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-number">1.5.4.</span> <span class="toc-text">4. 测试配置（可选）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%89%8D%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.</span> <span class="toc-text">第五步：发布前配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 忽略文件配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%96%87%E6%A1%A3%E5%92%8C%E8%AE%B8%E5%8F%AF%E8%AF%81"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 文档和许可证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E6%96%87%E6%A1%A3"><span class="toc-number">1.8.</span> <span class="toc-text">API 文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B8%E5%8F%AF%E8%AF%81"><span class="toc-number">1.9.</span> <span class="toc-text">许可证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%91%E5%B8%83%E5%89%8D%E6%A3%80%E6%9F%A5"><span class="toc-number">1.9.1.</span> <span class="toc-text">2. 发布前检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%91%E5%B8%83%E5%88%B0-NPM"><span class="toc-number">1.9.2.</span> <span class="toc-text">3. 发布到 NPM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%91%E5%B8%83%E5%90%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.9.3.</span> <span class="toc-text">4. 发布后验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.10.</span> <span class="toc-text">第七步：配置参数详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#package-json-%E5%85%B3%E9%94%AE%E5%AD%97%E6%AE%B5%E8%AF%B4%E6%98%8E"><span class="toc-number">1.10.1.</span> <span class="toc-text">package.json 关键字段说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tsconfig-json-%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.10.2.</span> <span class="toc-text">tsconfig.json 配置项详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E6%9E%84%E5%BB%BA%E6%9C%BA%E5%88%B6%E8%A7%A3%E6%9E%90"><span class="toc-number">1.11.</span> <span class="toc-text">第八步：构建机制解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TypeScript-%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.11.1.</span> <span class="toc-text">TypeScript 编译过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.11.2.</span> <span class="toc-text">文件映射关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E6%AD%A5%EF%BC%9A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.12.</span> <span class="toc-text">第九步：常见问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E4%B8%8D%E7%94%9F%E6%95%88"><span class="toc-number">1.12.1.</span> <span class="toc-text">1. 类型声明不生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E5%AF%BC%E5%85%A5%E9%94%99%E8%AF%AF"><span class="toc-number">1.12.2.</span> <span class="toc-text">2. 模块导入错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.12.3.</span> <span class="toc-text">3. 静态资源路径问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E6%AD%A5%EF%BC%9A%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93"><span class="toc-number">1.13.</span> <span class="toc-text">第十步：最佳实践总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number">1.13.1.</span> <span class="toc-text">开发规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E8%A7%84%E8%8C%83"><span class="toc-number">1.13.2.</span> <span class="toc-text">发布规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E8%A7%84%E8%8C%83"><span class="toc-number">1.13.3.</span> <span class="toc-text">维护规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83%E5%88%B0-npm-%E5%AE%98%E7%BD%91%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B"><span class="toc-number">1.14.</span> <span class="toc-text">第十一步：发布到 npm 官网的完整流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B4%A6%E5%8F%B7%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5"><span class="toc-number">1.14.1.</span> <span class="toc-text">1. 账号准备阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%B7%B2%E6%9C%89-npm-%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.14.1.1.</span> <span class="toc-text">检查是否已有 npm 账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C-npm-%E8%B4%A6%E5%8F%B7%EF%BC%88%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%EF%BC%89"><span class="toc-number">1.14.1.2.</span> <span class="toc-text">注册 npm 账号（如果没有）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E9%AA%8C%E8%AF%81%E5%87%86%E5%A4%87"><span class="toc-number">1.14.1.3.</span> <span class="toc-text">账号验证准备</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.14.2.</span> <span class="toc-text">2. 本地环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5-npm-%E7%89%88%E6%9C%AC"><span class="toc-number">1.14.2.1.</span> <span class="toc-text">检查 npm 版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-npm-%E9%95%9C%E5%83%8F%EF%BC%88%E5%A6%82%E6%9E%9C%E9%9C%80%E8%A6%81%EF%BC%89"><span class="toc-number">1.14.2.2.</span> <span class="toc-text">配置 npm 镜像（如果需要）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%99%BB%E5%BD%95-npm"><span class="toc-number">1.14.3.</span> <span class="toc-text">3. 登录 npm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%99%BB%E5%BD%95"><span class="toc-number">1.14.3.1.</span> <span class="toc-text">命令行登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81"><span class="toc-number">1.14.3.2.</span> <span class="toc-text">登录验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-number">1.14.3.3.</span> <span class="toc-text">登录问题排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%8F%91%E5%B8%83%E5%89%8D%E6%9C%80%E7%BB%88%E6%A3%80%E6%9F%A5"><span class="toc-number">1.14.4.</span> <span class="toc-text">4. 发布前最终检查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%8D%E6%A3%80%E6%9F%A5"><span class="toc-number">1.14.4.1.</span> <span class="toc-text">包名检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E5%8F%B7%E6%A3%80%E6%9F%A5"><span class="toc-number">1.14.4.2.</span> <span class="toc-text">版本号检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%A3%80%E6%9F%A5"><span class="toc-number">1.14.4.3.</span> <span class="toc-text">文件内容检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B"><span class="toc-number">1.14.5.</span> <span class="toc-text">5. 正式发布流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8F%91%E5%B8%83"><span class="toc-number">1.14.5.1.</span> <span class="toc-text">第一次发布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%90%8E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.14.5.2.</span> <span class="toc-text">发布后验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0%E7%89%B9%E5%AE%9A%E6%A0%87%E7%AD%BE"><span class="toc-number">1.14.5.3.</span> <span class="toc-text">发布到特定标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%91%E5%B8%83%E5%90%8E%E7%AE%A1%E7%90%86"><span class="toc-number">1.14.6.</span> <span class="toc-text">6. 发布后管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86"><span class="toc-number">1.14.6.1.</span> <span class="toc-text">版本管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E4%BF%A1%E6%81%AF%E6%9B%B4%E6%96%B0"><span class="toc-number">1.14.6.2.</span> <span class="toc-text">包信息更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E6%9B%B4%E6%96%B0"><span class="toc-number">1.14.6.3.</span> <span class="toc-text">维护更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%B8%B8%E8%A7%81%E5%8F%91%E5%B8%83%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.14.7.</span> <span class="toc-text">7. 常见发布问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%8D%E5%86%B2%E7%AA%81"><span class="toc-number">1.14.7.1.</span> <span class="toc-text">包名冲突</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.14.7.2.</span> <span class="toc-text">权限问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%B6%85%E6%97%B6"><span class="toc-number">1.14.7.3.</span> <span class="toc-text">网络超时</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2FA-%E8%A6%81%E6%B1%82"><span class="toc-number">1.14.7.4.</span> <span class="toc-text">2FA 要求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.14.8.</span> <span class="toc-text">8. 最佳实践建议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-number">1.14.8.1.</span> <span class="toc-text">安全性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86-1"><span class="toc-number">1.14.8.2.</span> <span class="toc-text">版本管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%A8%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">1.14.8.3.</span> <span class="toc-text">质量控制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E7%BB%B4%E6%8A%A4"><span class="toc-number">1.14.8.4.</span> <span class="toc-text">社区维护</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">1.15.</span> <span class="toc-text">完整流程总结</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1760598347895"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
