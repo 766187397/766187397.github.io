@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！ - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！🌟 为什么选择 node-knife4j-ui？ 填补生态空白 Knife4j 作为Java生态标杆级API文档工具，官方从未提供Node.js 支持。本包突破技术栈限制，将Knife4j的极致体验首次带入Node.js 世界：  保留原版智能参数折叠&#x2F;多主题切换&#x2F;离线导出等核心功能 新增JWT自动注入&#x2F;权限控制等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！">
+<meta property="og:url" content="https://766187397.github.io/2025/10/18/%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！🌟 为什么选择 node-knife4j-ui？ 填补生态空白 Knife4j 作为Java生态标杆级API文档工具，官方从未提供Node.js 支持。本包突破技术栈限制，将Knife4j的极致体验首次带入Node.js 世界：  保留原版智能参数折叠&#x2F;多主题切换&#x2F;离线导出等核心功能 新增JWT自动注入&#x2F;权限控制等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-18T06:14:39.463Z">
+<meta property="article:modified_time" content="2025-10-18T07:03:54.120Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1760772114034">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1760772114034">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1760772114034">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>32</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>11</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1760772114034"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">32</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/10/18/%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81/">🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/12/Vue3%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/">Vue3基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/12/Vue%E5%9F%BA%E7%A1%80%E5%A4%8D%E4%B9%A0/">Vue基础复习</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/12/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82SSR%E3%80%81SSG%E3%80%81CSR/">一文搞懂SSR、SSG、CSR</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/12/%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2%E5%88%B0%E9%83%A8%E7%BD%B2/">生成博客到部署</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/vue.png" alt="🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！" loading="lazy">
+            <h1>🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年10月18日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">包管理工具</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="🔥Knife4j-vs-Swagger：Node-js-开发者的API文档革命！"><a href="#🔥Knife4j-vs-Swagger：Node-js-开发者的API文档革命！" class="headerlink" title="🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！"></a>🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</h1><h2 id="🌟-为什么选择-node-knife4j-ui？"><a href="#🌟-为什么选择-node-knife4j-ui？" class="headerlink" title="🌟 为什么选择 node-knife4j-ui？"></a>🌟 为什么选择 <strong>node-knife4j-ui</strong>？</h2><ol>
+<li><p>填补生态空白</p>
+<p>Knife4j 作为Java生态标杆级API文档工具，官方从未提供Node.js 支持。本包突破技术栈限制，将Knife4j的极致体验首次带入Node.js 世界：</p>
+<ul>
+<li>保留原版<strong>智能参数折叠</strong>/<strong>多主题切换</strong>/<strong>离线导出</strong>等核心功能</li>
+<li>新增<strong>JWT自动注入</strong>/<strong>权限控制</strong>等企业级特性</li>
+</ul>
+</li>
+<li><p>性能碾压性优势</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>Swagger UI</th>
+<th>node-knife4j-ui</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>万级接口加载速度</td>
+<td>&gt;5s</td>
+<td>&lt;2s ️</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>高</td>
+<td>低（懒加载优化）</td>
+</tr>
+<tr>
+<td>微服务支持</td>
+<td>碎片化</td>
+<td>网关聚合文档</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="🚀-极速体验"><a href="#🚀-极速体验" class="headerlink" title="🚀 极速体验"></a>🚀 极速体验</h2><blockquote>
+<p>npm地址：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/node-knife4j-ui">https://www.npmjs.com/package/node-knife4j-ui</a></p>
+<p>GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/766187397/node-knife4j-ui">https://github.com/766187397/node-knife4j-ui</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install node-knife4j-ui</span><br></pre></td></tr></table></figure>
+
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">Knife4</span>jDoc &#125; = <span class="built_in">require</span>(<span class="string">&#x27;node-knife4j-ui&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Knife4</span>jDoc = <span class="built_in">require</span>(<span class="string">&#x27;node-knife4j-ui&#x27;</span>).<span class="property">default</span>;</span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES-Modules"><a href="#ES-Modules" class="headerlink" title="ES Modules"></a>ES Modules</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Knife4</span>jDoc <span class="keyword">from</span> <span class="string">&#x27;node-knife4j-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Knife4</span>jDoc &#125; <span class="keyword">from</span> <span class="string">&#x27;node-knife4j-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="express版本使用"><a href="#express版本使用" class="headerlink" title="express版本使用"></a>express版本使用</h3><blockquote>
+<p>个人测试node版本16</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&#x27;express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> swaggerJsdoc <span class="keyword">from</span> <span class="string">&#x27;swagger-jsdoc&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> swaggerUi <span class="keyword">from</span> <span class="string">&#x27;swagger-ui-express&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Knife4</span>jDoc <span class="keyword">from</span> <span class="string">&#x27;node-knife4j-ui&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">true</span> &#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Swagger配置选项</span></span><br><span class="line"><span class="keyword">const</span> swaggerOptions = &#123;</span><br><span class="line">  <span class="attr">definition</span>: &#123;</span><br><span class="line">    <span class="attr">openapi</span>: <span class="string">&#x27;3.0.0&#x27;</span>,</span><br><span class="line">    <span class="attr">info</span>: &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;Express测试API&#x27;</span>,</span><br><span class="line">      <span class="attr">version</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">      <span class="attr">description</span>: <span class="string">&#x27;一个简单的Express API测试服务&#x27;</span>,</span><br><span class="line">      <span class="attr">contact</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;API支持&#x27;</span>,</span><br><span class="line">        <span class="attr">email</span>: <span class="string">&#x27;support@example.com&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">servers</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">`http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>,</span><br><span class="line">        <span class="attr">description</span>: <span class="string">&#x27;开发服务器&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">apis</span>: [<span class="string">&#x27;./app.js&#x27;</span>] <span class="comment">// 指定包含JSDoc注释的文件</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成Swagger规范</span></span><br><span class="line"><span class="keyword">const</span> swaggerSpec = <span class="title function_">swaggerJsdoc</span>(swaggerOptions);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供Swagger UI</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/swagger&#x27;</span>, swaggerUi.<span class="property">serve</span>, swaggerUi.<span class="title function_">setup</span>(swaggerSpec));</span><br><span class="line"><span class="comment">// 提供 Knife4j 文档</span></span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br><span class="line"><span class="keyword">const</span> knife4jDocPath = knife4jDoc.<span class="title function_">getKnife4jUiPath</span>();</span><br><span class="line"><span class="comment">// 暴露静态文件服务</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/doc&#x27;</span>, knife4jDoc.<span class="title function_">serveExpress</span>(<span class="string">&#x27;/doc&#x27;</span>), express.<span class="title function_">static</span>(knife4jDocPath));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@swagger</span></span></span><br><span class="line"><span class="comment"> * /test:</span></span><br><span class="line"><span class="comment"> *   get:</span></span><br><span class="line"><span class="comment"> *     summary: 测试接口</span></span><br><span class="line"><span class="comment"> *     description: 返回简单的问候信息</span></span><br><span class="line"><span class="comment"> *     tags:</span></span><br><span class="line"><span class="comment"> *       - 测试</span></span><br><span class="line"><span class="comment"> *     responses:</span></span><br><span class="line"><span class="comment"> *       200:</span></span><br><span class="line"><span class="comment"> *         description: 成功返回问候信息</span></span><br><span class="line"><span class="comment"> *         content:</span></span><br><span class="line"><span class="comment"> *           application/json:</span></span><br><span class="line"><span class="comment"> *             schema:</span></span><br><span class="line"><span class="comment"> *               type: object</span></span><br><span class="line"><span class="comment"> *               properties:</span></span><br><span class="line"><span class="comment"> *                 message:</span></span><br><span class="line"><span class="comment"> *                   type: string</span></span><br><span class="line"><span class="comment"> *                   example: 你好！</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/test&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; <span class="attr">message</span>: <span class="string">&#x27;你好！&#x27;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@swagger</span></span></span><br><span class="line"><span class="comment"> * /getSwaggerSpec:</span></span><br><span class="line"><span class="comment"> *   get:</span></span><br><span class="line"><span class="comment"> *     summary: 获取Swagger规范</span></span><br><span class="line"><span class="comment"> *     description: 返回完整的Swagger规范对象</span></span><br><span class="line"><span class="comment"> *     tags:</span></span><br><span class="line"><span class="comment"> *       - Swagger</span></span><br><span class="line"><span class="comment"> *     responses:</span></span><br><span class="line"><span class="comment"> *       200:</span></span><br><span class="line"><span class="comment"> *         description: 成功返回Swagger规范</span></span><br><span class="line"><span class="comment"> *         content:</span></span><br><span class="line"><span class="comment"> *           application/json:</span></span><br><span class="line"><span class="comment"> *             schema:</span></span><br><span class="line"><span class="comment"> *               type: object</span></span><br><span class="line"><span class="comment"> *               properties:</span></span><br><span class="line"><span class="comment"> *                 swaggerSpec:</span></span><br><span class="line"><span class="comment"> *                   type: object</span></span><br><span class="line"><span class="comment"> *                   description: Swagger规范对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/getSwaggerSpec&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">json</span>(&#123; swaggerSpec &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动服务器</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`服务器运行在 http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Swagger文档地址: http://localhost:<span class="subst">$&#123;PORT&#125;</span>/swagger`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Knife4j文档地址: http://localhost:<span class="subst">$&#123;PORT&#125;</span>/doc`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app;</span><br></pre></td></tr></table></figure>
+
+<h3 id="koa版本使用"><a href="#koa版本使用" class="headerlink" title="koa版本使用"></a>koa版本使用</h3><blockquote>
+<p>个人测试node版本20，koa静态文件得使用18+才能正常使用</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Koa</span> <span class="keyword">from</span> <span class="string">&#x27;koa&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Router</span> <span class="keyword">from</span> <span class="string">&#x27;koa-router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> bodyParser <span class="keyword">from</span> <span class="string">&#x27;koa-bodyparser&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> cors <span class="keyword">from</span> <span class="string">&#x27;@koa/cors&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> swaggerJsdoc <span class="keyword">from</span> <span class="string">&#x27;swagger-jsdoc&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> koaSwagger <span class="keyword">from</span> <span class="string">&#x27;koa2-swagger-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Knife4</span>jDoc <span class="keyword">from</span> <span class="string">&#x27;node-knife4j-ui&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> serve <span class="keyword">from</span> <span class="string">&#x27;koa-static&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Koa</span>();</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> <span class="title class_">Router</span>();</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PORT</span> = process.<span class="property">env</span>.<span class="property">PORT</span> || <span class="number">3001</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中间件</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">bodyParser</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// Swagger配置选项</span></span><br><span class="line"><span class="keyword">const</span> swaggerOptions = &#123;</span><br><span class="line">  <span class="attr">definition</span>: &#123;</span><br><span class="line">    <span class="attr">openapi</span>: <span class="string">&#x27;3.0.0&#x27;</span>,</span><br><span class="line">    <span class="attr">info</span>: &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;Koa测试API&#x27;</span>,</span><br><span class="line">      <span class="attr">version</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">      <span class="attr">description</span>: <span class="string">&#x27;一个简单的Koa API测试服务&#x27;</span>,</span><br><span class="line">      <span class="attr">contact</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;API支持&#x27;</span>,</span><br><span class="line">        <span class="attr">email</span>: <span class="string">&#x27;support@example.com&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">servers</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">`http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>,</span><br><span class="line">        <span class="attr">description</span>: <span class="string">&#x27;开发服务器&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">apis</span>: [<span class="string">&#x27;./koa-app.js&#x27;</span>] <span class="comment">// 指定包含JSDoc注释的文件</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成Swagger规范</span></span><br><span class="line"><span class="keyword">const</span> swaggerSpec = <span class="title function_">swaggerJsdoc</span>(swaggerOptions);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供Swagger UI</span></span><br><span class="line"><span class="keyword">const</span> swaggerUi = koaSwagger.<span class="title function_">koaSwagger</span>(&#123;</span><br><span class="line">  <span class="attr">routePrefix</span>: <span class="string">&#x27;/swagger&#x27;</span>,</span><br><span class="line">  <span class="attr">swaggerOptions</span>: &#123;</span><br><span class="line">    <span class="attr">spec</span>: swaggerSpec</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供 Knife4j 文档</span></span><br><span class="line"><span class="keyword">const</span> knife4jDoc = <span class="keyword">new</span> <span class="title class_">Knife4</span>jDoc(swaggerSpec);</span><br><span class="line"><span class="keyword">const</span> knife4jDocPath = knife4jDoc.<span class="title function_">getKnife4jUiPath</span>();</span><br><span class="line">app.<span class="title function_">use</span>(knife4jDoc.<span class="title function_">serveKoa</span>());</span><br><span class="line"><span class="comment">// 暴露静态文件服务</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">serve</span>(knife4jDocPath));</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@swagger</span></span></span><br><span class="line"><span class="comment"> * /test:</span></span><br><span class="line"><span class="comment"> *   get:</span></span><br><span class="line"><span class="comment"> *     summary: 测试接口</span></span><br><span class="line"><span class="comment"> *     description: 返回简单的问候信息</span></span><br><span class="line"><span class="comment"> *     tags:</span></span><br><span class="line"><span class="comment"> *       - 测试</span></span><br><span class="line"><span class="comment"> *     responses:</span></span><br><span class="line"><span class="comment"> *       200:</span></span><br><span class="line"><span class="comment"> *         description: 成功返回问候信息</span></span><br><span class="line"><span class="comment"> *         content:</span></span><br><span class="line"><span class="comment"> *           application/json:</span></span><br><span class="line"><span class="comment"> *             schema:</span></span><br><span class="line"><span class="comment"> *               type: object</span></span><br><span class="line"><span class="comment"> *               properties:</span></span><br><span class="line"><span class="comment"> *                 message:</span></span><br><span class="line"><span class="comment"> *                   type: string</span></span><br><span class="line"><span class="comment"> *                   example: 你好！</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/test&#x27;</span>, <span class="function">(<span class="params">ctx</span>) =&gt;</span> &#123;</span><br><span class="line">  ctx.<span class="property">body</span> = &#123; <span class="attr">message</span>: <span class="string">&#x27;你好！&#x27;</span> &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@swagger</span></span></span><br><span class="line"><span class="comment"> * /getSwaggerSpec:</span></span><br><span class="line"><span class="comment"> *   get:</span></span><br><span class="line"><span class="comment"> *     summary: 获取Swagger规范</span></span><br><span class="line"><span class="comment"> *     description: 返回完整的Swagger规范对象</span></span><br><span class="line"><span class="comment"> *     tags:</span></span><br><span class="line"><span class="comment"> *       - Swagger</span></span><br><span class="line"><span class="comment"> *     responses:</span></span><br><span class="line"><span class="comment"> *       200:</span></span><br><span class="line"><span class="comment"> *         description: 成功返回Swagger规范</span></span><br><span class="line"><span class="comment"> *         content:</span></span><br><span class="line"><span class="comment"> *           application/json:</span></span><br><span class="line"><span class="comment"> *             schema:</span></span><br><span class="line"><span class="comment"> *               type: object</span></span><br><span class="line"><span class="comment"> *               properties:</span></span><br><span class="line"><span class="comment"> *                 swaggerSpec:</span></span><br><span class="line"><span class="comment"> *                   type: object</span></span><br><span class="line"><span class="comment"> *                   description: Swagger规范对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/getSwaggerSpec&#x27;</span>, <span class="function">(<span class="params">ctx</span>) =&gt;</span> &#123;</span><br><span class="line">  ctx.<span class="property">body</span> = &#123; swaggerSpec &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用路由</span></span><br><span class="line">app.<span class="title function_">use</span>(router.<span class="title function_">routes</span>());</span><br><span class="line">app.<span class="title function_">use</span>(router.<span class="title function_">allowedMethods</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用Swagger UI</span></span><br><span class="line">app.<span class="title function_">use</span>(swaggerUi);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动服务器</span></span><br><span class="line">app.<span class="title function_">listen</span>(<span class="variable constant_">PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Koa服务器运行在 http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Swagger文档地址: http://localhost:<span class="subst">$&#123;PORT&#125;</span>/swagger`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Knife4j文档地址: http://localhost:<span class="subst">$&#123;PORT&#125;</span>/doc`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>💡 <strong>小贴士</strong>：在GitHub仓库点击右上角 ★ Star 按钮即可完成加星，整个过程仅需3秒！您的每个Star都是我前进的动力🔥</p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/10/18/%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;18&#x2F;%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;18&#x2F;%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%94%A5Knife4j-vs-Swagger%EF%BC%9ANode-js-%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81"><span class="toc-number">1.</span> <span class="toc-text">🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%9F-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9-node-knife4j-ui%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">🌟 为什么选择 node-knife4j-ui？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E6%9E%81%E9%80%9F%E4%BD%93%E9%AA%8C"><span class="toc-number">1.2.</span> <span class="toc-text">🚀 极速体验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CommonJS"><span class="toc-number">1.2.1.</span> <span class="toc-text">CommonJS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES-Modules"><span class="toc-number">1.2.2.</span> <span class="toc-text">ES Modules</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.3.</span> <span class="toc-text">快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#express%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">express版本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#koa%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">koa版本使用</span></a></li></ol></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1760772114051"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
