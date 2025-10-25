@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>一文搞懂WebWorker - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="🧠 一、什么是 Web Worker？ Web Worker 是浏览器提供的一种 在后台线程中运行 JavaScript 的机制，它允许我们把一些耗时的计算从主线程中分离出来执行，从而避免 阻塞页面渲染 和 降低用户体验。  在浏览器中：  普通 JS 代码、DOM 操作、事件处理、渲染 等都是在 主线程（Main Thread） 中执行的； 而 Web Worker 运行在 独立的线程 中；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文搞懂WebWorker">
+<meta property="og:url" content="https://766187397.github.io/2025/10/24/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82WebWorker/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="🧠 一、什么是 Web Worker？ Web Worker 是浏览器提供的一种 在后台线程中运行 JavaScript 的机制，它允许我们把一些耗时的计算从主线程中分离出来执行，从而避免 阻塞页面渲染 和 降低用户体验。  在浏览器中：  普通 JS 代码、DOM 操作、事件处理、渲染 等都是在 主线程（Main Thread） 中执行的； 而 Web Worker 运行在 独立的线程 中；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-24T10:51:21.267Z">
+<meta property="article:modified_time" content="2025-10-24T10:51:21.267Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1761377311826">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1761377311826">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1761377311827">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>35</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>11</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1761377311827"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">35</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/10/25/%E5%85%8D%E8%B4%B9%E5%9F%9F%E5%90%8D/">免费域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/24/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82WebWorker/">一文搞懂WebWorker</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/24/%E5%8F%91%E5%B8%83%E8%87%AA%E5%B7%B1%E7%9A%84npm%E5%8C%85/">发布自己的npm包</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/18/Node.js%20%E5%87%BD%E6%95%B0%E6%89%93%E5%8C%85%E4%B8%BA%20npm%20%E5%8C%85%E7%9A%84%E8%A7%84%E8%8C%83%E6%B5%81%E7%A8%8B/">Node.js 函数打包为 npm 包的规范流程</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/18/%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81/">🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/web.jpg" alt="一文搞懂WebWorker" loading="lazy">
+            <h1>一文搞懂WebWorker</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年10月24日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">知识碎片</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h2 id="🧠-一、什么是-Web-Worker？"><a href="#🧠-一、什么是-Web-Worker？" class="headerlink" title="🧠 一、什么是 Web Worker？"></a>🧠 一、什么是 Web Worker？</h2><blockquote>
+<p>Web Worker 是浏览器提供的一种 <strong>在后台线程中运行 JavaScript 的机制</strong>，它允许我们把一些耗时的计算从主线程中分离出来执行，从而避免 <strong>阻塞页面渲染</strong> 和 <strong>降低用户体验</strong>。</p>
+</blockquote>
+<p>在浏览器中：</p>
+<ul>
+<li>普通 JS 代码、DOM 操作、事件处理、渲染 等都是在 <strong>主线程（Main Thread）</strong> 中执行的；</li>
+<li>而 <strong>Web Worker</strong> 运行在 <strong>独立的线程</strong> 中；</li>
+<li>两者通过 <strong>消息传递（postMessage）</strong> 通信，不共享作用域，也不能直接访问 DOM。</li>
+</ul>
+<hr>
+<h2 id="🔧-二、怎么使用-Web-Worker？"><a href="#🔧-二、怎么使用-Web-Worker？" class="headerlink" title="🔧 二、怎么使用 Web Worker？"></a>🔧 二、怎么使用 Web Worker？</h2><p>使用非常简单，主要分为三步：</p>
+<h3 id="✅-1-创建一个-Worker-文件（例如-worker-js）"><a href="#✅-1-创建一个-Worker-文件（例如-worker-js）" class="headerlink" title="✅ 1. 创建一个 Worker 文件（例如 worker.js）"></a>✅ 1. 创建一个 Worker 文件（例如 <code>worker.js</code>）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// worker.js</span><br><span class="line">self.onmessage = function (e) &#123;</span><br><span class="line">  console.log(&#x27;Worker 收到消息:&#x27;, e.data);</span><br><span class="line">  const result = e.data * 2;</span><br><span class="line">  // 向主线程发送结果</span><br><span class="line">  self.postMessage(result);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：Worker 线程中没有 <code>window</code> 对象，用 <code>self</code> 代表全局上下文。</p>
+</blockquote>
+<hr>
+<h3 id="✅-2-在主线程中创建并使用-Worker"><a href="#✅-2-在主线程中创建并使用-Worker" class="headerlink" title="✅ 2. 在主线程中创建并使用 Worker"></a>✅ 2. 在主线程中创建并使用 Worker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// main.js</span><br><span class="line">const worker = new Worker(&#x27;worker.js&#x27;);</span><br><span class="line"></span><br><span class="line">worker.postMessage(10); // 发送消息给 Worker</span><br><span class="line"></span><br><span class="line">worker.onmessage = function (e) &#123;</span><br><span class="line">  console.log(&#x27;主线程收到:&#x27;, e.data); // 输出 20</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="✅-3-终止-Worker"><a href="#✅-3-终止-Worker" class="headerlink" title="✅ 3. 终止 Worker"></a>✅ 3. 终止 Worker</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">worker.terminate(); // 主线程中终止 worker</span><br><span class="line">// 或在 worker 内调用 self.close();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="💡-三、使用场景"><a href="#💡-三、使用场景" class="headerlink" title="💡 三、使用场景"></a>💡 三、使用场景</h2><p>Web Worker 非常适合用于 <strong>计算密集型任务</strong> 或 <strong>长时间运行的逻辑</strong>，例如：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🧮 大量数据计算</td>
+<td>图像处理、音频解码、数据加密解密</td>
+</tr>
+<tr>
+<td>📈 大数组排序 / 过滤</td>
+<td>复杂的数据分析、日志解析</td>
+</tr>
+<tr>
+<td>🗺️ 地图渲染 / 路径规划</td>
+<td>WebGIS、路径计算</td>
+</tr>
+<tr>
+<td>🧬 WebAssembly 结合</td>
+<td>运行 C++/Rust 模块时用 Worker 管理线程</td>
+</tr>
+<tr>
+<td>🎨 复杂动画计算</td>
+<td>Canvas 粒子特效、3D 渲染逻辑等</td>
+</tr>
+</tbody></table>
+<p>👉 总之：<strong>只要是“纯计算”、不涉及 DOM 的逻辑，都适合放进 Worker。</strong></p>
+<hr>
+<h2 id="⚙️-四、原理解析"><a href="#⚙️-四、原理解析" class="headerlink" title="⚙️ 四、原理解析"></a>⚙️ 四、原理解析</h2><p>浏览器在实现上，每个 Worker 其实是一个 <strong>独立的线程（或轻量级进程）</strong>：</p>
+<ul>
+<li>主线程与 Worker 通过 <strong>消息队列（Message Queue）</strong> 进行通信；</li>
+<li>通信方式是 <strong>拷贝传值（structured clone）</strong>，不会共享内存；</li>
+<li>从 Chrome 60+ 开始，也支持 <strong><code>SharedArrayBuffer</code></strong> 共享内存，实现更高效的数据传递；</li>
+<li>Worker 无法访问 DOM、window、document、parent；</li>
+<li>Worker 可以使用部分浏览器 API，如：<code>fetch</code>、<code>setTimeout</code>、<code>XMLHttpRequest</code>、<code>IndexedDB</code>。</li>
+</ul>
+<p>🧩 架构示意图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Main Thread  ── postMessage(data) ──▶  Worker Thread</span><br><span class="line">      ▲                                     │</span><br><span class="line">      └───── onmessage(event) ◀── postMessage(result)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="🧰-五、扩展：Worker-的几种类型"><a href="#🧰-五、扩展：Worker-的几种类型" class="headerlink" title="🧰 五、扩展：Worker 的几种类型"></a>🧰 五、扩展：Worker 的几种类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Dedicated Worker</strong></td>
+<td>独立工作者</td>
+<td>默认，只能被创建它的页面使用</td>
+</tr>
+<tr>
+<td><strong>Shared Worker</strong></td>
+<td>共享工作者</td>
+<td>可被多个页面或 iframe 共享</td>
+</tr>
+<tr>
+<td><strong>Service Worker</strong></td>
+<td>离线/缓存代理</td>
+<td>专门用于网络请求拦截、PWA 缓存、离线功能</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧩-六、简单示例：计算斐波那契数列"><a href="#🧩-六、简单示例：计算斐波那契数列" class="headerlink" title="🧩 六、简单示例：计算斐波那契数列"></a>🧩 六、简单示例：计算斐波那契数列</h2><p><strong>worker.js</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">self.onmessage = function (e) &#123;</span><br><span class="line">  const n = e.data;</span><br><span class="line">  const fib = (n) =&gt; (n &lt;= 1 ? n : fib(n - 1) + fib(n - 2));</span><br><span class="line">  self.postMessage(fib(n));</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>main.js</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const worker = new Worker(&#x27;worker.js&#x27;);</span><br><span class="line">worker.postMessage(40);</span><br><span class="line">worker.onmessage = (e) =&gt; console.log(&#x27;结果：&#x27;, e.data);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>即使 <code>fib(40)</code> 计算很慢，也不会卡住 UI。</p>
+</blockquote>
+<hr>
+<h2 id="🧾-总结"><a href="#🧾-总结" class="headerlink" title="🧾 总结"></a>🧾 总结</h2><table>
+<thead>
+<tr>
+<th>方面</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>定义</strong></td>
+<td>浏览器中的多线程机制</td>
+</tr>
+<tr>
+<td><strong>作用</strong></td>
+<td>防止主线程被耗时任务阻塞</td>
+</tr>
+<tr>
+<td><strong>通信方式</strong></td>
+<td>postMessage + onmessage</td>
+</tr>
+<tr>
+<td><strong>限制</strong></td>
+<td>不能操作 DOM、不能访问 window</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>数据处理、图像计算、加密、WebAssembly 等</td>
+</tr>
+<tr>
+<td><strong>原理</strong></td>
+<td>主线程与 Worker 通过消息队列通信，数据结构化克隆传递</td>
+</tr>
+</tbody></table>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/10/24/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82WebWorker/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;24&#x2F;%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82WebWorker&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;10&#x2F;24&#x2F;%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82WebWorker&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Web-Worker%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">🧠 一、什么是 Web Worker？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A7-%E4%BA%8C%E3%80%81%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8-Web-Worker%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">🔧 二、怎么使用 Web Worker？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-Worker-%E6%96%87%E4%BB%B6%EF%BC%88%E4%BE%8B%E5%A6%82-worker-js%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">✅ 1. 创建一个 Worker 文件（例如 worker.js）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-2-%E5%9C%A8%E4%B8%BB%E7%BA%BF%E7%A8%8B%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%B9%B6%E4%BD%BF%E7%94%A8-Worker"><span class="toc-number">2.2.</span> <span class="toc-text">✅ 2. 在主线程中创建并使用 Worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-3-%E7%BB%88%E6%AD%A2-Worker"><span class="toc-number">2.3.</span> <span class="toc-text">✅ 3. 终止 Worker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.</span> <span class="toc-text">💡 三、使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%9A%99%EF%B8%8F-%E5%9B%9B%E3%80%81%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">⚙️ 四、原理解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B0-%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95%EF%BC%9AWorker-%E7%9A%84%E5%87%A0%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">🧰 五、扩展：Worker 的几种类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A9-%E5%85%AD%E3%80%81%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97"><span class="toc-number">6.</span> <span class="toc-text">🧩 六、简单示例：计算斐波那契数列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%BE-%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">🧾 总结</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1761377311834"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
