@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>UniApp + Vue3 + TS 工程化实战笔记 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="UniApp + Vue3 + TS 工程化实战笔记一、为什么要用 CLI 而不是 HBuilderX？   维度 HBuilderX CLI + Vscode    TS 类型推导 ❌ 经常报红 ✅ 丝滑   依赖管理 内置、黑盒 可见、可锁版本   工程化扩展 受限 随便玩 Vite 插件   团队协作 需要统一 IDE 任意编辑器   ⚠️ 用 HBuilderX 创建后再拖到 Vscode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UniApp + Vue3 + TS 工程化实战笔记">
+<meta property="og:url" content="https://766187397.github.io/2025/11/13/UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="UniApp + Vue3 + TS 工程化实战笔记一、为什么要用 CLI 而不是 HBuilderX？   维度 HBuilderX CLI + Vscode    TS 类型推导 ❌ 经常报红 ✅ 丝滑   依赖管理 内置、黑盒 可见、可锁版本   工程化扩展 受限 随便玩 Vite 插件   团队协作 需要统一 IDE 任意编辑器   ⚠️ 用 HBuilderX 创建后再拖到 Vscode">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-13T10:01:07.381Z">
+<meta property="article:modified_time" content="2025-11-13T10:01:07.381Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1764232297397">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1764232297397">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1764232297397">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>38</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1764232297397"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/AI/">AI</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">6</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">38</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/11/27/AI+Figma%E7%94%9F%E6%88%90%E8%AE%BE%E8%AE%A1%E5%9B%BE/">AI+Figma生成设计图</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">UniApp + Vue3 + TS 工程化实战笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/%E5%85%8D%E8%B4%B9%E5%9F%9F%E5%90%8D/">免费域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/AI+Figma/">AI+Figma</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/20/%F0%9F%94%A5Knife4j%20vs%20Swagger%EF%BC%9ANode.js%20%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84API%E6%96%87%E6%A1%A3%E9%9D%A9%E5%91%BD%EF%BC%81/">🔥Knife4j vs Swagger：Node.js 开发者的API文档革命！</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/小程序.png" alt="UniApp + Vue3 + TS 工程化实战笔记" loading="lazy">
+            <h1>UniApp + Vue3 + TS 工程化实战笔记</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年11月13日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">小程序</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="UniApp-Vue3-TS-工程化实战笔记"><a href="#UniApp-Vue3-TS-工程化实战笔记" class="headerlink" title="UniApp + Vue3 + TS 工程化实战笔记"></a>UniApp + Vue3 + TS 工程化实战笔记</h1><h2 id="一、为什么要用-CLI-而不是-HBuilderX？"><a href="#一、为什么要用-CLI-而不是-HBuilderX？" class="headerlink" title="一、为什么要用 CLI 而不是 HBuilderX？"></a>一、为什么要用 CLI 而不是 HBuilderX？</h2><table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">HBuilderX</th>
+<th align="left">CLI + Vscode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">TS 类型推导</td>
+<td align="left">❌ 经常报红</td>
+<td align="left">✅ 丝滑</td>
+</tr>
+<tr>
+<td align="left">依赖管理</td>
+<td align="left">内置、黑盒</td>
+<td align="left">可见、可锁版本</td>
+</tr>
+<tr>
+<td align="left">工程化扩展</td>
+<td align="left">受限</td>
+<td align="left">随便玩 Vite 插件</td>
+</tr>
+<tr>
+<td align="left">团队协作</td>
+<td align="left">需要统一 IDE</td>
+<td align="left">任意编辑器</td>
+</tr>
+</tbody></table>
+<p>⚠️ 用 HBuilderX 创建后再拖到 Vscode，90% 会遭遇「找不到模块」爆红，CLI 模板一步到位。</p>
+<hr>
+<h2 id="二、极速创建项目"><a href="#二、极速创建项目" class="headerlink" title="二、极速创建项目"></a>二、极速创建项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官方 vite-ts 模板（已集成 vue3.4 + ts5）</span></span><br><span class="line">npx degit dcloudio/uni-preset-vue<span class="comment">#vite-ts my-vue3-project</span></span><br><span class="line"><span class="built_in">cd</span> my-vue3-project</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推荐用 yarn，npm 偶尔出现 peer 冲突</span></span><br><span class="line">yarn</span><br><span class="line"><span class="comment"># 如果 ts 报错，先把 @vue/tsconfig 锁 0.4.0，再 yarn</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、Vscode-必备插件清单"><a href="#三、Vscode-必备插件清单" class="headerlink" title="三、Vscode 必备插件清单"></a>三、Vscode 必备插件清单</h2><table>
+<thead>
+<tr>
+<th align="left">插件</th>
+<th align="left">作用</th>
+<th align="left">必装</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Vue - Official</td>
+<td align="left">Vue3 语法高亮</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">uni-create-view</td>
+<td align="left">右键一键生成页面</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">uni-helper</td>
+<td align="left">代码片段 &amp; 提示</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">uni-highlight</td>
+<td align="left"><code>.uvue</code> 高亮</td>
+<td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">uniapp小程序扩展</td>
+<td align="left">微信/阿里 API 提示</td>
+<td align="left">✅</td>
+</tr>
+</tbody></table>
+<p>⚠️ <code>Vue - Official</code> ≥2.x 会对小程序自定义组件误报，关闭「Vue › Validation: Template」或回退到 1.8 即可。</p>
+<hr>
+<h2 id="四、封装「零依赖」HTTP-请求层"><a href="#四、封装「零依赖」HTTP-请求层" class="headerlink" title="四、封装「零依赖」HTTP 请求层"></a>四、封装「零依赖」HTTP 请求层</h2><p>特点：</p>
+<ul>
+<li>自动携带 <code>token</code> &amp; <code>platform</code> 头</li>
+<li>401 自动清缓存 &amp; 跳转登录页</li>
+<li>后端字段容错（<code>error / message / data</code>）</li>
+<li>返回 Promise，直接 <code>await</code></li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/utils/http.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> http = &lt;T&gt;<span class="function">(<span class="params">options: UniApp.RequestOptions</span>) =&gt;</span></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Promise</span>&lt;<span class="title class_">Data</span>&lt;T&gt;&gt;(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">      ...options,</span><br><span class="line">      <span class="attr">url</span>: options.<span class="property">url</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;http&#x27;</span>) ? options.<span class="property">url</span> : baseURL + options.<span class="property">url</span>,</span><br><span class="line">      <span class="attr">header</span>: &#123;</span><br><span class="line">        <span class="attr">platform</span>: <span class="string">&#x27;miniapp&#x27;</span>,</span><br><span class="line">        <span class="title class_">Authorization</span>: uni.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;token&#x27;</span>) || <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        ...options.<span class="property">header</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">success</span>: <span class="function">(<span class="params">&#123; statusCode, data &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (statusCode &gt;= <span class="number">200</span> &amp;&amp; statusCode &lt; <span class="number">300</span>) <span class="keyword">return</span> <span class="title function_">resolve</span>(data <span class="keyword">as</span> <span class="title class_">Data</span>&lt;T&gt;);</span><br><span class="line">        <span class="keyword">if</span> (statusCode === <span class="number">401</span>) &#123;</span><br><span class="line">          uni.<span class="title function_">clearStorage</span>();</span><br><span class="line">          uni.<span class="title function_">navigateTo</span>(&#123; <span class="attr">url</span>: <span class="string">&#x27;/pages/login/login&#x27;</span> &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        uni.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">          <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">          <span class="attr">title</span>: (data <span class="keyword">as</span> <span class="built_in">any</span>)?.<span class="property">error</span> || (data <span class="keyword">as</span> <span class="built_in">any</span>)?.<span class="property">message</span> || <span class="string">&#x27;请求异常&#x27;</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="title function_">reject</span>(data);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">fail</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        uni.<span class="title function_">showToast</span>(&#123; <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;网络开小差~&#x27;</span> &#125;);</span><br><span class="line">        <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;network error&#x27;</span>));</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>使用示例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; http &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/http&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Banner</span> = &#123; <span class="attr">id</span>: <span class="built_in">number</span>; <span class="attr">img</span>: <span class="built_in">string</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getBanner</span> = (<span class="params"></span>) =&gt; http&lt;<span class="title class_">Banner</span>[]&gt;(&#123; <span class="attr">url</span>: <span class="string">&#x27;/home/banner&#x27;</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、微信小程序热更新方案"><a href="#五、微信小程序热更新方案" class="headerlink" title="五、微信小程序热更新方案"></a>五、微信小程序热更新方案</h2><p>很多开发者只会在 <code>onLaunch</code> 里 <code>getUpdateManager</code>，但以下场景依旧漏掉：</p>
+<ul>
+<li>用户 24h 内未冷启动</li>
+<li>开发版/体验版需要强制更新</li>
+</ul>
+<p>封装 <code>useWxUpdate</code>，支持「间隔控制 + 强制弹窗 + 生命周期回调」。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/utils/update.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useWxUpdate</span>(<span class="params">config?: UpdateConfig</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> merge = &#123; ...<span class="variable constant_">DEFAULT_CONFIG</span>, ...config &#125;;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">shouldCheck</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> last = uni.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;last_update_check&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> !last || <span class="title class_">Date</span>.<span class="title function_">now</span>() - last &gt; (merge.<span class="property">checkInterval</span> || <span class="number">86400</span>) * <span class="number">1000</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">checkUpdate</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">// #ifdef MP-WEIXIN</span></span><br><span class="line">    <span class="keyword">const</span> mgr = wx.<span class="title function_">getUpdateManager</span>();</span><br><span class="line">    mgr.<span class="title function_">onCheckForUpdate</span>(<span class="function">(<span class="params">&#123; hasUpdate &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">      uni.<span class="title function_">setStorageSync</span>(<span class="string">&#x27;last_update_check&#x27;</span>, <span class="title class_">Date</span>.<span class="title function_">now</span>());</span><br><span class="line">      merge.<span class="property">onAfterCheck</span>?.(hasUpdate);</span><br><span class="line">    &#125;);</span><br><span class="line">    mgr.<span class="title function_">onUpdateReady</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;更新提示&#x27;</span>,</span><br><span class="line">        <span class="attr">content</span>: merge.<span class="property">customReadyContent</span>!,</span><br><span class="line">        <span class="attr">showCancel</span>: !merge.<span class="property">forceUpdate</span>,</span><br><span class="line">        <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> res.<span class="property">confirm</span> &amp;&amp; mgr.<span class="title function_">applyUpdate</span>(),</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// #endif</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123; checkUpdate, shouldCheck &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>App.vue</code> 调用：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onLaunch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// #ifdef MP-WEIXIN</span></span><br><span class="line">  <span class="keyword">const</span> &#123; checkUpdate, shouldCheck &#125; = <span class="title function_">useWxUpdate</span>(&#123; <span class="attr">forceUpdate</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">shouldCheck</span>()) <span class="title function_">checkUpdate</span>();</span><br><span class="line">  <span class="comment">// #endif</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、Pinia-持久化存储（小程序适配）"><a href="#六、Pinia-持久化存储（小程序适配）" class="headerlink" title="六、Pinia 持久化存储（小程序适配）"></a>六、Pinia 持久化存储（小程序适配）</h2><p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add pinia pinia-plugin-persistedstate</span><br></pre></td></tr></table></figure>
+
+<p><code>main.ts</code> 注入：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createSSRApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> persistedstate <span class="keyword">from</span> <span class="string">&#x27;pinia-plugin-persistedstate&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createApp</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> app = <span class="title function_">createSSRApp</span>(<span class="title class_">App</span>);</span><br><span class="line">  <span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>().<span class="title function_">use</span>(persistedstate);</span><br><span class="line">  <span class="keyword">return</span> &#123; app, pinia &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Store 示例：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/stores/user.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useUserStore = <span class="title function_">defineStore</span>(</span><br><span class="line">  <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">setToken</span> = (<span class="params">t: <span class="built_in">string</span></span>) =&gt; (token.<span class="property">value</span> = t);</span><br><span class="line">    <span class="keyword">return</span> &#123; token, setToken &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">persist</span>: &#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">      <span class="attr">storage</span>: &#123;</span><br><span class="line">        <span class="attr">getItem</span>: <span class="function">(<span class="params">key</span>) =&gt;</span> uni.<span class="title function_">getStorageSync</span>(key),</span><br><span class="line">        <span class="attr">setItem</span>: <span class="function">(<span class="params">key, value</span>) =&gt;</span> uni.<span class="title function_">setStorageSync</span>(key, value),</span><br><span class="line">        <span class="attr">removeItem</span>: <span class="function">(<span class="params">key</span>) =&gt;</span> uni.<span class="title function_">removeStorageSync</span>(key),</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="七、Scss-废弃-API-警告消除"><a href="#七、Scss-废弃-API-警告消除" class="headerlink" title="七、Scss 废弃 API 警告消除"></a>七、Scss 废弃 API 警告消除</h2><p>vite.config.ts 追加：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">css</span>: &#123;</span><br><span class="line">    <span class="attr">preprocessorOptions</span>: &#123;</span><br><span class="line">      <span class="attr">scss</span>: &#123;</span><br><span class="line">        <span class="attr">api</span>: <span class="string">&#x27;modern-compiler&#x27;</span>,</span><br><span class="line">        <span class="attr">silenceDeprecations</span>: [<span class="string">&#x27;legacy-js-api&#x27;</span>],</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、UI-组件库怎么选？"><a href="#八、UI-组件库怎么选？" class="headerlink" title="八、UI 组件库怎么选？"></a>八、UI 组件库怎么选？</h2><table>
+<thead>
+<tr>
+<th align="left">库</th>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>@dcloudio/uni-ui</strong></td>
+<td align="left">官方维护、零样式污染、easycom 自动引入</td>
+<td align="left">样式朴素</td>
+</tr>
+<tr>
+<td align="left"><strong>uview-plus</strong></td>
+<td align="left">组件丰富、主题色生成器</td>
+<td align="left">文档需科学上网、广告多、issue 响应慢</td>
+</tr>
+</tbody></table>
+<p>⚠️ 无论选哪个，<strong>一定</strong> 看 npm 是否有源；很多插件市场包只提供 HBuilderX 安装，CI 无法自动构建。</p>
+<hr>
+<h2 id="九、常见踩坑-Top3"><a href="#九、常见踩坑-Top3" class="headerlink" title="九、常见踩坑 Top3"></a>九、常见踩坑 Top3</h2><ol>
+<li><strong>锁版本</strong><br><code>@dcloudio/*</code> 全部锁死，升级 Vue 到 3.5 也不会带来新特性，反而破坏编译器。</li>
+<li><strong>easycom 不生效</strong><br>把 <code>pages.json</code> 丢到 <code>src/</code> 下，重新 <code>dev</code>。</li>
+<li><strong>小程序插件提示「未添加依赖」</strong><br>在 <code>manifest.json</code> →「小程序插件配置」手动声明插件 ID。</li>
+</ol>
+<hr>
+<h2 id="十、一键运行"><a href="#十、一键运行" class="headerlink" title="十、一键运行"></a>十、一键运行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 微信小程序</span></span><br><span class="line">yarn dev:mp-weixin</span><br><span class="line"></span><br><span class="line"><span class="comment"># H5</span></span><br><span class="line">yarn dev:h5</span><br><span class="line"></span><br><span class="line"><span class="comment"># App</span></span><br><span class="line">yarn dev:app</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="十一、总结"><a href="#十一、总结" class="headerlink" title="十一、总结"></a>十一、总结</h2><p>CLI + Vscode 是真香，但模板只是起点。<br>把「请求-更新-存储-UI」四条链路封装完，后续业务直接撸页面即可。<br>文中所有代码已在 <strong>Gitee 开源</strong>。</p>
+<p>👉 项目地址（顺手点个 Star）：<br><a target="_blank" rel="noopener" href="https://gitee.com/sk20020228/uni-preset-vue3-ts">https://gitee.com/sk20020228/uni-preset-vue3-ts</a></p>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/11/13/UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;11&#x2F;13&#x2F;UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;11&#x2F;13&#x2F;UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UniApp-Vue3-TS-%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">UniApp + Vue3 + TS 工程化实战笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-CLI-%E8%80%8C%E4%B8%8D%E6%98%AF-HBuilderX%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、为什么要用 CLI 而不是 HBuilderX？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9E%81%E9%80%9F%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">二、极速创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Vscode-%E5%BF%85%E5%A4%87%E6%8F%92%E4%BB%B6%E6%B8%85%E5%8D%95"><span class="toc-number">1.3.</span> <span class="toc-text">三、Vscode 必备插件清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%B0%81%E8%A3%85%E3%80%8C%E9%9B%B6%E4%BE%9D%E8%B5%96%E3%80%8DHTTP-%E8%AF%B7%E6%B1%82%E5%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">四、封装「零依赖」HTTP 请求层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%83%AD%E6%9B%B4%E6%96%B0%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.</span> <span class="toc-text">五、微信小程序热更新方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81Pinia-%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%EF%BC%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%82%E9%85%8D%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">六、Pinia 持久化存储（小程序适配）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81Scss-%E5%BA%9F%E5%BC%83-API-%E8%AD%A6%E5%91%8A%E6%B6%88%E9%99%A4"><span class="toc-number">1.7.</span> <span class="toc-text">七、Scss 废弃 API 警告消除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81UI-%E7%BB%84%E4%BB%B6%E5%BA%93%E6%80%8E%E4%B9%88%E9%80%89%EF%BC%9F"><span class="toc-number">1.8.</span> <span class="toc-text">八、UI 组件库怎么选？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%B8%B8%E8%A7%81%E8%B8%A9%E5%9D%91-Top3"><span class="toc-number">1.9.</span> <span class="toc-text">九、常见踩坑 Top3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E4%B8%80%E9%94%AE%E8%BF%90%E8%A1%8C"><span class="toc-number">1.10.</span> <span class="toc-text">十、一键运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">1.11.</span> <span class="toc-text">十一、总结</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1764232297416"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
