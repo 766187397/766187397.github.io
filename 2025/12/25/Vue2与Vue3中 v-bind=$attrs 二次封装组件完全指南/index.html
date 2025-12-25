@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+    
+    <title>Vue2与Vue3中 v-bind=&#34;$attrs&#34; 二次封装组件完全指南 - 辰風依恛</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="辰風依恛个人博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    <link rel="shortcut icon" href="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" type="image/x-icon" />
+    <meta name="description" content="Vue2与Vue3中v-bind&#x3D;&quot;$attrs&quot;二次封装组件完全指南在实际开发中，我们经常需要对Element UI、Ant Design等第三方组件进行二次封装，同时保留原组件的所有属性和事件能力。v-bind&#x3D;&quot;$attrs&quot;正是解决这一需求的核心机制。本文将详细对比Vue2与Vue3中的使用方式、兼容性差异及环境限制。  一、核心概念：$attrs是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue2与Vue3中 v-bind&#x3D;&quot;$attrs&quot; 二次封装组件完全指南">
+<meta property="og:url" content="https://766187397.github.io/2025/12/25/Vue2%E4%B8%8EVue3%E4%B8%AD%20v-bind=$attrs%20%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="辰風依恛">
+<meta property="og:description" content="Vue2与Vue3中v-bind&#x3D;&quot;$attrs&quot;二次封装组件完全指南在实际开发中，我们经常需要对Element UI、Ant Design等第三方组件进行二次封装，同时保留原组件的所有属性和事件能力。v-bind&#x3D;&quot;$attrs&quot;正是解决这一需求的核心机制。本文将详细对比Vue2与Vue3中的使用方式、兼容性差异及环境限制。  一、核心概念：$attrs是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-25T09:20:51.409Z">
+<meta property="article:modified_time" content="2025-12-25T09:23:44.708Z">
+<meta property="article:author" content="辰風依恛">
+<meta property="article:tag" content="辰風依恛个人博客">
+<meta name="twitter:card" content="summary">
+    
+<link rel="stylesheet" href="/lib/fancybox/fancybox.css">
+<link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
+
+
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1766654680064">
+    
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3274123_epi3bpf4j2f.css">
+    
+    <link rel="stylesheet" href="/css/style.css?v=1766654680064">
+
+    
+        
+            <link rel="stylesheet" href="/custom.css?v=1766654680065">
+        
+    
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://766187397.github.io/images/533cc5ef880911ebb6edd017c2d2eca2.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="辰風依恛" class="mdui-btn mdui-btn-icon"><img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="辰風依恛">
+            <img src="https://766187397.github.io/images/f73a765045a245e9b8e594798465112.jpg" alt="辰風依恛" alt="辰風依恛">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>39</div>
+        <div><span>标签</span>0</div>
+        <div><span>分类</span>12</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+        
+        <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        
+            <form id="search_form">
+                <label><input class="st-default-search-input" id="search_value" name="q" type="search" placeholder="搜索" style="
+                    font-size: 15px !important;
+                    height: 56px !important;
+                    background-image: none;
+                "></label>
+            </form>
+         
+    </div>
+</div>
+
+
+	<script async src="/js/search.js?v=1766654680065"></script>
+
+
+
+    
+        
+        <div class="nexmoe-widget-wrap">
+	<div class="nexmoe-widget nexmoe-social">
+		<a
+			class="mdui-ripple"
+			href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=766187397&website=www.oicqzone.com"
+			target="_blank"
+			mdui-tooltip="{content: 'QQ'}"
+			style="
+				color: rgb(249, 174, 8);
+				background-color: rgba(249, 174, 8, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-QQ"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/433804329"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/766187397/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .1);
+			"
+		>
+			<i
+				class="nexmoefont icon-github"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://gitee.com/sk20020228/"
+			target="_blank"
+			mdui-tooltip="{content: 'Gitee'}"
+			style="
+				color: rgb(165, 15, 15);
+				background-color: rgba(165, 15, 15, .15);
+			"
+		>
+			<i
+				class="nexmoefont icon-gitee"
+			></i> </a
+		>
+	</div>
+</div>
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/AI/">AI</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Go语言/">Go语言</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NestJS/">NestJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/NuxtJS/">NuxtJS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/TS/">TS</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Vue/">Vue</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/包管理工具/">包管理工具</a>
+          <span class="category-list-count">5</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/博客/">博客</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/小程序/">小程序</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/性能优化方案/">性能优化方案</a>
+          <span class="category-list-count">4</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/知识碎片/">知识碎片</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+    
+        
+        
+    
+        
+        <!-- 一言 -->
+<div class="nexmoe-widget-wrap">
+  <h3 class="nexmoe-widget-title">
+    一言
+  </h3>
+  <div class="nexmoe-widget">
+    <ul class="hitokoto-box">
+      <li id="hitokoto_text_parent" class="hitokoto-text" hitokotoCategory="">
+        <a href="#" id="hitokoto_text">
+          
+        </a>
+        <a href="#" id="hitokoto_error_text" style="display: none;">
+          
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  let hitokotoText = document.getElementById('hitokoto_text')
+  let hitokotoErroText = document.getElementById('hitokoto_error_text')
+  let hitokotoCategory = document.getElementById('hitokoto_text_parent').getAttribute('hitokotoCategory')
+  window.onload = function () {
+    let url = 'https://v1.hitokoto.cn'
+    if (hitokotoCategory) {
+      url += '?c=' + hitokotoCategory
+    }
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        hitokotoText.innerText = "「 " + data.hitokoto + " 」 from " + data.from
+        hitokotoText.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+      })
+      .catch((reason) => {
+        console.error(11, reason)
+        hitokotoText.style.display = 'none'
+        hitokotoErroText.style.display = 'block'
+      })
+  }
+</script>
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">39</span></li></ul>
+    </div>
+  </div>
+
+
+
+    
+        
+        
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/12/25/Vue2%E4%B8%8EVue3%E4%B8%AD%20v-bind=$attrs%20%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">Vue2与Vue3中 v-bind=&#34;$attrs&#34; 二次封装组件完全指南</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/27/AI+Figma%E7%94%9F%E6%88%90%E8%AE%BE%E8%AE%A1%E5%9B%BE/">AI+Figma生成设计图</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/UniApp%20+%20Vue3%20+%20TS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">UniApp + Vue3 + TS 工程化实战笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/%E5%85%8D%E8%B4%B9%E5%9F%9F%E5%90%8D/">免费域名</a>
+          </li>
+        
+          <li>
+            <a href="/2025/11/13/AI+Figma/">AI+Figma</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+        
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2025 辰風依恛
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        <br><a target="_blank" href="https://beian.miit.gov.cn/">鄂ICP备2020018486号</a>
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+    
+        <div class="nexmoe-post-cover absolute" style="padding-top: NaN%;"> 
+            <img src="https://766187397.github.io/images/vue.png" alt="Vue2与Vue3中 v-bind=&#34;$attrs&#34; 二次封装组件完全指南" loading="lazy">
+            <h1>Vue2与Vue3中 v-bind=&#34;$attrs&#34; 二次封装组件完全指南</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta">
+    <div class="nexmoe-rainbow">
+        <a class="nexmoefont icon-calendar-fill">2025年12月25日</a>
+        
+            <a class="nexmoefont icon-appstore-fill -link" href="/categories/Vue/">Vue</a>
+        
+        
+    </div>
+    
+    
+    
+    
+    
+</div>
+
+    <h1 id="Vue2与Vue3中v-bind-quot-attrs-quot-二次封装组件完全指南"><a href="#Vue2与Vue3中v-bind-quot-attrs-quot-二次封装组件完全指南" class="headerlink" title="Vue2与Vue3中v-bind=&quot;$attrs&quot;二次封装组件完全指南"></a>Vue2与Vue3中<code>v-bind=&quot;$attrs&quot;</code>二次封装组件完全指南</h1><p>在实际开发中，我们经常需要对Element UI、Ant Design等第三方组件进行二次封装，同时保留原组件的所有属性和事件能力。<code>v-bind=&quot;$attrs&quot;</code>正是解决这一需求的核心机制。本文将详细对比Vue2与Vue3中的使用方式、兼容性差异及环境限制。</p>
+<hr>
+<h2 id="一、核心概念：-attrs是什么？"><a href="#一、核心概念：-attrs是什么？" class="headerlink" title="一、核心概念：$attrs是什么？"></a>一、核心概念：<code>$attrs</code>是什么？</h2><p><code>$attrs</code>是Vue实例上的一个对象，包含了<strong>父组件传递给子组件但未被当前组件声明为props的所有属性</strong>。它主要用于组件的隔代传值和高阶组件封装，让我们不用重复声明所有属性即可完成透传。</p>
+<hr>
+<h2 id="二、Vue3中的使用方法"><a href="#二、Vue3中的使用方法" class="headerlink" title="二、Vue3中的使用方法"></a>二、Vue3中的使用方法</h2><h3 id="2-1-基础透传语法"><a href="#2-1-基础透传语法" class="headerlink" title="2.1 基础透传语法"></a>2.1 基础透传语法</h3><p>在Vue3中，<code>$attrs</code>同时包含了<strong>普通属性和事件监听器</strong>，这是与Vue2最显著的区别。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 父组件 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildComponent </span><br><span class="line">    title=&quot;父组件标题&quot; </span><br><span class="line">    data-id=&quot;123&quot; </span><br><span class="line">    @custom-event=&quot;handleEvent&quot;</span><br><span class="line">    class=&quot;parent-class&quot;</span><br><span class="line">  /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 子组件（中间层） --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- 将所有未声明属性透传给孙子组件 --&gt;</span><br><span class="line">    &lt;GrandChild v-bind=&quot;$attrs&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">// 只声明了title作为prop，data-id和@custom-event会进入$attrs</span><br><span class="line">defineProps([&#x27;title&#x27;])</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-禁用自动继承"><a href="#2-2-禁用自动继承" class="headerlink" title="2.2 禁用自动继承"></a>2.2 禁用自动继承</h3><p>默认情况下，未声明的属性会自动绑定到组件根元素。通过设置<code>inheritAttrs: false</code>可以手动控制绑定位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">defineOptions(&#123;</span><br><span class="line">  inheritAttrs: false // 禁用默认继承</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;!-- 手动指定属性绑定到input元素 --&gt;</span><br><span class="line">    &lt;input v-bind=&quot;$attrs&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3-组合式API中使用"><a href="#2-3-组合式API中使用" class="headerlink" title="2.3 组合式API中使用"></a>2.3 组合式API中使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; useAttrs, onMounted &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const attrs = useAttrs()</span><br><span class="line">onMounted(() =&gt; &#123;</span><br><span class="line">  console.log(attrs) // &#123; data-id: &quot;123&quot;, onCustomEvent: () =&gt; &#123;&#125; &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键特性</strong>：事件监听器在<code>$attrs</code>中以<code>onXxx</code>形式存在（如<code>@custom-event</code>变为<code>onCustomEvent</code>）。</p>
+<hr>
+<h2 id="三、Vue2中的使用方法"><a href="#三、Vue2中的使用方法" class="headerlink" title="三、Vue2中的使用方法"></a>三、Vue2中的使用方法</h2><h3 id="3-1-基础透传语法"><a href="#3-1-基础透传语法" class="headerlink" title="3.1 基础透传语法"></a>3.1 基础透传语法</h3><p>Vue2中<code>$attrs</code>和<code>$listeners</code>是分离的：**<code>$attrs</code>只包含属性，<code>$listeners</code>包含事件监听器**。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 父组件 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ChildComponent </span><br><span class="line">    title=&quot;父组件标题&quot;</span><br><span class="line">    data-id=&quot;123&quot;</span><br><span class="line">    @custom-event=&quot;handleEvent&quot;</span><br><span class="line">  /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 子组件（中间层） --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;!-- 必须同时绑定attrs和listeners --&gt;</span><br><span class="line">    &lt;GrandChild v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: [&#x27;title&#x27;] // data-id会进入$attrs，@custom-event会进入$listeners</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-禁用自动继承"><a href="#3-2-禁用自动继承" class="headerlink" title="3.2 禁用自动继承"></a>3.2 禁用自动继承</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false, // 禁用自动绑定到根元素</span><br><span class="line">  props: [&#x27;title&#x27;]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;!-- 手动控制属性传递 --&gt;</span><br><span class="line">    &lt;input v-bind=&quot;$attrs&quot; /&gt;</span><br><span class="line">    &lt;!-- 事件需要单独绑定 --&gt;</span><br><span class="line">    &lt;button v-on=&quot;$listeners&quot;&gt;点击&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、Vue2与Vue3核心差异对比"><a href="#四、Vue2与Vue3核心差异对比" class="headerlink" title="四、Vue2与Vue3核心差异对比"></a>四、Vue2与Vue3核心差异对比</h2><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">Vue2</th>
+<th align="left">Vue3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>包含内容</strong></td>
+<td align="left">仅普通属性</td>
+<td align="left">属性 + 事件监听器</td>
+</tr>
+<tr>
+<td align="left"><strong>事件处理</strong></td>
+<td align="left"><code>$listeners</code>对象</td>
+<td align="left">合并到<code>$attrs</code>中（<code>onXxx</code>形式）</td>
+</tr>
+<tr>
+<td align="left"><strong>class/style</strong></td>
+<td align="left">包含在<code>$attrs</code>中</td>
+<td align="left"><strong>不包含</strong>在<code>$attrs</code>中（需单独绑定）</td>
+</tr>
+<tr>
+<td align="left"><strong>透传方式</strong></td>
+<td align="left"><code>v-bind=&quot;$attrs&quot;</code> + <code>v-on=&quot;$listeners&quot;</code></td>
+<td align="left">仅需<code>v-bind=&quot;$attrs&quot;</code></td>
+</tr>
+<tr>
+<td align="left"><strong>默认继承</strong></td>
+<td align="left"><code>inheritAttrs: true</code></td>
+<td align="left"><code>inheritAttrs: false</code>（单根组件）</td>
+</tr>
+<tr>
+<td align="left"><strong>组合式API</strong></td>
+<td align="left">不支持</td>
+<td align="left"><code>useAttrs()</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、兼容性问题处理"><a href="#五、兼容性问题处理" class="headerlink" title="五、兼容性问题处理"></a>五、兼容性问题处理</h2><h3 id="5-1-跨版本兼容方案"><a href="#5-1-跨版本兼容方案" class="headerlink" title="5.1 跨版本兼容方案"></a>5.1 跨版本兼容方案</h3><p>对于需要同时兼容Vue2和Vue3的组件库，可以封装一个兼容层：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- CompatibleWrapper.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;target-component </span><br><span class="line">      v-bind=&quot;$attrs&quot;</span><br><span class="line">      v-on=&quot;isVue3 ? $attrs : $listeners&quot;</span><br><span class="line">    /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: [&#x27;isVue3&#x27;]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-class-style透传差异处理"><a href="#5-2-class-style透传差异处理" class="headerlink" title="5.2 class/style透传差异处理"></a>5.2 class/style透传差异处理</h3><p><strong>Vue3</strong>中class/style不会自动进入<code>$attrs</code>，需要特殊处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div </span><br><span class="line">    v-bind=&quot;filteredAttrs&quot;</span><br><span class="line">    :class=&quot;$attrs.class&quot;</span><br><span class="line">    :style=&quot;$attrs.style&quot;</span><br><span class="line">  &gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; computed, useAttrs &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const attrs = useAttrs()</span><br><span class="line">const filteredAttrs = computed(() =&gt; &#123;</span><br><span class="line">  const &#123; class: _, style: __, ...rest &#125; = attrs</span><br><span class="line">  return rest</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、环境支持限制"><a href="#六、环境支持限制" class="headerlink" title="六、环境支持限制"></a>六、环境支持限制</h2><h3 id="6-1-uniapp打包为小程序（重点）"><a href="#6-1-uniapp打包为小程序（重点）" class="headerlink" title="6.1 uniapp打包为小程序（重点）"></a>6.1 uniapp打包为小程序（<strong>重点</strong>）</h3><p>在uniapp转小程序（微信/支付宝小程序）时存在严重限制：</p>
+<ol>
+<li><p><strong>事件不支持透传</strong>：小程序的事件机制与Web不同，<code>v-on=&quot;$listeners&quot;</code>或<code>v-bind=&quot;$attrs&quot;</code>中的事件<strong>无法被正确识别和绑定</strong></p>
+</li>
+<li><p><strong>属性支持不完整</strong>：仅支持基础属性透传，自定义事件会失效</p>
+</li>
+<li><p><strong>解决方案</strong>：必须显式声明所有事件</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- ❌ 小程序中无效 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-button v-bind=&quot;$attrs&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- ✅ 小程序中有效 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-button </span><br><span class="line">    :type=&quot;type&quot;</span><br><span class="line">    :size=&quot;size&quot;</span><br><span class="line">    @click=&quot;$emit(&#x27;click&#x27;)&quot;</span><br><span class="line">    @confirm=&quot;$emit(&#x27;confirm&#x27;)&quot;</span><br><span class="line">  /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  props: [&#x27;type&#x27;, &#x27;size&#x27;],</span><br><span class="line">  emits: [&#x27;click&#x27;, &#x27;confirm&#x27;] // 必须显式声明</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-其他受限环境"><a href="#6-2-其他受限环境" class="headerlink" title="6.2 其他受限环境"></a>6.2 其他受限环境</h3><ul>
+<li><strong>Nuxt.js SSR</strong>：服务端渲染时需注意<code>$attrs</code>可能不包含客户端特有属性</li>
+<li><strong>低版本浏览器</strong>：Vue3的Proxy机制在IE11及以下不支持</li>
+<li><strong>微前端架构</strong>：跨框架通信时<code>$attrs</code>无法穿透框架边界</li>
+</ul>
+<hr>
+<h2 id="七、最佳实践与注意事项"><a href="#七、最佳实践与注意事项" class="headerlink" title="七、最佳实践与注意事项"></a>七、最佳实践与注意事项</h2><h3 id="7-1-通用建议"><a href="#7-1-通用建议" class="headerlink" title="7.1 通用建议"></a>7.1 通用建议</h3><ol>
+<li><strong>优先使用显式props</strong>：仅在封装第三方组件或高阶组件时使用<code>$attrs</code></li>
+<li>**配合<code>inheritAttrs: false</code>**：避免属性被意外绑定到根元素</li>
+<li><strong>文档化透传行为</strong>：在组件文档中说明哪些属性会被透传</li>
+</ol>
+<h3 id="7-2-多层透传技巧"><a href="#7-2-多层透传技巧" class="headerlink" title="7.2 多层透传技巧"></a>7.2 多层透传技巧</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 中间层组件 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ThirdPartyComponent v-bind=&quot;$attrs&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">// 无需声明任何props，所有属性自动透传</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-属性过滤"><a href="#7-3-属性过滤" class="headerlink" title="7.3 属性过滤"></a>7.3 属性过滤</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;input v-bind=&quot;filteredAttrs&quot; /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; computed, useAttrs &#125; from &#x27;vue&#x27;</span><br><span class="line"></span><br><span class="line">const attrs = useAttrs()</span><br><span class="line">const filteredAttrs = computed(() =&gt; &#123;</span><br><span class="line">  // 移除不需要透传的属性</span><br><span class="line">  const &#123; &#x27;data-private&#x27;: _, ...rest &#125; = attrs</span><br><span class="line">  return rest</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4-避免冲突"><a href="#7-4-避免冲突" class="headerlink" title="7.4 避免冲突"></a>7.4 避免冲突</h3><p>手动绑定的属性会覆盖<code>$attrs</code>中的同名属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 如果$attrs中有placeholder，会被覆盖为&quot;默认&quot; --&gt;</span><br><span class="line">&lt;input v-bind=&quot;$attrs&quot; placeholder=&quot;默认&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><table>
+<thead>
+<tr>
+<th align="left">场景</th>
+<th align="left">Vue2方案</th>
+<th align="left">Vue3方案</th>
+<th align="left">注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>基础透传</strong></td>
+<td align="left"><code>v-bind=&quot;$attrs&quot;</code> + <code>v-on=&quot;$listeners&quot;</code></td>
+<td align="left"><code>v-bind=&quot;$attrs&quot;</code></td>
+<td align="left">Vue3事件在attrs中</td>
+</tr>
+<tr>
+<td align="left"><strong>禁用继承</strong></td>
+<td align="left"><code>inheritAttrs: false</code></td>
+<td align="left"><code>inheritAttrs: false</code></td>
+<td align="left">默认为true/false不同</td>
+</tr>
+<tr>
+<td align="left"><strong>小程序兼容</strong></td>
+<td align="left"><strong>不支持事件透传</strong></td>
+<td align="left"><strong>不支持事件透传</strong></td>
+<td align="left">必须显式声明事件</td>
+</tr>
+<tr>
+<td align="left"><strong>class/style</strong></td>
+<td align="left">自动包含</td>
+<td align="left">需手动绑定</td>
+<td align="left">Vue3需特殊处理</td>
+</tr>
+</tbody></table>
+<p><strong>核心结论</strong>：</p>
+<ul>
+<li>Vue3的<code>$attrs</code>更强大，统一了属性和事件处理</li>
+<li>在uniapp等小程序环境中，<strong>事件透传完全失效</strong>，必须放弃<code>$attrs</code>方案，改为显式声明</li>
+<li>组件库开发者应提供Vue2/Vue3双版本API，或使用兼容层</li>
+</ul>
+
+    
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>本文作者：</strong>辰風依恛<br>
+        <strong>本文链接：</strong><a href="https://766187397.github.io/2025/12/25/Vue2%E4%B8%8EVue3%E4%B8%AD%20v-bind=$attrs%20%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" title="https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;12&#x2F;25&#x2F;Vue2%E4%B8%8EVue3%E4%B8%AD%20v-bind&#x3D;$attrs%20%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;766187397.github.io&#x2F;2025&#x2F;12&#x2F;25&#x2F;Vue2%E4%B8%8EVue3%E4%B8%AD%20v-bind&#x3D;$attrs%20%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+   
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue2%E4%B8%8EVue3%E4%B8%ADv-bind-quot-attrs-quot-%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text">Vue2与Vue3中v-bind&#x3D;&quot;$attrs&quot;二次封装组件完全指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9A-attrs%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">一、核心概念：$attrs是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Vue3%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、Vue3中的使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%9F%BA%E7%A1%80%E9%80%8F%E4%BC%A0%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 基础透传语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%A6%81%E7%94%A8%E8%87%AA%E5%8A%A8%E7%BB%A7%E6%89%BF"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 禁用自动继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%BB%84%E5%90%88%E5%BC%8FAPI%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 组合式API中使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Vue2%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">三、Vue2中的使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%9F%BA%E7%A1%80%E9%80%8F%E4%BC%A0%E8%AF%AD%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 基础透传语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%A6%81%E7%94%A8%E8%87%AA%E5%8A%A8%E7%BB%A7%E6%89%BF"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 禁用自动继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Vue2%E4%B8%8EVue3%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82%E5%AF%B9%E6%AF%94"><span class="toc-number">1.4.</span> <span class="toc-text">四、Vue2与Vue3核心差异对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">五、兼容性问题处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E8%B7%A8%E7%89%88%E6%9C%AC%E5%85%BC%E5%AE%B9%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 跨版本兼容方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-class-style%E9%80%8F%E4%BC%A0%E5%B7%AE%E5%BC%82%E5%A4%84%E7%90%86"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 class&#x2F;style透传差异处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%8E%AF%E5%A2%83%E6%94%AF%E6%8C%81%E9%99%90%E5%88%B6"><span class="toc-number">1.6.</span> <span class="toc-text">六、环境支持限制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-uniapp%E6%89%93%E5%8C%85%E4%B8%BA%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 uniapp打包为小程序（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%85%B6%E4%BB%96%E5%8F%97%E9%99%90%E7%8E%AF%E5%A2%83"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 其他受限环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%B8%8E%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.7.</span> <span class="toc-text">七、最佳实践与注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E9%80%9A%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.7.1.</span> <span class="toc-text">7.1 通用建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E5%A4%9A%E5%B1%82%E9%80%8F%E4%BC%A0%E6%8A%80%E5%B7%A7"><span class="toc-number">1.7.2.</span> <span class="toc-text">7.2 多层透传技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4"><span class="toc-number">1.7.3.</span> <span class="toc-text">7.3 属性过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E9%81%BF%E5%85%8D%E5%86%B2%E7%AA%81"><span class="toc-number">1.7.4.</span> <span class="toc-text">7.4 避免冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">八、总结</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="Back To Top" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-search-space">
+	<div class="search-container">
+		<div class="search-header">
+			<div class="search-input-container">
+				<input
+					class="search-input"
+					type="text"
+					placeholder="搜索"
+					oninput="sinput();"
+				/>
+			</div>
+			<a class="search-close" onclick="sclose();">×</a>
+		</div>
+		<div class="search-body"></div>
+	</div>
+</div>
+
+    
+<script src="/lib/mdui_043tiny/mdui.js"></script>
+<script src="/lib/fancybox/fancybox.umd.js"></script>
+
+
+ 
+
+<script async src="/js/app.js?v=1766654680091"></script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2058306854838448" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
